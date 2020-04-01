@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ITLabNET.Models.Domain.Aankondiging" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAACAAAUAAAAAEAAAAAAAAAAAAAAEAYAA=</HashCode>
+      <FileName>Models\Domain\Aankondiging.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Academiejaar" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAABAEAAAAACAAgAAAAAAAAAIAAAAAgAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Academiejaar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Feedback" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAUAABAAAAAAAAAAAAAAAAQAAIAA=</HashCode>
+      <FileName>Models\Domain\Feedback.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruiker" Collapsed="true">
+    <Position X="3.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQQAQAAEAACAAAQAQAAAAAAQAAAAAAAEAAAAIAAA=</HashCode>
+      <FileName>Models\Domain\Gebruiker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Herinnering" Collapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Herinnering.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Inschrijving" Collapsed="true">
+    <Position X="7.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABUAAQAAAAAAABAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\Domain\Inschrijving.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Lokaal" Collapsed="true">
+    <Position X="3.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAACAAAAAAAABAAAAAAEA=</HashCode>
+      <FileName>Models\Domain\Lokaal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Media" Collapsed="true">
+    <Position X="5.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAUAAAAAACAAJAAAAAABAAAAAIAA=</HashCode>
+      <FileName>Models\Domain\Media.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Sessie" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAhABAACQAAwIQBAEgQAACBCAAQDAGQgAEkQCBA=</HashCode>
+      <FileName>Models\Domain\Sessie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
