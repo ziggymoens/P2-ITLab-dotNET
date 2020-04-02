@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ITLabNET.Models.Domain.Gebruikers;
+using ITLabNET.Models.Domain.Sessies;
 
 namespace ITLabNET.Models.Domain
 {
