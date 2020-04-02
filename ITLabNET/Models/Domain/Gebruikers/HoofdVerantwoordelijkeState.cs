@@ -7,6 +7,20 @@ namespace ITLabNET.Models.Domain.Gebruikers
 {
     public class HoofdVerantwoordelijkeState : GebruikerProfielState
     {
+        #region Constructors
+        public HoofdVerantwoordelijkeState()
+        {
 
+        }
+
+        public HoofdVerantwoordelijkeState(Gebruiker gebruiker) : base(gebruiker)
+        {
+            
+        }
+        #endregion
+
+        #region Methods
+        public override string getProfiel() { return "hoofdverantwoordelijke"; }
+        #endregion
     }
 }

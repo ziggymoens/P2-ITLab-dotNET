@@ -5,11 +5,26 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Gebruikers
 {
-    public class GebruikerProfielState
+    public abstract class GebruikerProfielState
     {
         #region Fields
-        private int profielId;
-        protected Gebruiker gebruiker;
+        private int _profielId;
+        protected Gebruiker _gebruiker;
+        #endregion
+        #region Constructors
+        public GebruikerProfielState()
+        {
+
+        }
+
+        public GebruikerProfielState(Gebruiker gebruiker)
+        {
+            _gebruiker = gebruiker;
+        }
+        #endregion
+
+        #region Methods
+        public abstract string getProfiel();
         #endregion
     }
 }

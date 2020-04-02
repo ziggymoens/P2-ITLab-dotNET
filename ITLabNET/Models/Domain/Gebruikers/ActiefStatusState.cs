@@ -7,6 +7,20 @@ namespace ITLabNET.Models.Domain.Gebruikers
 {
     public class ActiefStatusState : GebruikerStatusState
     {
+        #region Constructors
+        public ActiefStatusState()
+        {
 
+        }
+
+        public ActiefStatusState(Gebruiker gebruiker) : base(gebruiker)
+        {
+
+        }
+        #endregion
+
+        #region Methods
+        public override string getProfiel() { return "actief"; }
+        #endregion
     }
 }
