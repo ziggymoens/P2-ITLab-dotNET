@@ -11,6 +11,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
         private int _profielId;
         protected Gebruiker _gebruiker;
         #endregion
+
         #region Constructors
         public GebruikerProfielState()
         {

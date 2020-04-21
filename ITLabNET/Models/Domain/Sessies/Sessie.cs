@@ -21,7 +21,7 @@ namespace ITLabNET.Models.Domain.Sessies
         private int _aantalAanwezigen;
         private string _stad;
         private Academiejaar _academiejaar;
-        private bool verwijderd;
+        private bool _verwijderd;
         private ICollection<Media> _media;
         private ICollection<Inschrijving> _inschrijvingen;
         private ICollection<Aankondiging> _aankondigingen;
@@ -33,8 +33,10 @@ namespace ITLabNET.Models.Domain.Sessies
 
 
         public string sessieId { get; set; }
-        
-        public string Titel { get => _titel;
+
+        public string Titel
+        {
+            get => _titel;
             set
             {
                 _titel = value;
@@ -121,5 +123,106 @@ namespace ITLabNET.Models.Domain.Sessies
                 _stad = value;
             }
         }
+
+        public Academiejaar Academiejaar
+        {
+            get => _academiejaar;
+            set
+            {
+                _academiejaar = value;
+            }
+        }
+
+        public bool Verwijderd
+        {
+            get => _verwijderd;
+            set
+            {
+                _verwijderd = value;
+            }
+        }
+
+        public ICollection<Media> Media
+        {
+            get => _media;
+            set
+            {
+                _media = value;
+            }
+        }
+
+        public ICollection<Inschrijving> Inschrijvingen
+        {
+            get => _inschrijvingen;
+            set
+            {
+                _inschrijvingen = value;
+            }
+        }
+
+        public ICollection<Aankondiging> Aankondigingen
+        {
+            get => _aankondigingen;
+            set
+            {
+                _aankondigingen = value;
+            }
+        }
+
+        public ICollection<Feedback> Feedback
+        {
+            get => _feedback;
+            set
+            {
+                _feedback = value;
+            }
+        }
+
+        public Lokaal Lokaal
+        {
+            get => _lokaal;
+            set
+            {
+                _lokaal = value;
+            }
+        }
+
+        public Gebruiker Verantwoordelijke
+        {
+            get => _verantwoordelijke;
+            set
+            {
+                _verantwoordelijke = value;
+            }
+        }
+        public SessieState CurrentState { get => _currentState; }
+
+        public void setSessieState(string status)
+        {
+            if (status == null || string.IsNullOrEmpty(status))
+            {
+                throw new ArgumentException("Sessie state mag niet leeg of null zijn");
+            }
+            switch (status)
+            {
+                case "open":
+                    toState(new OpenState(this));
+                    break;
+                case "gesloten":
+                    toState(new GeslotenState(this));
+                    break;
+                case "zichtbaar":
+                    toState(new ZichtbaarState(this));
+                    break;
+                default:
+                case "niet zichtbaar":
+                    toState(new NietZichtbaarState(this));
+                    break;
+            }
+        }
+
+        #region Methods
+        public void toState(SessieState sessieState) { _currentState = sessieState; }
+        #endregion
     }
 }

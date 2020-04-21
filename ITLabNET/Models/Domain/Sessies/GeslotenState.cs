@@ -7,6 +7,19 @@ namespace ITLabNET.Models.Domain.Sessies
 {
     public class GeslotenState : SessieState
     {
+        public GeslotenState()
+        {
 
+        }
+
+        public GeslotenState(Sessie sessie) : base(sessie)
+        {
+
+        }
+
+        public override string getState()
+        {
+            return "gesloten";
+        }
     }
 }

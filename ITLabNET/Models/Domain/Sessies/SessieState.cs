@@ -9,7 +9,23 @@ namespace ITLabNET.Models.Domain.Sessies
     {
         #region Fields
         private int Id;
-        protected Sessie sessie;
+        protected Sessie _sessie;
+        #endregion
+
+        #region Constructors
+        public SessieState()
+        {
+
+        }
+
+        public SessieState(Sessie sessie)
+        {
+            _sessie = sessie;
+        }
+        #endregion
+
+        #region Methods
+        public abstract string getState();
         #endregion
     }
 }
