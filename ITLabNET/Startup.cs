@@ -66,10 +66,10 @@ namespace ITLabNET
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Sessie}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-            dataInitializer.InitializeData().Wait();
+            //dataInitializer.InitializeData().Wait();
         }
     }
 }

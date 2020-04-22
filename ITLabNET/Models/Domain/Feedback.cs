@@ -1,4 +1,5 @@
 ﻿using ITLabNET.Models.Domain.Gebruikers;
+using ITLabNET.Models.Domain.Sessies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
