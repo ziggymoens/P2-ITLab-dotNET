@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ITLabNET.Models.Domain.Aankondiging">
+    <Position X="16.5" Y="4.5" Width="8.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAgAAQAgAAAAAQAAgAAFIABhABAAAACBgAAAIAAA=</HashCode>
+      <FileName>Models\Domain\Aankondiging.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Herinnering" />
+      <Property Name="Gebruiker" />
+      <Property Name="Sessie" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Academiejaar">
+    <Position X="4.5" Y="13.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAABAAIgCAAgAAAAAAAAAAAACAAAwAAAAwAAAAAAAE=</HashCode>
+      <FileName>Models\Domain\Academiejaar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Campus">
+    <Position X="0.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Campus.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_stad" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Feedback">
+    <Position X="22.75" Y="19" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAABACIAAFAABwAAAABAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Feedback.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Sessie" />
+      <Property Name="Gebruiker" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebouw">
+    <Position X="1" Y="9.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Gebouw.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_campus" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Herinnering">
+    <Position X="19.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABIEIABAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Herinnering.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Inschrijving">
+    <Position X="26.25" Y="9" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQABAAABAAAAAAAFAQBgAAABAAAAgAAAAAAE=</HashCode>
+      <FileName>Models\Domain\Inschrijving.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Gebruiker" />
+      <Property Name="Sessie" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Media">
+    <Position X="12.75" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQBAAAAQAAAAAAAFAARwAAEgACQAgAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Media.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Sessie" />
+      <Property Name="Gebruiker" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Stad">
+    <Position X="0.5" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Stad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Sessies.Sessie">
+    <Position X="7.75" Y="6.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAABIBAAIQAAwAgBCEiUCAjBCEAQDIGQgAE0QiBQ=</HashCode>
+      <FileName>Models\Domain\Sessies\Sessie.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_academiejaar" />
+      <Field Name="_lokaal" />
+      <Property Name="CurrentState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Lokaal">
+    <Position X="4.5" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAARAAAAAAAEAAJAAAEAgAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Lokaal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_gebouw" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruikers.Gebruiker">
+    <Position X="19" Y="9.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAQQIQAgEAEABAAAAgBAGAEBAAAAIAAAhAAAAJAEI=</HashCode>
+      <FileName>Models\Domain\Gebruikers\Gebruiker.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentProfiel" />
+      <Property Name="CurrentStatus" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruikers.GebruikerProfielState">
+    <Position X="23.5" Y="13.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAgAABAAAA=</HashCode>
+      <FileName>Models\Domain\Gebruikers\GebruikerProfielState.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Gebruiker" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruikers.ActiefStatusState">
+    <Position X="11.25" Y="22.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Gebruikers\ActiefStatusState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruikers.GeblokkeerdStatusState">
+    <Position X="14.75" Y="22.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Gebruikers\GeblokkeerdStatusState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruikers.GebruikerStatusState">
+    <Position X="15" Y="19.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAIQAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Gebruikers\GebruikerStatusState.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_gebruiker" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruikers.HoofdVerantwoordelijkeState">
+    <Position X="21.25" Y="16.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Gebruikers\HoofdVerantwoordelijkeState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruikers.NietActiefStatusState">
+    <Position X="18.75" Y="22.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Gebruikers\NietActiefStatusState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Gebruikers.VerantwoordelijkeState">
+    <Position X="25.5" Y="16.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Gebruikers\VerantwoordelijkeState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Sessies.SessieState">
+    <Position X="14.25" Y="13.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAIAAAAAAAAAAAAAABAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Sessies\SessieState.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Sessie" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Sessies.NietZichtbaarState">
+    <Position X="11.25" Y="16.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Sessies\NietZichtbaarState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Sessies.OpenState">
+    <Position X="17.5" Y="16.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Sessies\OpenState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITLabNET.Models.Domain.Sessies.ZichtbaarState">
+    <Position X="14.5" Y="16.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Sessies\ZichtbaarState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
