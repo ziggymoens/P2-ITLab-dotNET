@@ -17,7 +17,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
         private GebruikerProfielState _currentProfiel;
         private GebruikerStatusState _currentStatus;
         private int _inlogPogingen;
-        private DateTime _laatstIngelogd;
+        private DateTime? _laatstIngelogd;
         #endregion
 
         #region Properties
@@ -138,7 +138,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
             }
         }
 
-        public DateTime LaatstIngelogd
+        public DateTime? LaatstIngelogd
         {
             get => _laatstIngelogd;
             set

@@ -14,7 +14,7 @@ namespace ITLabNET.Models.Domain
         private Herinnering _herinnering;
         private Gebruiker _gebruiker;
         private Sessie _sessie;
-        private DateTime _publicatiedatum;
+        private DateTime? _publicatiedatum;
         private string _inhoud;
         private bool _automatischeHerinnering;
         private bool _verwijderd = false;
@@ -78,7 +78,7 @@ namespace ITLabNET.Models.Domain
             }
         }
 
-        public DateTime PublicatieDatum
+        public DateTime? PublicatieDatum
         {
             get
             {
@@ -123,20 +123,7 @@ namespace ITLabNET.Models.Domain
                 _verwijderd = value;
             }
         }
-
-        public int? DagenVooraf
-        {
-            get
-            {
-                return _dagenVooraf;
-            }
-            set
-            {
-                if (value < 0)
-                    throw new ArgumentException("Dagen vooraf mag niet kleiner zijn dan 0");
-                _dagenVooraf = value;
-            }
-        }
+        
         #endregion
 
         #region constructor

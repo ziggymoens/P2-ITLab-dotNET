@@ -9,8 +9,8 @@ namespace ITLabNET.Models.Domain
         #region Fields
         private int _academiejaar;
         private ICollection<Sessie> _sessies;
-        private DateTime _start;
-        private DateTime _eind;
+        private DateTime? _start;
+        private DateTime? _eind;
         private string _academiejaarString;
         private string _startString;
         private string _eindString;
@@ -32,7 +32,7 @@ namespace ITLabNET.Models.Domain
             }
         }
 
-        public DateTime Start
+        public DateTime? Start
         {
             get
             {
@@ -46,7 +46,7 @@ namespace ITLabNET.Models.Domain
             }
         }
 
-        public DateTime Eind
+        public DateTime? Eind
         {
             get
             {

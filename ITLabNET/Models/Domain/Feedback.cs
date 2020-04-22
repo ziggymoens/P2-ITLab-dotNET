@@ -14,7 +14,7 @@ namespace ITLabNET.Models.Domain
         private Sessie _sessie;
         private Gebruiker _gebruiker;
         private string _tekst;
-        private DateTime _date;
+        private DateTime? _date;
         private bool _verwijderd = false;
         #endregion
 
@@ -63,7 +63,7 @@ namespace ITLabNET.Models.Domain
             }
         }
 
-        public DateTime Date
+        public DateTime? Date
         {
             get { return _date; }
             set

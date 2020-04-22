@@ -13,7 +13,7 @@ namespace ITLabNET.Models.Domain
         private string _inschrijvingsId;
         private Gebruiker _gebruiker;
         private Sessie _sessie;
-        private DateTime _inschrijvingsdatum;
+        private DateTime? _inschrijvingsdatum;
         private bool _statusAanwezigheid = false;
         private bool _verwijderd;
         #endregion
@@ -52,7 +52,7 @@ namespace ITLabNET.Models.Domain
             }
         }
 
-        public DateTime InschrijvingsDatum
+        public DateTime? InschrijvingsDatum
         {
             get { return _inschrijvingsdatum; }
             set

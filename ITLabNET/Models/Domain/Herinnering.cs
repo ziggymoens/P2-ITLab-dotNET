@@ -9,7 +9,7 @@ namespace ITLabNET.Models.Domain
     {
         #region Fields
         private string _herinneringsId;
-        private string _dagenVooraf;
+        private int? _dagenVooraf;
         private bool _verwijderd = false;
         #endregion
 
@@ -25,13 +25,13 @@ namespace ITLabNET.Models.Domain
             }
         }
 
-        public string DagenVooraf
+        public int? DagenVooraf
         {
             get { return _dagenVooraf; }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("DagenVooraf mag niet null of leeg zijn");
+                if (value < 0 || value > 7)
+                    throw new ArgumentException("DagenVooraf 0, 1, 2, 7 zijn");
                 _dagenVooraf = value;
             }
         }
