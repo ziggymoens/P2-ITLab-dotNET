@@ -11,6 +11,7 @@ namespace ITLabNET.Models.Domain
     {
         #region Fields
         private Campus _campus;
+        private string _naam;
         #endregion
 
         #region Properties
@@ -22,6 +23,15 @@ namespace ITLabNET.Models.Domain
                 if (value == null)
                     throw new ArgumentException("Campus mag niet null zijn");
                 _campus = value;
+            }
+        }
+        public string naam {
+            get { return _naam; }
+            set {
+                if (string.IsNullOrWhiteSpace(value)) {
+                    throw new ArgumentException("Naam mag niet leeg zijn");
+                }
+                _naam = value;
             }
         }
         #endregion
