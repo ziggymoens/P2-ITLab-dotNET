@@ -7,6 +7,7 @@ namespace ITLabNET.Models.Domain.Sessies
 {
     public class GeslotenState : SessieState
     {
+        #region Constructors
         public GeslotenState()
         {
 
@@ -16,10 +17,13 @@ namespace ITLabNET.Models.Domain.Sessies
         {
 
         }
+        #endregion
 
+        #region Methods
         public override string getState()
         {
             return "gesloten";
         }
+        #endregion
     }
 }

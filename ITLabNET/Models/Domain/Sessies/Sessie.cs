@@ -31,7 +31,7 @@ namespace ITLabNET.Models.Domain.Sessies
         private SessieState _currentState;
         #endregion
 
-
+        #region Properties
         public string sessieId { get; set; }
 
         public string Titel
@@ -220,6 +220,7 @@ namespace ITLabNET.Models.Domain.Sessies
                     break;
             }
         }
+        #endregion
 
         #region Methods
         public void toState(SessieState sessieState) { _currentState = sessieState; }

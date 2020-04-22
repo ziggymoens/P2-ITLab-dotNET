@@ -7,6 +7,7 @@ namespace ITLabNET.Models.Domain.Sessies
 {
     public class OpenState : SessieState
     {
+        #region Constructors
         public OpenState()
         {
 
@@ -16,10 +17,13 @@ namespace ITLabNET.Models.Domain.Sessies
         {
 
         }
+        #endregion
 
+        #region Methods
         public override string getState()
         {
             return "open";
         }
+        #endregion
     }
 }

@@ -1,7 +1,6 @@
 ﻿using ITLabNET.Models.Domain.Sessies;
 using System;
 using System.Collections.Generic;
-using ITLabNET.Models.Domain.Sessies;
 
 namespace ITLabNET.Models.Domain
 {

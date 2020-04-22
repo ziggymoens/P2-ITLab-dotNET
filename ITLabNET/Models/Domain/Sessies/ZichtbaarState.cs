@@ -7,6 +7,7 @@ namespace ITLabNET.Models.Domain.Sessies
 {
     public class ZichtbaarState : SessieState
     {
+        #region Constructors
         public ZichtbaarState()
         {
 
@@ -16,10 +17,13 @@ namespace ITLabNET.Models.Domain.Sessies
         {
 
         }
+        #endregion
 
+        #region Methods
         public override string getState()
         {
             return "zichtbaar";
         }
+        #endregion
     }
 }
