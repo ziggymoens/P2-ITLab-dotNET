@@ -65,5 +65,14 @@ namespace ITLabNET.Models.Domain
             }
         }
         #endregion
+
+        #region Constructor
+        public Lokaal(string lokaalCode, string type, int aantalPlaatsen)
+        {
+            LokaalCode = lokaalCode;
+            Type = type;
+            AantalPlaatsen = aantalPlaatsen;
+        }
+        #endregion
     }
 }

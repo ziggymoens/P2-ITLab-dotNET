@@ -12,14 +12,11 @@ namespace ITLabNET.Models.Domain.Sessies
         private string _titel;
         private string _naamGastspreker;
         private DateTime _datum;
-        private string _datumString;
-        private DateTime _startSessie;
         private DateTime _startUur;
         private DateTime _eindeUur;
         private int _maximumAantalPlaatsen;
         private string _beschrijving;
         private int _aantalAanwezigen;
-        private string _stad;
         private Academiejaar _academiejaar;
         private bool _verwijderd;
         private ICollection<Media> _media;
@@ -39,7 +36,14 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _titel;
             set
             {
-                _titel = value;
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Titel mag niet leeg zijn");
+                }
+                else
+                {
+                    _titel = value;
+                }
             }
         }
 
@@ -57,25 +61,11 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _datum;
             set
             {
-                _datum = value;
-            }
-        }
-
-        public string DatumString
-        {
-            get => _datumString;
-            set
-            {
-                _datumString = value;
-            }
-        }
-
-        public DateTime StartSessie
-        {
-            get => _startSessie;
-            set
-            {
-                _startSessie = value;
+                if (value < DateTime.Now.AddDays(1))
+                {
+                    throw new ArgumentException("Datum moet minstens één dag in de toekomst liggen");
+                }
+                _datum = value.Date;
             }
         }
 
@@ -84,7 +74,12 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _startUur;
             set
             {
+                if (value == DateTime.MinValue)
+                {
+                    throw new ArgumentException("Datum en uur mogen niet leeg zijn");
+                }
                 _startUur = value;
+                Datum = value;
             }
         }
 
@@ -93,6 +88,18 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _eindeUur;
             set
             {
+                if (value == DateTime.MinValue)
+                {
+                    throw new ArgumentException("Eind datum mag niet leeg zijn");
+                }
+                if (value.Date != Datum.Date)
+                {
+                    throw new ArgumentException("Begin en eind datum moeten gelijk zijn");
+                }
+                if (StartUur.AddMinutes(29).AddSeconds(59).AddMilliseconds(99) < value)
+                {
+                    throw new ArgumentException("Een sessie minimaal 30 minuten");
+                }
                 _eindeUur = value;
             }
         }
@@ -102,6 +109,9 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _maximumAantalPlaatsen;
             set
             {
+                if (Lokaal.AantalPlaatsen < value) {
+                    throw new ArgumentException("Aantal plaatsen overschrijd limiet van het lokaal");
+                }
                 _maximumAantalPlaatsen = value;
             }
         }
@@ -115,20 +125,15 @@ namespace ITLabNET.Models.Domain.Sessies
             }
         }
 
-        public string Stad
-        {
-            get => _stad;
-            set
-            {
-                _stad = value;
-            }
-        }
-
         public Academiejaar Academiejaar
         {
             get => _academiejaar;
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentException("Academiejaar mag niet null zijn");
+                }
                 _academiejaar = value;
             }
         }
@@ -183,6 +188,9 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _lokaal;
             set
             {
+                if (value == null) {
+                    throw new ArgumentException("Lokaal mag niet null zijn");
+                }
                 _lokaal = value;
             }
         }
@@ -192,6 +200,10 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _verantwoordelijke;
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentException("Verantwoordelijke mag niet null zijn");
+                }
                 _verantwoordelijke = value;
             }
         }
@@ -222,8 +234,21 @@ namespace ITLabNET.Models.Domain.Sessies
         }
         #endregion
 
+        public Sessie(string titel, string beschrijving, DateTime startSessie, DateTime eindeSessie, Lokaal lokaal, Gebruiker verantwoordelijke, Academiejaar academiejaar, string state) 
+        {
+            Titel = titel;
+            Beschrijving = beschrijving;
+            StartUur = startSessie;
+            EindeUur = eindeSessie;
+            Lokaal = lokaal;
+            Verantwoordelijke = verantwoordelijke;
+            Academiejaar = academiejaar;
+            setSessieState(state);
+        }
+
         #region Methods
         public void toState(SessieState sessieState) { _currentState = sessieState; }
         #endregion
     }
 }
+
