@@ -5,11 +5,24 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Gebruikers
 {
-    public abstract class GebruikerStatusState
+    public class GebruikerStatusState
     {
         #region Fields
         private int _statusId;
         protected Gebruiker _gebruiker;
+        #endregion
+
+        #region Properties
+        public int StatusId { get; set; }
+        public Gebruiker Gebruiker
+        {
+            get { return _gebruiker; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentException("Gebruiker mag niet null zijn");
+            }
+        }
         #endregion
 
         #region Constructors
@@ -25,7 +38,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
         #endregion
 
         #region Methods
-        public abstract string getProfiel();
+        //public abstract string getProfiel();
         #endregion
     }
 }

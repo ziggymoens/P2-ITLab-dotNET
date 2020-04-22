@@ -13,6 +13,7 @@ namespace ITLabNET.Data.Mappers
         public void Configure(EntityTypeBuilder<SessieState> builder)
         {
             builder.ToTable("sessiestatus");
+            builder.HasKey(t => t.StatusId);
         }
     }
 }

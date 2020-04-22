@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ITLabNET.Data.Mappers
 {
-    public class GebruikersStatusConfiguration : IEntityTypeConfiguration<GebruikerProfielState>
+    public class GebruikersStatusConfiguration : IEntityTypeConfiguration<GebruikerStatusState>
     {
-        public void Configure(EntityTypeBuilder<GebruikerProfielState> builder)
+        public void Configure(EntityTypeBuilder<GebruikerStatusState> builder)
         {
             builder.ToTable("gebruikersstatus");
+            builder.HasKey(t => t.StatusId);
         }
     }
 }

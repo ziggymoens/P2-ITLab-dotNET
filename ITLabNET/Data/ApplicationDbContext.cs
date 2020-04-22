@@ -20,6 +20,7 @@ namespace ITLabNET.Data
         public DbSet<GebruikerStatusState> GebruikersStatussen { get; set; }
         public DbSet<Herinnering> Herinneringen { get; set; }
         public DbSet<Inschrijving> Inschrijvingen { get; set; }
+        public DbSet<Lokaal> Lokalen { get; set; }
         public DbSet<Media> Media { get; set; }
         public DbSet<Sessie> Sessies { get; set; }
         public DbSet<SessieState> SessieStates { get; set; }
@@ -39,6 +40,7 @@ namespace ITLabNET.Data
             modelBuilder.ApplyConfiguration(new GebruikersStatusConfiguration());
             modelBuilder.ApplyConfiguration(new HerinneringConfiguration());
             modelBuilder.ApplyConfiguration(new InschrijvingConfiguration());
+            modelBuilder.ApplyConfiguration(new LokaalConfiguration());
             modelBuilder.ApplyConfiguration(new MediaConfiguration());
             modelBuilder.ApplyConfiguration(new SessieConfiguration());
             modelBuilder.ApplyConfiguration(new SessieStatusConfiguration());

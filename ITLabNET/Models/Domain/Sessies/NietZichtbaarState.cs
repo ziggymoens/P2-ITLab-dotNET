@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Sessies
 {
+    [NotMapped]
     public class NietZichtbaarState : SessieState
     {
         #region Constructors
@@ -20,7 +22,7 @@ namespace ITLabNET.Models.Domain.Sessies
         #endregion
 
         #region Methods
-        public override string getState()
+        public  string getState()
         {
             return "niet zichtbaar";
         }

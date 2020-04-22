@@ -76,7 +76,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
             set
             {
                 if (value == null)
-                    throw new ArgumentException("Media mag niet leeg of null zijn");
+                    throw new ArgumentException("ProfielFoto mag niet leeg of null zijn");
                 _profielfoto = value;
             }
         }

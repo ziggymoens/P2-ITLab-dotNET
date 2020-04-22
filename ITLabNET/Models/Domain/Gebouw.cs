@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain
 {
+    [NotMapped]
     public class Gebouw
     {
         #region Fields
@@ -18,7 +20,7 @@ namespace ITLabNET.Models.Domain
             set
             {
                 if (value == null)
-                    throw new ArgumentException("Campuse mag niet null zijn");
+                    throw new ArgumentException("Campus mag niet null zijn");
                 _campus = value;
             }
         }

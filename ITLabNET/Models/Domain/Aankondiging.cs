@@ -106,6 +106,24 @@ namespace ITLabNET.Models.Domain
             }
         }
 
+        public bool AutomatischeHerinnering
+        {
+            get { return _automatischeHerinnering; }
+            set
+            {
+                _automatischeHerinnering = value;
+            }
+        }
+
+        public bool Verwijderd
+        {
+            get { return _verwijderd; }
+            set
+            {
+                _verwijderd = value;
+            }
+        }
+
         public int? DagenVooraf
         {
             get

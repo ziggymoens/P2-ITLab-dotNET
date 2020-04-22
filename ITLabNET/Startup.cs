@@ -38,6 +38,7 @@ namespace ITLabNET
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +63,8 @@ namespace ITLabNET
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -69,7 +72,7 @@ namespace ITLabNET
                     pattern: "{controller=Sessie}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-            //dataInitializer.InitializeData().Wait();
+            dataInitializer.InitializeData().Wait();
         }
     }
 }

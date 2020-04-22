@@ -13,6 +13,7 @@ namespace ITLabNET.Data.Mappers
         public void Configure(EntityTypeBuilder<Herinnering> builder)
         {
             builder.ToTable("herinnering");
+            builder.HasKey(t => t.HerinneringsId);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace ITLabNET.Data.Mappers
         public void Configure(EntityTypeBuilder<Media> builder)
         {
             builder.ToTable("media");
+            builder.HasKey(t => t.MediaId);
         }
     }
 }

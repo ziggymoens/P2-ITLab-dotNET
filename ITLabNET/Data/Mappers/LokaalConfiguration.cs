@@ -13,6 +13,7 @@ namespace ITLabNET.Data.Mappers
         public void Configure(EntityTypeBuilder<Lokaal> builder)
         {
             builder.ToTable("lokaal");
+            builder.HasKey(t => t.LokaalCode);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace ITLabNET.Data.Mappers
         public void Configure(EntityTypeBuilder<Inschrijving> builder)
         {
             builder.ToTable("inschrijving");
+            builder.HasKey(t => t.InschrijvingsId);
         }
     }
 }

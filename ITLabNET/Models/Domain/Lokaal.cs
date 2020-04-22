@@ -39,7 +39,7 @@ namespace ITLabNET.Models.Domain
 
         public bool Verwijderd
         {
-            get { return _verwijderd}
+            get { return _verwijderd; }
             set { _verwijderd = value; }
         }
 

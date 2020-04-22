@@ -12,7 +12,8 @@ namespace ITLabNET.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<Feedback> builder)
         {
-            builder.ToTable("feedback");            
+            builder.ToTable("feedback");
+            builder.HasKey(t => t.FeedbackId);
         }
     }
 }

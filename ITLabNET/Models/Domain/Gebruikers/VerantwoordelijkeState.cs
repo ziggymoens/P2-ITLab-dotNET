@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Gebruikers
 {
+    [NotMapped]
     public class VerantwoordelijkeState : GebruikerProfielState
     {
         #region Constructors
@@ -20,7 +22,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
         #endregion
 
         #region Methods
-        public override string getProfiel() { return "verantwoordelijke"; }
+        public string getProfiel() { return "verantwoordelijke"; }
         #endregion
     }
 }
