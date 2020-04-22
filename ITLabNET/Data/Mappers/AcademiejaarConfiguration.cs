@@ -12,7 +12,8 @@ namespace ITLabNET.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<Academiejaar> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("academiejaar");
+            builder.HasKey(t => t.AcademieJaar);
         }
     }
 }

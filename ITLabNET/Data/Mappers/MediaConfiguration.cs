@@ -12,7 +12,7 @@ namespace ITLabNET.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<Media> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("media");
         }
     }
 }

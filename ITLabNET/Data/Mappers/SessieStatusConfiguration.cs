@@ -12,7 +12,7 @@ namespace ITLabNET.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<SessieState> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("sessiestatus");
         }
     }
 }

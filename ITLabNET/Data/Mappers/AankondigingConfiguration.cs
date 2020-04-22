@@ -13,7 +13,8 @@ namespace ITLabNET.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<Aankondiging> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("aankondiging");
+            builder.HasKey(t => t.AankondigingsId);
         }
     }
 }

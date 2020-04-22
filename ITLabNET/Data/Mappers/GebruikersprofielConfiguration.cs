@@ -12,7 +12,7 @@ namespace ITLabNET.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<GebruikerProfielState> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("gebruikersprofiel");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ITLabNET.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<Inschrijving> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("inschrijving");
         }
     }
 }
