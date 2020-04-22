@@ -14,6 +14,9 @@ namespace ITLabNET.Data.Mappers
         {
             builder.ToTable("gebruikersprofiel");
             builder.HasKey(t => t.ProfielId);
+
+            /*builder.HasOne(gs => gs.Gebruiker).WithOne();*/
+
         }
     }
 }
