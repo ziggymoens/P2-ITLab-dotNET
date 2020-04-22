@@ -10,5 +10,18 @@ namespace ITLabNET.Models.Domain
         #region Fields
         private int _postcode;
         #endregion
+
+        #region Properties
+        public int Postcode
+        {
+            get { return _postcode; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Postcode mag niet minder dan 0 zijn");
+                _postcode = value;
+            }
+        }
+        #endregion
     }
 }
