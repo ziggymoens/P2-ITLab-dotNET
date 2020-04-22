@@ -13,7 +13,7 @@ namespace ITLabNET.Data.Mappers
         public void Configure(EntityTypeBuilder<GebruikerProfielState> builder)
         {
             builder.ToTable("gebruikersprofiel");
-            builder.HasKey(t => t.ProfielId);
+            builder.HasKey(t => t.ProfielId);            
         }
     }
 }

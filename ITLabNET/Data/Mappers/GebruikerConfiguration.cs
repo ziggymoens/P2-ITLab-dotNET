@@ -15,8 +15,11 @@ namespace ITLabNET.Data.Mappers
         {
             builder.ToTable("gebruiker");
             builder.HasKey(t => t.Gebruikersnaam);
+            builder.Property(t => t.Gebruikersnaam).IsRequired();
+            builder.Property(t => t.Barcode).IsRequired();
+            builder.Property(t => t.Wachtwoord).IsRequired();
 
-            builder.HasOne(t => t.Profielfoto).WithOne().OnDelete(DeleteBehavior.Restrict).HasForeignKey<Media>(t => t.MediaId);
+            builder.HasOne(t => t.Profielfoto).WithOne().IsRequired().OnDelete(DeleteBehavior.Cascade).HasForeignKey<Media>(t => t.MediaId);           
         }
     }
 }

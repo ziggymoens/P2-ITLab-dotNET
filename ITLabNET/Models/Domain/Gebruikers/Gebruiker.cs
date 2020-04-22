@@ -148,6 +148,19 @@ namespace ITLabNET.Models.Domain.Gebruikers
         }
         #endregion
 
+        #region Constructor
+        public Gebruiker(string naam, string gebruikersnaam, long barcode, string gebruikersprofiel, string gebruikersstatus, int aantalInlogPogingen, string wachtwoord)
+        {
+            Naam = naam;
+            Gebruikersnaam = gebruikersnaam;
+            Barcode = barcode;
+            setCurrentProfiel(gebruikersprofiel);
+            setCurrentStatus(gebruikersstatus);
+            InlogPogingen = aantalInlogPogingen;
+            Wachtwoord = wachtwoord;
+        }
+        #endregion
+
         #region Methods
         public void toProfielState(GebruikerProfielState profielState) { _currentProfiel = profielState; }
 

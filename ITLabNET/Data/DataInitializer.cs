@@ -23,7 +23,7 @@ namespace ITLabNET.Data
             _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
-
+                await CreateUser("862361jv", "jonathan.vandeneyndenvanlysebeth@student.hogent.be", "P@ssword1", "Admin");
             }
         }
 
