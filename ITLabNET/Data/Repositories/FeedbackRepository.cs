@@ -8,29 +8,36 @@ namespace ITLabNET.Data.Repositories
 {
     public class FeedbackRepository : IFeedbackRepository
     {
-        public void Add(Feedback feedback)
+        private readonly ApplicationDbContext _context;
+
+        public FeedbackRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
         public IEnumerable<Feedback> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Feedbacks.ToList();
         }
 
         public IEnumerable<Feedback> GetByGebruiker(string naam)
         {
-            throw new NotImplementedException();
+            return _context.Feedbacks.Where(f => f.Gebruiker.Naam.Equals(naam));
         }
 
         public IEnumerable<Feedback> GetByKeyword(string tekst)
         {
-            throw new NotImplementedException();
+            return _context.Feedbacks.Where(f => f.Tekst.Contains(tekst)).ToList();
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
+        }
+
+        public void Add(Feedback feedback)
+        {
+            _context.Feedbacks.Add(feedback);
         }
     }
 }
