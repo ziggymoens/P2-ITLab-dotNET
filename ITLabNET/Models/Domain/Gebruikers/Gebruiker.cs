@@ -149,6 +149,10 @@ namespace ITLabNET.Models.Domain.Gebruikers
         #endregion
 
         #region Constructor
+        public Gebruiker()
+        {
+
+        }
         public Gebruiker(string naam, string gebruikersnaam, long barcode, string gebruikersprofiel, string gebruikersstatus, int aantalInlogPogingen, string wachtwoord)
         {
             Naam = naam;

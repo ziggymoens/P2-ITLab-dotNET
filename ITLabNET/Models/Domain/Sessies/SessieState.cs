@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Sessies
 {
-    public class SessieState
+    public abstract class SessieState
     {
         #region Fields
         private int _statusId;
@@ -38,7 +38,7 @@ namespace ITLabNET.Models.Domain.Sessies
         #endregion
 
         #region Methods
-        //public abstract string getState();
+        public abstract string getState();
         #endregion
     }
 }

@@ -16,6 +16,7 @@ namespace ITLabNET.Data.Mappers
             builder.HasKey(t => t.StatusId);
 
            // builder.HasOne(ss => ss.Sessie).WithOne(s => s.CurrentState).IsRequired().HasForeignKey<Sessie>(t => t.sessieId);
+           //builder.HasDiscriminator<string>("SessieState").HasValue<GeslotenState>("")
         }
     }
 }
