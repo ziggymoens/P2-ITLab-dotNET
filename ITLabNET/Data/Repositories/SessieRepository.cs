@@ -1,5 +1,6 @@
 ﻿using ITLabNET.Models.Domain.Gebruikers;
 using ITLabNET.Models.Domain.Sessies;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,39 +10,48 @@ namespace ITLabNET.Data.Repositories
 {
     public class SessieRepository : ISessieRepository
     {
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<Sessie> _sessies;
+
+        public SessieRepository(ApplicationDbContext context)
+        {
+            _context = context;
+            _sessies = context.Sessies;
+        }
+
         public IEnumerable<Sessie> GeefAanwezigeSessiesGebruiker(Gebruiker g)
         {
-            throw new NotImplementedException();
+            return _sessies.Where(s => s.Inschrijvingen.Any(i => i.Gebruiker == g));
         }
 
         public IEnumerable<Sessie> GetAll()
         {
-            throw new NotImplementedException();
+            return _sessies.AsNoTracking().ToList();
         }
 
-        public Sessie GetById(int id)
+        public Sessie GetById(string id)
         {
-            throw new NotImplementedException();
+            return _sessies.SingleOrDefault(s => s.sessieId.Equals(id));
         }
 
         public IEnumerable<Sessie> GetByOpenStatus(bool IsOpen)
         {
-            throw new NotImplementedException();
+            return _sessies.Where(s => s.CurrentState == new OpenState());
         }
 
         public IEnumerable<Sessie> GetByVerantwoordelijke(Gebruiker g)
         {
-            throw new NotImplementedException();
+            return _sessies.Where(s => s.Verantwoordelijke == g);
         }
 
         public IEnumerable<Sessie> GetByZichtbaarStatus()
         {
-            throw new NotImplementedException();
+            return _sessies.Where(s => s.CurrentState == new ZichtbaarState());
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }

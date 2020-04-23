@@ -13,7 +13,7 @@ namespace ITLabNET.Models.Domain.Sessies
         IEnumerable<Sessie> GetByZichtbaarStatus();
         IEnumerable<Sessie> GeefAanwezigeSessiesGebruiker(Gebruiker g);
         IEnumerable<Sessie> GetByVerantwoordelijke(Gebruiker g);
-        Sessie GetById(int id);
+        Sessie GetById(string id);
         void SaveChanges();
     }
 }
