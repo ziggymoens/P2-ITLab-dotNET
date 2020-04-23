@@ -17,6 +17,8 @@ namespace ITLabNET.Data.Mappers
             builder.HasKey(t => t.Gebruikersnaam);
 
             builder.HasOne(t => t.Profielfoto).WithOne().OnDelete(DeleteBehavior.Restrict).HasForeignKey<Media>(t => t.MediaId);
+           /* builder.HasOne(t => t.CurrentProfiel).WithOne();
+            builder.HasOne(t => t.CurrentStatus).WithOne();*/
         }
     }
 }

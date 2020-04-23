@@ -233,8 +233,22 @@ namespace ITLabNET.Models.Domain.Sessies
             }
         }
         #endregion
+        public Sessie()
+        {
 
-        public Sessie() { }
+        }
+
+        public Sessie(string titel, string beschrijving, DateTime startSessie, DateTime eindeSessie, Lokaal lokaal, Gebruiker verantwoordelijke, Academiejaar academiejaar, string state) 
+        {
+            Titel = titel;
+            Beschrijving = beschrijving;
+            StartUur = startSessie;
+            EindeUur = eindeSessie;
+            Lokaal = lokaal;
+            Verantwoordelijke = verantwoordelijke;
+            Academiejaar = academiejaar;
+            setSessieState(state);
+        }
 
         #region Methods
         public void toState(SessieState sessieState) { _currentState = sessieState; }

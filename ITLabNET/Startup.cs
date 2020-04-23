@@ -12,6 +12,7 @@ using ITLabNET.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Security.Claims;
 
 namespace ITLabNET
 {
@@ -33,6 +34,12 @@ namespace ITLabNET
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+                options.AddPolicy("Customer", policy => policy.RequireClaim(ClaimTypes.Role, "Klant"));
+            });
+
 
             services.AddScoped<DataInitializer>();
 

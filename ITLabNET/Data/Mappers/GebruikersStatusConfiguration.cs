@@ -14,6 +14,9 @@ namespace ITLabNET.Data.Mappers
         {
             builder.ToTable("gebruikersstatus");
             builder.HasKey(t => t.StatusId);
+
+/*            builder.HasOne(gs => gs.Gebruiker).WithOne();
+*/
         }
     }
 }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Sessies
 {
-    [NotMapped]
     public class NietZichtbaarState : SessieState
     {
         #region Constructors
@@ -22,7 +21,7 @@ namespace ITLabNET.Models.Domain.Sessies
         #endregion
 
         #region Methods
-        public  string getState()
+        public  override string getState()
         {
             return "niet zichtbaar";
         }

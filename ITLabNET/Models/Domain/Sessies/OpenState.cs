@@ -5,8 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Sessies
-{
-    [NotMapped]
+{    
     public class OpenState : SessieState
     {
         #region Constructors
@@ -22,7 +21,7 @@ namespace ITLabNET.Models.Domain.Sessies
         #endregion
 
         #region Methods
-        public  string getState()
+        public override string getState()
         {
             return "open";
         }

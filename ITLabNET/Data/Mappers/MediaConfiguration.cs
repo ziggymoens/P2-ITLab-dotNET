@@ -15,7 +15,7 @@ namespace ITLabNET.Data.Mappers
         {
             /*builder.ToTable("media");
             builder.HasKey(t => t.MediaId);
-            builder.HasOne(t => t.Sessie).WithMany(t => t.Media).IsRequired(true).OnDelete(DeleteBehavior.Cascade);
+            /*builder.HasOne(t => t.Sessie).WithMany(t => t.Media).IsRequired(true).OnDelete(DeleteBehavior.Cascade);
             builder.Property(t => t.Afbeelding).HasColumnName("afbeelding").HasMaxLength(int.MaxValue).IsRequired(true);
             builder.Property(t => t.Type).HasColumnName("type").IsRequired(true);
             builder.Property(t => t.Url).HasColumnName("url").IsRequired(true);

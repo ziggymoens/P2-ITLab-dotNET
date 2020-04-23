@@ -8,12 +8,19 @@ namespace ITLabNET.Models.Domain.Gebruikers
     public class GebruikerStatusState
     {
         #region Fields
-        private int _statusId;
+        public int _statusId;
         protected Gebruiker _gebruiker;
         #endregion
 
         #region Properties
-        public int StatusId { get; set; }
+        public int StatusId { get => _statusId; set
+            {
+                if(value < 0)
+                {
+                    throw new ArgumentException("StatusId mag niet onder 0 zijn");
+                }
+                _statusId = value;
+            } }
         public Gebruiker Gebruiker
         {
             get { return _gebruiker; }

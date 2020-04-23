@@ -24,10 +24,7 @@ namespace ITLabNET.Models.Domain
         #region Properties
         public string AankondigingsId
         {
-            get
-            {
-                return _aankondigingsId;
-            }
+            get => _aankondigingsId;
             set
             {
                 if (string.IsNullOrEmpty(value))
