@@ -16,7 +16,10 @@ namespace ITLabNET.Data.Mappers
             builder.HasKey(t => t.ProfielId);
 
             /*builder.HasOne(gs => gs.Gebruiker).WithOne();*/
-
+            builder.HasDiscriminator<string>("gebruikersprofielState")
+                .HasValue<VerantwoordelijkeState>("Verantwoordelijke")
+                .HasValue<HoofdVerantwoordelijkeState>("Hoofdverantwoordeliijke")
+                .HasValue<GebruikerState>("Gebruiker");
         }
     }
 }

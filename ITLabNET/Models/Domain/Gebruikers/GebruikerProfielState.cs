@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Gebruikers
 {
-    public class GebruikerProfielState
+    public abstract class GebruikerProfielState
     {
         #region Fields
         private int _profielId;
@@ -42,7 +42,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
         #endregion
 
         #region Methods
-        //public abstract string getProfiel();
+        public abstract string getProfiel();
         #endregion
     }
 }

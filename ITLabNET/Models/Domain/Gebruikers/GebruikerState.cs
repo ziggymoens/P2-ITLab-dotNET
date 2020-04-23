@@ -22,7 +22,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
         #endregion
 
         #region Methods
-        public string getProfiel() { return "gebruiker"; }
+        public override string getProfiel() { return "gebruiker"; }
         #endregion
     }
 }

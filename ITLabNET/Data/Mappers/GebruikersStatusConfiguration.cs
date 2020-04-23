@@ -15,8 +15,11 @@ namespace ITLabNET.Data.Mappers
             builder.ToTable("gebruikersstatus");
             builder.HasKey(t => t.StatusId);
 
-/*            builder.HasOne(gs => gs.Gebruiker).WithOne();
-*/
+            //builder.HasOne(gs => gs.Gebruiker).WithOne();
+            builder.HasDiscriminator<string>("GebruikerSatusState")
+                .HasValue<ActiefStatusState>("Actief")
+                .HasValue<GeblokkeerdStatusState>("Geblokkeerd")
+                .HasValue<NietActiefStatusState>("NietActief");
         }
     }
 }
