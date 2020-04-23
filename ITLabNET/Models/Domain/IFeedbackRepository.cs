@@ -5,7 +5,13 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain
 {
-    public class IFeedbackRepository
+    public interface IFeedbackRepository
     {
+        IEnumerable<Feedback> GetAll();
+        IEnumerable<Feedback> GetByKeyword(string tekst);
+        IEnumerable<Feedback> GetByGebruiker(string naam);
+        void Add(Feedback feedback);
+        void SaveChanges();
+
     }
 }
