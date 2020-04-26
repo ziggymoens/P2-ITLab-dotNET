@@ -19,32 +19,22 @@ namespace ITLabNET.Data.Repositories
         }
         public Gebruiker GetByBarCode(long barCode)
         {
-            throw new NotImplementedException();
+            return _context.Gebruikers.FirstOrDefault(e => e.Barcode == barCode);
         }
 
-        public Gebruiker GetByEmail(string email)
+        public Gebruiker GetByGebruikersnaam(string userName)
         {
-            throw new NotImplementedException();
-        }
-
-        public Gebruiker GetByGebruikersNaam(string userName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Gebruiker GetById(int id)
-        {
-            throw new NotImplementedException();
+            return _context.Gebruikers.FirstOrDefault(e => e.Gebruikersnaam.Equals(userName));
         }
 
         public Gebruiker GetByNaam(string naam)
         {
-            throw new NotImplementedException();
+            return _context.Gebruikers.FirstOrDefault(e => e.Naam.Equals(naam));
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+           _context.SaveChanges();
         }
     }
 }

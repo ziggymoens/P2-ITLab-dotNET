@@ -7,10 +7,8 @@ namespace ITLabNET.Models.Domain.Gebruikers
 {
     public interface IGebruikerRepository
     {
-        Gebruiker GetByGebruikersNaam(string userName);
-        Gebruiker GetByEmail(string email);
+        Gebruiker GetByGebruikersnaam(string userName);
         Gebruiker GetByNaam(string naam);
-        Gebruiker GetById(int id);
         Gebruiker GetByBarCode(long barCode);
         void SaveChanges();
     }

@@ -23,21 +23,21 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="Index">Weekoverzicht</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="Kalender">Maandkalender</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="">Maandkalender</a>
                         </li>
-                        @{if (ViewContext.HttpContext.User.IsInRole("GewoneGebruiker")) {
+                        @{if (ViewContext.HttpContext.User.IsInRole("Gebruiker")) {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="SessiesPerGebruikerOmFeedbackTeGeven">Feedback</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="">Feedback</a>
                             </li>
                             }}
-                        @{if (ViewContext.HttpContext.User.IsInRole("EenVerantwoordelijke"))
+                        @{if (ViewContext.HttpContext.User.IsInRole("Verantwoordelijke"))
                                     {
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="OpenSessie">Sessies openen</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="">Sessies openen</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="AanwezighedenLijst">Aanwezigheden</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Sessie" asp-action="">Aanwezigheden</a>
                             </li>
                                     } }
                     </ul>
