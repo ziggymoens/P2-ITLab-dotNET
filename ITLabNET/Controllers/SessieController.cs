@@ -28,10 +28,11 @@ namespace ITLabNET.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Sessie> sessies;
+            sessies = _sessieRepository.GetAll();
+            return View(sessies);
         }
-        #region sessie openen
-
-        #endregion
+       
+        
     }
 }

@@ -9,6 +9,7 @@ namespace ITLabNET.Models.Domain.Sessies
     public class Sessie
     {
         #region Fields
+        private int _sessieId;
         private string _titel;
         private string _naamGastspreker;
         private DateTime _datum;
@@ -29,7 +30,14 @@ namespace ITLabNET.Models.Domain.Sessies
         #endregion
 
         #region Properties
-        public string sessieId { get; set; }
+        public int SessieId 
+        {
+            get => _sessieId; 
+            set
+            {
+                _sessieId = value;
+            }
+        }
 
         public string Titel
         {

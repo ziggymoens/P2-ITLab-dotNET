@@ -13,8 +13,8 @@ namespace ITLabNET.Data.Mappers
         public void Configure(EntityTypeBuilder<Sessie> builder)
         {
             builder.ToTable("sessie");
-            builder.HasKey(t => t.sessieId);
-            builder.Property(t => t.sessieId).ValueGeneratedOnAdd();
+            builder.HasKey(t => t.SessieId);
+            //builder.Property(t => t.SessieId).ValueGeneratedOnAdd();
         }
     }
 }

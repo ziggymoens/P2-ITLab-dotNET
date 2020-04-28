@@ -1,8 +1,20 @@
-﻿@model ITLabNET.Models.SessieViewModels.KalenderViewModels
+﻿@model IEnumerable<Sessie>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sessies";
 }
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<h1>Index</h1>
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    @foreach(var sessie in Model)
+    {
+        <div class="col-md-6 col-lg-4 cpm-xs-12 pb-3">
+            <h4>@sessie.Titel</h4>
+            <p>@sessie.Beschrijving</p>
+            <p>@sessie.Lokaal</p>
+            <p>@sessie.Academiejaar.AcademieJaar</p>
+        </div>
+    }
+</div>
 
