@@ -41,18 +41,24 @@ namespace ITLabNET.Data
                 #endregion
 
                 #region Lokalen
-                Lokaal lokaal1 = new Lokaal("GSCHB1.014", "Leslokaal", 50);
-                _dbContext.Lokalen.Add(lokaal1);
+                Lokaal lokaal1 = new Lokaal("GSCHB1.014", "LESLOKAAL", 50);
+                Lokaal lokaal2 = new Lokaal("GSCHB0.064", "AUDITORIUM", 104);
+                var lokalen = new List<Lokaal> { lokaal1, lokaal2 };
+                _dbContext.Lokalen.AddRange(lokalen);
                 #endregion
 
                 #region Academiejaren
                 Academiejaar academiejaar2021 = new Academiejaar(2021, new DateTime(2021, 1, 1), new DateTime(2021, 1, 1).AddYears(1).AddDays(-1));
-                _dbContext.Academiejaren.Add(academiejaar2021);
+                Academiejaar academiejaar2022 = new Academiejaar(2022, new DateTime(2022, 1, 1), new DateTime(2022, 1, 1).AddYears(1).AddDays(-1));
+                var academiejaren = new List<Academiejaar> { academiejaar2021, academiejaar2022 };
+                _dbContext.Academiejaren.AddRange(academiejaren);
                 #endregion
 
                 #region Sessies
                 Sessie sessie1 = new Sessie("Inleiding tot Trello", "beschrijving", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(2), lokaal1, Jonathan, academiejaar2021, "gesloten");
-                _dbContext.Sessies.Add(sessie1);
+                Sessie sessie2 = new Sessie("Inleiding tot UNIX", "beschrijving", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), lokaal2, Jonathan, academiejaar2021, "gesloten");
+                var sessies = new List<Sessie> { sessie1, sessie2 };
+                _dbContext.Sessies.AddRange(sessies);
                 #endregion
 
                 _dbContext.SaveChanges();
