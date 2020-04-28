@@ -34,6 +34,7 @@ namespace ITLabNET.Models.Domain
             {
                 if (value < 0)
                     throw new ArgumentException("AantalPlaatsen mag niet minder dan 0 zijn");
+                _aantalPlaatsen = value;
             }
         }
 

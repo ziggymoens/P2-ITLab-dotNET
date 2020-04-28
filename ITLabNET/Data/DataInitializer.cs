@@ -1,4 +1,6 @@
-﻿using ITLabNET.Models.Domain.Gebruikers;
+﻿using ITLabNET.Models.Domain;
+using ITLabNET.Models.Domain.Gebruikers;
+using ITLabNET.Models.Domain.Sessies;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -37,6 +39,23 @@ namespace ITLabNET.Data
                 await CreateUser(Jonathan.Gebruikersnaam, "jonathan.vandeneyndenvanlysebeth@student.hogent.be", Jonathan.Wachtwoord, "Hoofdverantwoordelijke");
                 await CreateUser(Ziggy.Gebruikersnaam, "ziggy.moens@student.hogent.be", Ziggy.Wachtwoord, "Verantwoordelijke");
                 #endregion
+
+                #region Lokalen
+                Lokaal lokaal1 = new Lokaal("GSCHB1.014", "Leslokaal", 50);
+                _dbContext.Lokalen.Add(lokaal1);
+                #endregion
+
+                #region Academiejaren
+                Academiejaar academiejaar2021 = new Academiejaar(2021, new DateTime(2021, 1, 1), new DateTime(2021, 1, 1).AddYears(1).AddDays(-1));
+                _dbContext.Academiejaren.Add(academiejaar2021);
+                #endregion
+
+                #region Sessies
+                Sessie sessie1 = new Sessie("Inleiding tot Trello", "beschrijving", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(2), lokaal1, Jonathan, academiejaar2021, "gesloten");
+                _dbContext.Sessies.Add(sessie1);
+                #endregion
+
+                _dbContext.SaveChanges();
             }
         }
 

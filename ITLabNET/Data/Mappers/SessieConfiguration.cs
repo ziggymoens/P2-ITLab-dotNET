@@ -14,6 +14,7 @@ namespace ITLabNET.Data.Mappers
         {
             builder.ToTable("sessie");
             builder.HasKey(t => t.sessieId);
+            builder.Property(t => t.sessieId).ValueGeneratedOnAdd();
         }
     }
 }

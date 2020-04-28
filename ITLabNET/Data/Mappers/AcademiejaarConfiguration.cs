@@ -14,6 +14,7 @@ namespace ITLabNET.Data.Mappers
         {
             builder.ToTable("academiejaar");
             builder.HasKey(t => t.AcademieJaar);
+            builder.Property(t => t.AcademieJaar).ValueGeneratedNever();
         }
     }
 }

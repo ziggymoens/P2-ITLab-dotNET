@@ -77,6 +77,13 @@ namespace ITLabNET.Models.Domain
 
         #region constructors
         public Academiejaar() { }
+
+        public Academiejaar(int academiejaar, DateTime start, DateTime eind)
+        {
+            AcademieJaar = academiejaar;
+            Start = start;
+            Eind = eind;
+        }
         #endregion
     }
 }
