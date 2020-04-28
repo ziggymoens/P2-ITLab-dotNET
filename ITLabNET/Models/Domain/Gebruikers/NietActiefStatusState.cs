@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Gebruikers
 {
-    [NotMapped]
     public class NietActiefStatusState : GebruikerStatusState
     {
         #region Constructors

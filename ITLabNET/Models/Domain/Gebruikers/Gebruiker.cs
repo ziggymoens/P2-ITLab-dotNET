@@ -45,8 +45,8 @@ namespace ITLabNET.Models.Domain.Gebruikers
         {
             get => _naam;
             set
-            {
-                if (Naam == null || string.IsNullOrEmpty(value))
+            {                
+                if (value == null || string.IsNullOrEmpty(value))
                     throw new ArgumentException("Naam mag niet leeg of null zijn");
                 _naam = value;
             }
@@ -88,7 +88,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
             if (gebruikersprofiel == null || string.IsNullOrEmpty(gebruikersprofiel) )
             {
                 throw new ArgumentException("Gebruikersprofiel mag niet leeg of null zijn");
-            }
+            }            
             switch (gebruikersprofiel)
             {
                 case "hoofdverantwoordelijke":
@@ -112,7 +112,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
             if (status == null || string.IsNullOrEmpty(status))
             {
                 throw new ArgumentException("Gebruikersprofiel is leeg of null");
-            }
+            }            
             switch (status)
             {
                 case "actief":
@@ -153,14 +153,14 @@ namespace ITLabNET.Models.Domain.Gebruikers
         {
 
         }
-        public Gebruiker(string naam, string gebruikersnaam, long barcode, string gebruikersprofiel, string gebruikersstatus, int aantalInlogPogingen, string wachtwoord)
+        public Gebruiker(string naam, string gebruikersnaam, long barcode, string gebruikersprofiel, string gebruikersstatus,  string wachtwoord)
         {
             Naam = naam;
             Gebruikersnaam = gebruikersnaam;
             Barcode = barcode;
             setCurrentProfiel(gebruikersprofiel);
             setCurrentStatus(gebruikersstatus);
-            InlogPogingen = aantalInlogPogingen;
+            InlogPogingen = 0;
             Wachtwoord = wachtwoord;
         }
         #endregion

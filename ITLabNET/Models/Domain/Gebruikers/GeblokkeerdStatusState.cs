@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Gebruikers
 {
-    [NotMapped]
     public class GeblokkeerdStatusState : GebruikerStatusState
     {
         #region Constructors

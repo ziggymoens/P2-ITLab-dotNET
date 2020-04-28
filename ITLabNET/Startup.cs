@@ -13,6 +13,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
+using ITLabNET.Models.Domain.Sessies;
+using ITLabNET.Models.Domain.Gebruikers;
+using ITLabNET.Data.Repositories;
+using ITLabNET.Models.Domain;
 
 namespace ITLabNET
 {
@@ -28,23 +32,24 @@ namespace ITLabNET
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
             services.AddAuthorization(options => {
-                options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
-                options.AddPolicy("Customer", policy => policy.RequireClaim(ClaimTypes.Role, "Klant"));
-            });
+                options.AddPolicy("Hoofdverantwoordelijke", policy => policy.RequireClaim(ClaimTypes.Role, "Hoofdverantwoordelijke"));
+                options.AddPolicy("Verantwoordelijke", policy => policy.RequireClaim(ClaimTypes.Role, "Verantwoordelijke"));
+                options.AddPolicy("Gebruiker", policy => policy.RequireClaim(ClaimTypes.Role, "Gebruiker"));
+            });           
 
 
-            services.AddScoped<DataInitializer>();
+            services
+                .AddScoped<DataInitializer>()
+                .AddScoped<ISessieRepository, SessieRepository>()
+                .AddScoped<IGebruikerRepository, GebruikerRepository>()
+                .AddScoped<IFeedbackRepository, FeedbackRepository>();
 
-            services.AddControllersWithViews();
+            services
+                .AddControllersWithViews();               
+
             services.AddRazorPages();
+
             services.AddSession();
         }
 

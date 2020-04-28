@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ITLabNET.Controllers
 {
-    [Authorize(Policy = "Gebruiker")]
+    
     public class SessieController : Controller
     {
         private readonly ISessieRepository _sessieRepository;
@@ -19,9 +19,9 @@ namespace ITLabNET.Controllers
         #region constructor
         public SessieController(ISessieRepository sessieRepository, IFeedbackRepository feedbackRepository, IGebruikerRepository gebruikerRepository)
         {
-            this._sessieRepository = sessieRepository;
-            this._feedbackRepository = feedbackRepository;
-            this._gebruikerRepository = gebruikerRepository;
+            _sessieRepository = sessieRepository;
+            _feedbackRepository = feedbackRepository;
+            _gebruikerRepository = gebruikerRepository;
 
         }
         #endregion

@@ -5,8 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain.Gebruikers
-{
-    [NotMapped]
+{    
     public class VerantwoordelijkeState : GebruikerProfielState
     {
         #region Constructors
