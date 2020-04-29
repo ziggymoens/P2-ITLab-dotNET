@@ -44,7 +44,6 @@ namespace ITLabNET.Data
             modelBuilder.ApplyConfiguration(new MediaConfiguration());
             modelBuilder.ApplyConfiguration(new SessieConfiguration());
             modelBuilder.ApplyConfiguration(new SessieStatusConfiguration());
-
         }
     }
 }

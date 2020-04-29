@@ -7,18 +7,25 @@
 <h2>@ViewData["Title"]</h2>
 
 <div class="row">
-    @foreach(var sessie in Model)
+    @foreach (var sessie in Model)
     {
-    <div class="col-md-6 col-lg-4 cpm-xs-12 pb-3">
-        <h4>@sessie.Titel</h4>
-        <p>@sessie.StartUur.ToShortDateString()</p>
-        <p>@sessie.StartUur.ToShortTimeString() - @sessie.EindeUur.ToShortTimeString()</p>
-
-        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId">Details</button>
-        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId">Inschrijven</button>
-        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId">Uitschrijven</button>
-
-    </div>
+        <div class="col-md-6 col-lg-4 cpm-xs-12 pb-3">
+            <div class="card" style="height: 18em;">
+                <div class="card-header">
+                    <div class="card-title" style="height: 3em; text-align: center;">
+                        <h4>@sessie.Titel</h4>
+                    </div>
+                </div>
+                <div class="card-body" style="text-align: center;">
+                    <p><strong>@sessie.StartUur.ToShortDateString()</strong></p>
+                    <p><i>@sessie.StartUur.ToShortTimeString() - @sessie.EindeUur.ToShortTimeString()</i></p>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId">Details</button>
+                    <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId">Inschrijven</button>
+                    <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId">Uitschrijven</button>
+                </div>
+            </div>
+        </div>
     }
 </div>
-
