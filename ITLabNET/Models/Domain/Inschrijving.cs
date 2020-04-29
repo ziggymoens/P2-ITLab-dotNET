@@ -37,6 +37,7 @@ namespace ITLabNET.Models.Domain
             {
                 if (value == null)
                     throw new ArgumentException("Gebruiker mag niet null zijn");
+                Console.WriteLine("testG");
                 _gebruiker = value;
             }
         }
@@ -48,6 +49,7 @@ namespace ITLabNET.Models.Domain
             {
                 if (value == null)
                     throw new ArgumentException("Sessie mag niet null zijn");
+                Console.WriteLine("testS");
                 _sessie = value;
             }
         }
@@ -79,6 +81,7 @@ namespace ITLabNET.Models.Domain
         #region constructors
         public Inschrijving(Gebruiker gebruiker, Sessie sessie)
         {
+            Console.WriteLine("test");
             Gebruiker = gebruiker;
             Sessie = sessie;
         }

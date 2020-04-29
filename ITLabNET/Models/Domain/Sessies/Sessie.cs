@@ -267,6 +267,7 @@ namespace ITLabNET.Models.Domain.Sessies
 
         public void AddInschrijving(Gebruiker gebruiker)
         {
+
             Inschrijving inschr = new Inschrijving(gebruiker, this);
             Inschrijvingen.Add(inschr);
         }

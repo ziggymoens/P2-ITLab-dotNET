@@ -11,14 +11,13 @@
     {
     <div class="col-md-6 col-lg-4 cpm-xs-12 pb-3">
         <h4>@sessie.Titel</h4>
-        <p>@sessie.Beschrijving</p>
         <p>@sessie.Lokaal</p>
-        <p>@sessie.Academiejaar.AcademieJaar</p>
         <p>@sessie.StartUur.ToShortDateString()</p>
         <p>@sessie.StartUur.ToShortTimeString() - @sessie.EindeUur.ToShortTimeString()</p>
 
         <button type="button" class="btn btn-secondary">Details</button>
-        
+        <button class="btn btn-secondary" type="submit" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId">Details</button>
+
         <button type="submit" class="btn btn-primary btn-block" value="Inschrijven" style="margin: 5px">Inschrijven</button>
 
     </div>

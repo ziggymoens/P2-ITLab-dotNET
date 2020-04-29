@@ -1,15 +1,25 @@
-﻿
+﻿@model Sessie
 @{
-    Layout = null;
+    ViewData["Title"] = "Sessie";
 }
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<!DOCTYPE html>
+<h2>@ViewData["Title"]</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ToonInfoSessie</title>
-</head>
-<body>
-</body>
-</html>
+    @Model
+    {
+        <h4>@Model.Titel</h4>
+        <p>@Model.Beschrijving</p>
+        <p>@Model.Lokaal</p>
+        <p>@Model.Verantwoordelijke.Naam</p>
+        <p>@Model.MaximumAantalPlaatsen</p>
+        <p>@Model.NaamGastSpreker</p>
+        <p>@Model.Academiejaar.AcademieJaar</p>
+        <p>@Model.StartUur.ToShortDateString()</p>
+        <p>@Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</p>
+
+        <button type="submit" class="btn btn-primary btn-block" value="Inschrijven" style="margin: 5px">Inschrijven</button>
+
+    </div>
+    }
+</div>
