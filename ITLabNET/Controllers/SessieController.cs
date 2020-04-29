@@ -32,7 +32,33 @@ namespace ITLabNET.Controllers
             sessies = _sessieRepository.GetAll();
             return View(sessies);
         }
-       
+
+        public IActionResult ToonInfoSessie(string id)
+        {
+            return View(_sessieRepository.GetById(id));
+        }
+
+        [Authorize(Policy = "Gebruiker")]
+        [HttpPost]
+        public IActionResult Inschrijven(string id, Gebruiker gebruiker) {
+            try
+            {
+                Sessie sessie = _sessieRepository.GetById(id);
+
+                //sessie.voegInschrijvingToe(gebruiker);
+
+                _sessieRepository.SaveChanges();
+                TempData["message"] = $"U bent succesvol ingeschreven voor {sessie.Titel}, op {sessie.Datum} !";
+            }
+            catch
+            {
+                TempData["error"] = $"Er is iets misgelopen, u bent niet ingeschreven.";
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            return RedirectToAction(nameof(Index));
+        }
         
     }
 }
