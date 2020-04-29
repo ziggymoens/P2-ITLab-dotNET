@@ -33,9 +33,10 @@ namespace ITLabNET.Controllers
             return View(sessies);
         }
 
-        public IActionResult ToonInfoSessie(int id)
+        public IActionResult ToonInfoSessie(int SessieId)
         {
-            return View(_sessieRepository.GetById(id));
+            Sessie sessie = _sessieRepository.GetById(SessieId);
+            return View(sessie);
         }
 
         [HttpPost]

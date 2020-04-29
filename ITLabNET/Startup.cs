@@ -32,11 +32,12 @@ namespace ITLabNET
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthorization(options => {
+            services.AddAuthorization(options =>
+            {
                 options.AddPolicy("Hoofdverantwoordelijke", policy => policy.RequireClaim(ClaimTypes.Role, "Hoofdverantwoordelijke"));
                 options.AddPolicy("Verantwoordelijke", policy => policy.RequireClaim(ClaimTypes.Role, "Verantwoordelijke"));
                 options.AddPolicy("Gebruiker", policy => policy.RequireClaim(ClaimTypes.Role, "Gebruiker"));
-            });           
+            });   
 
 
             services
