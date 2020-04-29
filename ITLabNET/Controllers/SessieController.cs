@@ -28,14 +28,14 @@ namespace ITLabNET.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Sessie> sessies;
-            sessies = _sessieRepository.GetAll();
+            IEnumerable<Sessie> sessies = _sessieRepository.GetAll();
             return View(sessies);
         }
 
         public IActionResult ToonInfoSessie(int id)
         {
-            return View(_sessieRepository.GetById(id));
+            Sessie s = _sessieRepository.GetById(id);
+            return View(s);
         }
 
         [HttpPost]

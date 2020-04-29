@@ -281,11 +281,21 @@ namespace ITLabNET.Models.Domain.Sessies
             Feedback feedback = new Feedback(this, gebruiker, date);
             Feedback.Add(feedback);
         }
+        public void RemoveFeedback(Gebruiker gebruiker)
+        {
+            Inschrijving i = Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker);
+            Inschrijvingen.Remove(i);
+        }
 
         public void AddAankondiging(Gebruiker gebruiker, DateTime publicatieDatum, string inhoud, bool automatischeHerinnering, int? dagenVooraf)
         {
             Aankondiging aank = new Aankondiging(this, gebruiker, publicatieDatum, inhoud, automatischeHerinnering, dagenVooraf);
             Aankondigingen.Add(aank);
+        }
+        public void RemoveAankondiging(Gebruiker gebruiker)
+        {
+            Inschrijving i = Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker);
+            Inschrijvingen.Remove(i);
         }
         #endregion
     }
