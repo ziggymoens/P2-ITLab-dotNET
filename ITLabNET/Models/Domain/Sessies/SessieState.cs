@@ -20,7 +20,7 @@ namespace ITLabNET.Models.Domain.Sessies
             set
             {
                 if (value == null)
-                    throw new ArgumentException("Gebruiker mag niet null zijn");
+                    throw new ArgumentException("Sessie mag niet null zijn");
             }
         }
         #endregion
