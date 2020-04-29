@@ -45,7 +45,7 @@ namespace ITLabNET.Controllers
             {
                 Sessie sessie = _sessieRepository.GetById(id);
 
-                //sessie.voegInschrijvingToe(gebruiker);
+                sessie.AddInschrijving(gebruiker);
 
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"U bent succesvol ingeschreven voor {sessie.Titel}, op {sessie.Datum} !";
