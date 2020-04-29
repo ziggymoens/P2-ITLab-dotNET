@@ -59,7 +59,7 @@ namespace ITLabNET.Models.Domain
             {
                 if (value == null)
                     throw new ArgumentException("InschrijvingsDatum mag niet null zijn");
-                _inschrijvingsdatum = value;
+                _inschrijvingsdatum = DateTime.Now;
             }
         }
 
@@ -77,10 +77,14 @@ namespace ITLabNET.Models.Domain
         #endregion
 
         #region constructors
+        public Inschrijving()
+        {
+
+        }
         public Inschrijving(Gebruiker gebruiker, Sessie sessie)
         {
             Gebruiker = gebruiker;
-            Sessie = sessie;
+            Sessie = sessie;            
         }
         #endregion
     }
