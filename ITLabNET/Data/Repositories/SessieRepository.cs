@@ -29,7 +29,7 @@ namespace ITLabNET.Data.Repositories
             return _sessies.Include(s => s.Academiejaar).AsNoTracking().ToList();
         }
 
-        public Sessie GetById(string id)
+        public Sessie GetById(int id)
         {
             return _sessies.Include(e => e.Lokaal).SingleOrDefault(s => s.SessieId.Equals(id));
         }

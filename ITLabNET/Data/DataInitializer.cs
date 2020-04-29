@@ -199,12 +199,13 @@ namespace ITLabNET.Data
                 #endregion
 
                 #region Sessies
-                Sessie sessie1 = new Sessie("Inleiding tot Trello", "beschrijving", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
-                Sessie sessie2 = new Sessie("Inleiding tot UNIX", "beschrijving", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), lokaal2, lokaal2.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
-                Sessie sessie3 = new Sessie("Inleiding tot Github", "Een korte en krachtige inleiding tot github. Alles wat men hoef te weten over de werking en de structuur", DateTime.Now.AddDays(4).AddHours(20), DateTime.Now.AddDays(4).AddHours(21).AddMinutes(30), lokaal4, lokaal4.AantalPlaatsen, Ziggy, academiejaar2021, "gesloten");
-                Sessie sessie4 = new Sessie("Infosessie internationlisering IT", "Infosessie over de mogelijkheden tot buitenlandse studie of stage", DateTime.Now.AddDays(7), DateTime.Now.AddDays(7).AddHours(3), lokaal8, lokaal8.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
-                Sessie sessie5 = new Sessie("The power of unix", "Korte sessie over de kracht van de command prompt in unix besturingssystemen", DateTime.Now.AddDays(6), DateTime.Now.AddDays(6).AddHours(1).AddMinutes(15), lokaal62, lokaal62.AantalPlaatsen, Jonathan, academiejaar2021, "zichtbaar");
-                Sessie sessie6 = new Sessie("What the future holds for AI", "Korte keynote van Elon Musk over zijn visie van wat er met AI te gebeuren staat", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(2).AddMinutes(15), lokaal62, lokaal62.AantalPlaatsen, Ziggy, academiejaar2021, "zichtbaar");
+                DateTime date = new DateTime(2020, 05, 12, 8, 30, 0);
+                Sessie sessie1 = new Sessie("Inleiding tot Trello", "beschrijving", date.AddDays(2), date.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
+                Sessie sessie2 = new Sessie("Inleiding tot UNIX", "beschrijving", date.AddDays(3), date.AddDays(3).AddHours(3), lokaal2, lokaal2.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
+                Sessie sessie3 = new Sessie("Inleiding tot Github", "Een korte en krachtige inleiding tot github. Alles wat men hoef te weten over de werking en de structuur", date.AddDays(4).AddHours(20), date.AddDays(4).AddHours(21).AddMinutes(30), lokaal4, lokaal4.AantalPlaatsen, Ziggy, academiejaar2021, "gesloten");
+                Sessie sessie4 = new Sessie("Infosessie internationlisering IT", "Infosessie over de mogelijkheden tot buitenlandse studie of stage", date.AddDays(7), date.AddDays(7).AddHours(3), lokaal8, lokaal8.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
+                Sessie sessie5 = new Sessie("The power of unix", "Korte sessie over de kracht van de command prompt in unix besturingssystemen", date.AddDays(6), date.AddDays(6).AddHours(1).AddMinutes(15), lokaal62, lokaal62.AantalPlaatsen, Jonathan, academiejaar2021, "zichtbaar");
+                Sessie sessie6 = new Sessie("What the future holds for AI", "Korte keynote van Elon Musk over zijn visie van wat er met AI te gebeuren staat", date.AddDays(2), date.AddDays(2).AddHours(2).AddMinutes(15), lokaal62, lokaal62.AantalPlaatsen, Ziggy, academiejaar2021, "zichtbaar");
                 
 
                 

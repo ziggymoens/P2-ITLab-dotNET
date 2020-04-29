@@ -33,14 +33,14 @@ namespace ITLabNET.Controllers
             return View(sessies);
         }
 
-        public IActionResult ToonInfoSessie(string id)
+        public IActionResult ToonInfoSessie(int id)
         {
 
             return View(_sessieRepository.GetById(id));
         }
 
         [HttpPost]
-        public IActionResult Inschrijven(string id, Gebruiker gebruiker) {
+        public IActionResult Inschrijven(int id, Gebruiker gebruiker) {
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
