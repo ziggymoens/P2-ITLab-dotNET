@@ -75,5 +75,13 @@ namespace ITLabNET.Models.Domain
             set { _verwijderd = value; }
         }
         #endregion
+
+        #region constructors
+        public Inschrijving(Gebruiker gebruiker, Sessie sessie)
+        {
+            Gebruiker = gebruiker;
+            Sessie = sessie;
+        }
+        #endregion
     }
 }

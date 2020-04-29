@@ -80,5 +80,14 @@ namespace ITLabNET.Models.Domain
             set { _verwijderd = value; }
         }
         #endregion
+
+        #region constructors
+        public Feedback(Sessie sessie, Gebruiker gebruiker, DateTime date)
+        {
+            Sessie = sessie;
+            Gebruiker = gebruiker;
+            Date = date;
+        }
+        #endregion
     }
 }
