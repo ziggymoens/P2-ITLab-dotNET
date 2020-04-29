@@ -243,16 +243,20 @@ namespace ITLabNET.Models.Domain.Sessies
         #endregion
         public Sessie()
         {
-
+            Media = new List<Media>();
+            Inschrijvingen = new List<Inschrijving>();
+            Aankondigingen = new List<Aankondiging>();
+            Feedback = new List<Feedback>();
         }
 
-        public Sessie(string titel, string beschrijving, DateTime startSessie, DateTime eindeSessie, Lokaal lokaal, Gebruiker verantwoordelijke, Academiejaar academiejaar, string state) 
+        public Sessie(string titel, string beschrijving, DateTime startSessie, DateTime eindeSessie, Lokaal lokaal, int maximumAantalPlaatsen,Gebruiker verantwoordelijke, Academiejaar academiejaar, string state) 
         {
             Titel = titel;
             Beschrijving = beschrijving;
             StartUur = startSessie;
             EindeUur = eindeSessie;
             Lokaal = lokaal;
+            MaximumAantalPlaatsen = maximumAantalPlaatsen;
             Verantwoordelijke = verantwoordelijke;
             Academiejaar = academiejaar;
             setSessieState(state);
@@ -260,6 +264,24 @@ namespace ITLabNET.Models.Domain.Sessies
 
         #region Methods
         public void toState(SessieState sessieState) { _currentState = sessieState; }
+
+        public void AddInschrijving(Gebruiker gebruiker)
+        {
+            Inschrijving inschr = new Inschrijving(gebruiker, this);
+            Inschrijvingen.Add(inschr);
+        }
+
+        public void AddFeedback(Gebruiker gebruiker, DateTime date)
+        {
+            Feedback feedback = new Feedback(this, gebruiker, date);
+            Feedback.Add(feedback);
+        }
+
+        public void AddAankondiging(Gebruiker gebruiker, DateTime publicatieDatum, string inhoud, bool automatischeHerinnering, int? dagenVooraf)
+        {
+            Aankondiging aank = new Aankondiging(this, gebruiker, publicatieDatum, inhoud, automatischeHerinnering, dagenVooraf);
+            Aankondigingen.Add(aank);
+        }
         #endregion
     }
 }

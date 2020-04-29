@@ -30,16 +30,18 @@ namespace ITLabNET.Data
                 Gebruiker Jonathan = new Gebruiker("Jonathan Vanden Eynden", "jonathan.vandeneyndenvanlysebeth@student.hogent.be", 1133294124035L, "hoofdverantwoordelijke", "actief", "P@ssword1");
                 Gebruiker Ziggy = new Gebruiker("Ziggy Moens", "ziggy.moens@student.hogent.be", 1117212595596L, "verantwoordelijke", "actief", "P@ssword1");
                 Gebruiker Kilian = new Gebruiker("Kilian Hoefman", "kilian.hoefman@student.hogent.be", 1141420613636L, "gebruiker", "actief", "P@ssword1");
+                Gebruiker Sven = new Gebruiker("Sven Wyseur", "sven.wyseur@student.hogent.be", 1133340050431L, "gebruiker", "actief", "P@ssword1");
 
-                var gebruikers = new List<Gebruiker> { Jonathan, Ziggy, Kilian };
-                var profielen = new List<GebruikerProfielState> { Jonathan.CurrentProfiel, Ziggy.CurrentProfiel, Kilian.CurrentProfiel };
-                var statussen = new List<GebruikerStatusState> { Jonathan.CurrentStatus, Ziggy.CurrentStatus, Kilian.CurrentStatus };
+                var gebruikers = new List<Gebruiker> { Jonathan, Ziggy, Kilian, Sven };
+                var profielen = new List<GebruikerProfielState> { Jonathan.CurrentProfiel, Ziggy.CurrentProfiel, Kilian.CurrentProfiel, Sven.CurrentProfiel };
+                var statussen = new List<GebruikerStatusState> { Jonathan.CurrentStatus, Ziggy.CurrentStatus, Kilian.CurrentStatus, Sven.CurrentStatus };
                 _dbContext.Gebruikers.AddRange(gebruikers);
                 _dbContext.GebruikersProfielen.AddRange(profielen);
                 _dbContext.GebruikersStatussen.AddRange(statussen);
                 await CreateUser(Jonathan.Gebruikersnaam, "jonathan.vandeneyndenvanlysebeth@student.hogent.be", Jonathan.Wachtwoord, "Hoofdverantwoordelijke");
                 await CreateUser(Ziggy.Gebruikersnaam, "ziggy.moens@student.hogent.be", Ziggy.Wachtwoord, "Verantwoordelijke");
                 await CreateUser(Kilian.Gebruikersnaam, "kilian.hoefman@student.hogent.be", Kilian.Wachtwoord, "Gebruiker");
+                await CreateUser(Sven.Gebruikersnaam, "sven.wyseur@student.hogent.be", Sven.Wachtwoord, "Gebruiker");
                 #endregion
 
                 #region Lokalen
@@ -197,12 +199,15 @@ namespace ITLabNET.Data
                 #endregion
 
                 #region Sessies
-                Sessie sessie1 = new Sessie("Inleiding tot Trello", "beschrijving", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(2), lokaal1, Jonathan, academiejaar2021, "gesloten");
-                Sessie sessie2 = new Sessie("Inleiding tot UNIX", "beschrijving", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), lokaal2, Jonathan, academiejaar2021, "gesloten");
-                Sessie sessie3 = new Sessie("Inleiding tot Github", "Een korte en krachtige inleiding tot github. Alles wat men hoef te weten over de werking en de structuur", DateTime.Now.AddDays(4).AddHours(20), DateTime.Now.AddDays(4).AddHours(21).AddMinutes(30), lokaal4, Ziggy, academiejaar2021, "gesloten");
-                Sessie sessie4 = new Sessie("Infosessie internationlisering IT", "Infosessie over de mogelijkheden tot buitenlandse studie of stage", DateTime.Now.AddDays(7), DateTime.Now.AddDays(7).AddHours(3), lokaal8, Jonathan, academiejaar2021, "gesloten");
-                Sessie sessie5 = new Sessie("The power of unix", "Korte sessie over de kracht van de command prompt in unix besturingssystemen", DateTime.Now.AddDays(6), DateTime.Now.AddDays(6).AddHours(1).AddMinutes(15), lokaal62, Jonathan, academiejaar2021, "zichtbaar");
-                Sessie sessie6 = new Sessie("What the future holds for AI", "Korte keynote van Elon Musk over zijn visie van wat er met AI te gebeuren staat", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(2).AddMinutes(15), lokaal62, Ziggy, academiejaar2021, "zichtbaar");
+                Sessie sessie1 = new Sessie("Inleiding tot Trello", "beschrijving", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
+                Sessie sessie2 = new Sessie("Inleiding tot UNIX", "beschrijving", DateTime.Now.AddDays(3), DateTime.Now.AddDays(3).AddHours(3), lokaal2, lokaal2.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
+                Sessie sessie3 = new Sessie("Inleiding tot Github", "Een korte en krachtige inleiding tot github. Alles wat men hoef te weten over de werking en de structuur", DateTime.Now.AddDays(4).AddHours(20), DateTime.Now.AddDays(4).AddHours(21).AddMinutes(30), lokaal4, lokaal4.AantalPlaatsen, Ziggy, academiejaar2021, "gesloten");
+                Sessie sessie4 = new Sessie("Infosessie internationlisering IT", "Infosessie over de mogelijkheden tot buitenlandse studie of stage", DateTime.Now.AddDays(7), DateTime.Now.AddDays(7).AddHours(3), lokaal8, lokaal8.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
+                Sessie sessie5 = new Sessie("The power of unix", "Korte sessie over de kracht van de command prompt in unix besturingssystemen", DateTime.Now.AddDays(6), DateTime.Now.AddDays(6).AddHours(1).AddMinutes(15), lokaal62, lokaal62.AantalPlaatsen, Jonathan, academiejaar2021, "zichtbaar");
+                Sessie sessie6 = new Sessie("What the future holds for AI", "Korte keynote van Elon Musk over zijn visie van wat er met AI te gebeuren staat", DateTime.Now.AddDays(2), DateTime.Now.AddDays(2).AddHours(2).AddMinutes(15), lokaal62, lokaal62.AantalPlaatsen, Ziggy, academiejaar2021, "zichtbaar");
+                
+
+                
                 var sessies = new List<Sessie> { sessie1, sessie2, sessie3, sessie4, sessie5, sessie6 };
                 _dbContext.Sessies.AddRange(sessies);
                 #endregion
