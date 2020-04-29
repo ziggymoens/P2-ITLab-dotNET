@@ -27,10 +27,10 @@ namespace ITLabNET.Data
             if (_dbContext.Database.EnsureCreated())
             {
                 #region Gebruikers
-                Gebruiker Jonathan = new Gebruiker("Jonathan Vanden Eynden", "jonathan.vandeneyndenvanlysebeth@student.hogent.be", 1133294124035L, "hoofdverantwoordelijke", "actief", "P@ssword1");
-                Gebruiker Ziggy = new Gebruiker("Ziggy Moens", "ziggy.moens@student.hogent.be", 1117212595596L, "verantwoordelijke", "actief", "P@ssword1");
-                Gebruiker Kilian = new Gebruiker("Kilian Hoefman", "kilian.hoefman@student.hogent.be", 1141420613636L, "gebruiker", "actief", "P@ssword1");
-                Gebruiker Sven = new Gebruiker("Sven Wyseur", "sven.wyseur@student.hogent.be", 1133340050431L, "gebruiker", "actief", "P@ssword1");
+                Gebruiker Jonathan = new Gebruiker("Jonathan Vanden Eynden", "862361jv", 1133294124035L, "hoofdverantwoordelijke", "actief", "P@ssword1");
+                Gebruiker Ziggy = new Gebruiker("Ziggy Moens", "123456zm", 1117212595596L, "verantwoordelijke", "actief", "P@ssword1");
+                Gebruiker Kilian = new Gebruiker("Kilian Hoefman", "123456kh", 1141420613636L, "gebruiker", "actief", "P@ssword1");
+                Gebruiker Sven = new Gebruiker("Sven Wyseur", "123456sw", 1133340050431L, "gebruiker", "actief", "P@ssword1");
 
                 var gebruikers = new List<Gebruiker> { Jonathan, Ziggy, Kilian, Sven };
                 var profielen = new List<GebruikerProfielState> { Jonathan.CurrentProfiel, Ziggy.CurrentProfiel, Kilian.CurrentProfiel, Sven.CurrentProfiel };
@@ -223,7 +223,5 @@ namespace ITLabNET.Data
             await _userManager.CreateAsync(user, password);
             await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, role));
         }
-
-        
     }
 }

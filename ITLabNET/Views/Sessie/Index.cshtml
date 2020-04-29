@@ -22,9 +22,9 @@
                 </div>
                 <div class="card-footer d-flex justify-content-center">
                     <div class="" role="group">
-                        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId"><i class="fas fa-info-circle"></i></button>
-                        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId"><i class="far fa-calendar-plus"></i></button>
-                        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId"><i class="far fa-calendar-minus"></i></button>
+                        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Details"><i class="fas fa-info-circle"></i></button>
+                        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus"></i></button>
+                        <button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus"></i></button>
                     </div>
                     </div>
             </div>
