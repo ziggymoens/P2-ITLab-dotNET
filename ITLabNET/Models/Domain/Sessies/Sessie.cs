@@ -267,9 +267,13 @@ namespace ITLabNET.Models.Domain.Sessies
 
         public void AddInschrijving(Gebruiker gebruiker)
         {
-
             Inschrijving inschr = new Inschrijving(gebruiker, this);
             Inschrijvingen.Add(inschr);
+        }
+        public void RemoveInschrijving(Gebruiker gebruiker)
+        {
+            Inschrijving i = Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker);
+            Inschrijvingen.Remove(i);
         }
 
         public void AddFeedback(Gebruiker gebruiker, DateTime date)
