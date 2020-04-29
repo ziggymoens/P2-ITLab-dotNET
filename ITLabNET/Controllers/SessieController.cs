@@ -35,12 +35,11 @@ namespace ITLabNET.Controllers
 
         public IActionResult ToonInfoSessie(int id)
         {
-
             return View(_sessieRepository.GetById(id));
         }
 
         [HttpPost]
-        public IActionResult Inschrijven(int id, Gebruiker gebruiker) {
+        public IActionResult SchrijfIn(int id, Gebruiker gebruiker) {
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
@@ -48,7 +47,7 @@ namespace ITLabNET.Controllers
                 sessie.AddInschrijving(gebruiker);
 
                 _sessieRepository.SaveChanges();
-                TempData["message"] = $"U bent succesvol ingeschreven voor {sessie.Titel}, op {sessie.Datum} !";
+                TempData["message"] = $"U bent succesvol ingeschreven voor {sessie.Titel}, op {sessie.Datum}.";
             }
             catch
             {
@@ -59,6 +58,28 @@ namespace ITLabNET.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        
+
+        [HttpPost]
+        public IActionResult SchrijfUit(Gebruiker gebruiker, int id)
+        {
+            try
+            {
+                Sessie sessie = _sessieRepository.GetById(id);
+
+                sessie.RemoveInschrijving(gebruiker);
+
+                _sessieRepository.SaveChanges();
+                TempData["message"] = $"U bent succesvol uitgeschreven voor {sessie.Titel}.";
+            }
+            catch
+            {
+                TempData["error"] = $"Er is iets misgelopen, u bent niet uitgeschreven.";
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

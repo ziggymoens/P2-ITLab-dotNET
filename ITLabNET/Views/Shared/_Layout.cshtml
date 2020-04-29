@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ITLab</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/fdf6832ad4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -21,10 +22,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="Index">Weekoverzicht</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="">Maandkalender</a>
+                            <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="Index"><i class="far fa-calendar-alt"> Kalender</i></a>
                         </li>
                         @{if (ViewContext.HttpContext.User.IsInRole("Gebruiker"))
                             {
