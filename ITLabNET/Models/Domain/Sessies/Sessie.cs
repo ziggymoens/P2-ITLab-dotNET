@@ -215,7 +215,7 @@ namespace ITLabNET.Models.Domain.Sessies
                 _verantwoordelijke = value;
             }
         }
-        public SessieState CurrentState { get => _currentState; }
+        public SessieState CurrentState { get => _currentState;}
 
         public void setSessieState(string status)
         {
