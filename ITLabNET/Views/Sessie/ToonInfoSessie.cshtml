@@ -1,25 +1,35 @@
-﻿@model Sessie
+﻿@model ITLabNET.Models.Domain.Sessies.Sessie
 @{
     ViewData["Title"] = "Sessie";
 }
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <h2>@ViewData["Title"]</h2>
-
-    @Model
-    {
-        <h4>@Model.Titel</h4>
-        <p>@Model.Beschrijving</p>
-        <p>@Model.Lokaal</p>
-        <p>@Model.Verantwoordelijke.Naam</p>
-        <p>@Model.MaximumAantalPlaatsen</p>
-        <p>@Model.NaamGastSpreker</p>
-        <p>@Model.Academiejaar.AcademieJaar</p>
-        <p>@Model.StartUur.ToShortDateString()</p>
-        <p>@Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</p>
-
-        <button type="submit" class="btn btn-primary btn-block" value="Inschrijven" style="margin: 5px">Inschrijven</button>
-
-    </div>
-    }
-</div>
+<main>
+    <form method="post">
+        <div class="d-flex justify-content-center">
+            <div class="card" style="width:24rem;">
+                <div class="card-body">
+                    <h4>@Model.Titel</h4>
+                    <p>@Model.Beschrijving</p>
+                    <p>@Model.Lokaal</p>
+                    <p>@Model.Verantwoordelijke.Naam</p>
+                    <p>@Model.MaximumAantalPlaatsen</p>
+                    <p>@Model.NaamGastSpreker</p>
+                    <p>@Model.Academiejaar.AcademieJaar</p>
+                    <p>@Model.StartUur.ToShortDateString()</p>
+                    <p>@Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</p>
+                    @if (Model.Datum < DateTime.Now)
+                    {
+                        <a class="btn btn-secondary" href="/Sessie/ToonFeedback/@Model.SessieId">Toon Feedback</a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary" type="submit" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId">Inschrijven</button>
+                        <button class="btn btn-secondary" type="submit" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId">Uitschrijven</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</main>

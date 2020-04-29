@@ -35,10 +35,10 @@ namespace ITLabNET.Controllers
 
         public IActionResult ToonInfoSessie(string id)
         {
+
             return View(_sessieRepository.GetById(id));
         }
 
-        [Authorize(Policy = "Gebruiker")]
         [HttpPost]
         public IActionResult Inschrijven(string id, Gebruiker gebruiker) {
             try
