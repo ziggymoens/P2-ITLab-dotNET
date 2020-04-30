@@ -44,6 +44,9 @@ namespace ITLabNET.Data
             modelBuilder.ApplyConfiguration(new MediaConfiguration());
             modelBuilder.ApplyConfiguration(new SessieConfiguration());
             modelBuilder.ApplyConfiguration(new SessieStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new GebouwConfiguration());
+            modelBuilder.ApplyConfiguration(new StadConfiguration());
+            modelBuilder.ApplyConfiguration(new CampusConfiguration());
         }
     }
 }

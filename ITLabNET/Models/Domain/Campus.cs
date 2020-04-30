@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain
 {
-    [NotMapped]
+    
     public class Campus
     {
         #region Fields
+        public int _campusId;
         private Stad _stad;
         private string _naam;
         #endregion
 
         #region Properties
+        public int CampusId { get => _campusId; set { _campusId = value; } }
         public Stad Stad
         {
             get { return _stad; }
@@ -25,7 +27,7 @@ namespace ITLabNET.Models.Domain
                 _stad = value;
             }
         }
-        public string naam
+        public string Naam
         {
             get { return _naam; }
             set
@@ -36,6 +38,18 @@ namespace ITLabNET.Models.Domain
                 }
                 _naam = value;
             }
+        }
+        #endregion
+
+        #region constructors
+        public Campus()
+        {
+
+        }
+        public Campus(Stad stad, string naam)
+        {
+            Stad = stad;
+            Naam = naam;
         }
         #endregion
     }
