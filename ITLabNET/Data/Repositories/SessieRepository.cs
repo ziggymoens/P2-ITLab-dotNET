@@ -31,7 +31,7 @@ namespace ITLabNET.Data.Repositories
 
         public Sessie GetById(int id)
         {
-            return _sessies.Include(e => e.Lokaal).SingleOrDefault(s => s.SessieId.Equals(id));
+            return _sessies.Include(e => e.Lokaal).Include(s => s.Verantwoordelijke).Include(a => a.Academiejaar).SingleOrDefault(s => s.SessieId.Equals(id));
         }
 
         public IEnumerable<Sessie> GetByOpenStatus(bool IsOpen)

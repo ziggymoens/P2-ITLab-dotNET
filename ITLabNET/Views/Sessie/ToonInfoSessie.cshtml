@@ -11,13 +11,13 @@
                 <div class="card-body">
                     <h4>@Model.Titel</h4>
                     <p>@Model.Beschrijving</p>
-                    <p>@Model.Lokaal</p>
-                    <p>@Model.Verantwoordelijke</p>
-                    <p>@Model.MaximumAantalPlaatsen</p>
-                    <p>@Model.NaamGastSpreker</p>
-                    <p>@Model.Academiejaar.AcademieJaar</p>
-                    <p>@Model.StartUur.ToShortDateString()</p>
-                    <p>@Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</p>
+                    <p>Lokaal: @Model.Lokaal.LokaalCode</p>
+                    <p>Verantwoordelijke: @Model.Verantwoordelijke.Naam</p>
+                    <p>Maximum aantal plaatsen: @Model.MaximumAantalPlaatsen</p>
+                    <p>Gastspreker: @Model.NaamGastSpreker</p>
+                    <p>Academiejaar: @Model.Academiejaar.AcademieJaar</p>
+                    <p>Datum: @Model.StartUur.ToShortDateString()</p>
+                    <p>Uur: @Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</p>
                     @if (Model.Datum < DateTime.Now)
                     {
                         <a class="btn btn-secondary" href="/Sessie/ToonFeedback/@Model.SessieId">Toon Feedback</a>
