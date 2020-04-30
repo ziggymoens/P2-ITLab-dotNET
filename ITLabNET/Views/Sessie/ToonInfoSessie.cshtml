@@ -17,7 +17,7 @@
         <p class="my-4">@Model.NaamGastSpreker</p>
         <p class="lead"><strong>@Model.StartUur.ToShortDateString()</strong> | <i>@Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</i></p>
         <p class="lead">Lokaal: @Model.Lokaal.LokaalCode</p>
-        <p class="lead">Organisator: @Model.Verantwoordelijke</p>
+        <p class="lead">Organisator: @Model.Verantwoordelijke.Naam</p>
         <p class="lead">Aantal plaatsen: @Model.MaximumAantalPlaatsen</p>
 
         @if (Model.Datum < DateTime.Now)

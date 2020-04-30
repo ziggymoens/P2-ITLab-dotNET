@@ -11,13 +11,13 @@ namespace ITLabNET.Models.Domain
     {
         #region Fields
         public int _campusId;
-        private Stad _stad;
+        //private Stad _stad;
         private string _naam;
         #endregion
 
         #region Properties
         public int CampusId { get => _campusId; set { _campusId = value; } }
-        public Stad Stad
+       /* public Stad Stad
         {
             get { return _stad; }
             set
@@ -26,7 +26,7 @@ namespace ITLabNET.Models.Domain
                     throw new ArgumentException("Stad mag niet minder dan 0 zijn");
                 _stad = value;
             }
-        }
+        }*/
         public string Naam
         {
             get { return _naam; }
@@ -46,9 +46,9 @@ namespace ITLabNET.Models.Domain
         {
 
         }
-        public Campus(Stad stad, string naam)
+        public Campus(/*Stad stad, */string naam)
         {
-            Stad = stad;
+           /* Stad = stad;*/
             Naam = naam;
         }
         #endregion
