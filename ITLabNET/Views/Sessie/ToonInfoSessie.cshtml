@@ -1,32 +1,31 @@
-﻿@model ITLabNET.Models.Domain.Sessies.Sessie
+﻿@model Sessie
 @{
     ViewData["Title"] = "Details Sessie";
 }
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<h2>@ViewData["Title"]</h2>
+@*<h2>@ViewData["Title"]</h2>*@
 
-        <div class="d-flex justify-content-center">
-            <div class="card" style="width:24rem;">
-                <div class="card-body">
-                    <h4>@Model.Titel</h4>
-                    <p>@Model.Beschrijving</p>
-                    <p>Lokaal: @Model.Lokaal.LokaalCode</p>
-                    <p>Verantwoordelijke: @Model.Verantwoordelijke.Naam</p>
-                    <p>Maximum aantal plaatsen: @Model.MaximumAantalPlaatsen</p>
-                    <p>Gastspreker: @Model.NaamGastSpreker</p>
-                    <p>Academiejaar: @Model.Academiejaar.AcademieJaar</p>
-                    <p>Datum: @Model.StartUur.ToShortDateString()</p>
-                    <p>Uur: @Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</p>
-                    @if (Model.Datum < DateTime.Now)
-                    {
-                        <a class="btn btn-secondary" href="/Sessie/ToonFeedback/@Model.SessieId">Toon Feedback</a>
-                    }
-                    else
-                    {
-                        <button class="btn btn-secondary" type="submit" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId">Inschrijven</button>
-                        <button class="btn btn-secondary" type="submit" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId">Uitschrijven</button>
-                    }
-                </div>
-            </div>
-        </div>
+<div class="">
+    <div class="jumbotron">
+        <h class="display-4">@Model.Titel</h>
+        <p class="lead">@Model.Beschrijving</p>
+        <p class="my-4">@Model.NaamGastSpreker</p>
+        <p class="lead"><strong>@Model.StartUur.ToShortDateString()</strong> | <i>@Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</i></p>
+        <p class="lead">Lokaal: @Model.Lokaal.LokaalCode</p>
+        <p class="lead">Organisator: @Model.Verantwoordelijke</p>
+        <p class="lead">Aantal plaatsen: @Model.MaximumAantalPlaatsen</p>
+
+        @if (Model.Datum < DateTime.Now)
+        {
+            <a class="btn btn-secondary btn-lg" href="/Sessie/ToonFeedback/@Model.SessieId">Toon Feedback</a>
+        }
+        else
+        {
+            <button class="btn btn-secondary btn-lg" type="submit" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId"><i class="far fa-calendar-plus"></i> Inschrijven</button>
+            <button class="btn btn-secondary btn-lg" type="submit" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId"><i class="far fa-calendar-minus"></i> Uitschrijven</button>
+        }
+    </div>
+
+
+</div>
