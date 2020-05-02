@@ -20,12 +20,13 @@
         <p class="lead">Organisator: @Model.Verantwoordelijke.Naam</p>
         <p class="lead">Aantal plaatsen: @Model.MaximumAantalPlaatsen</p>
 
-        @if (Model.Datum < DateTime.Now)
+        @if ((bool)ViewData["Datum"] == true)
         {
             <a class="btn btn-secondary btn-lg" href="/Sessie/ToonFeedback/@Model.SessieId">Toon Feedback</a>
         }
         else
         {
+            if()
             <button class="btn btn-secondary btn-lg" type="submit" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId"><i class="far fa-calendar-plus"></i> Inschrijven</button>
             <button class="btn btn-secondary btn-lg" type="submit" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId"><i class="far fa-calendar-minus"></i> Uitschrijven</button>
         }

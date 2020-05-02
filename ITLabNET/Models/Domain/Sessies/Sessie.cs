@@ -223,7 +223,7 @@ namespace ITLabNET.Models.Domain.Sessies
             {
                 throw new ArgumentException("Sessie state mag niet leeg of null zijn");
             }
-            switch (status)
+            switch (status.ToLower())
             {
                 case "open":
                     toState(new OpenState(this));

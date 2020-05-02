@@ -29,12 +29,20 @@ namespace ITLabNET.Controllers
         public IActionResult Index()
         {
             IEnumerable<Sessie> sessies = _sessieRepository.GetAll();
+            if (User != null) {
+                ViewData["magInschrijven"] = true;
+                Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+                IEnumerable<Inschrijving> ingeschreven = sessies.Select(e => e.Inschrijvingen.FirstOrDefault(a => a.Gebruiker == aangemeld));
+                IEnumerable<Sessie> ingeschrevenSessie = ingeschreven.Select(e => e.Sessie);
+            }
             return View(sessies);
         }
 
         public IActionResult ToonInfoSessie(int id)
         {
             Sessie s = _sessieRepository.GetById(id);
+            ViewData["Datum"] = s.Datum < DateTime.Now;
+            ViewData["Ingeschreven"] = User.Identity.Name;
             return View(s);
         }
 
@@ -78,6 +86,38 @@ namespace ITLabNET.Controllers
             }
 
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Policy = "Verantwoordelijke")]
+        public IActionResult OpenSessie(Gebruiker gebruiker) {
+            try
+            {
+                return View(_sessieRepository.GetByVerantwoordelijke(gebruiker));
+            }
+            catch (Exception)
+            {
+                TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [Authorize(Policy = "Verantwoordelijke")]
+        [HttpPost]
+        public IActionResult OpenSessie(int id)
+        {
+            try
+            {
+                Sessie sessie = _sessieRepository.GetById(id);
+                sessie.setSessieState("open");
+                _sessieRepository.SaveChanges();
+                TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
+
+            }
+            catch (Exception)
+            {
+                TempData["error"] = $"Er is iets misgelopen, de sessie werd niet geopend.";
+            }
             return RedirectToAction(nameof(Index));
         }
 
