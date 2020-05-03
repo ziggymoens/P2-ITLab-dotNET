@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ITLabNET.Models.Domain;
+﻿using ITLabNET.Models.Domain;
 using ITLabNET.Models.Domain.Gebruikers;
 using ITLabNET.Models.Domain.Sessies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ITLabNET.Controllers
 {
-    
+
     public class SessieController : Controller
     {
         private readonly ISessieRepository _sessieRepository;
@@ -29,12 +29,13 @@ namespace ITLabNET.Controllers
         public IActionResult Index()
         {
             IEnumerable<Sessie> sessies = _sessieRepository.GetAll();
-            if (User != null) {
-                ViewData["magInschrijven"] = true;
-                Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
-                IEnumerable<Inschrijving> ingeschreven = sessies.Select(e => e.Inschrijvingen.FirstOrDefault(a => a.Gebruiker == aangemeld));
-                IEnumerable<Sessie> ingeschrevenSessie = ingeschreven.Select(e => e.Sessie);
-            }
+
+            Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+            var filteropties = new List<string> { "Alle", "Maand", "Week", "Vandaag"};
+            ViewData["filter"] = new SelectList(filteropties);
+
+            IEnumerable<Inschrijving> ingeschreven = sessies.Select(e => e.Inschrijvingen.FirstOrDefault(a => a.Gebruiker == aangemeld));
+            IEnumerable<Sessie> ingeschrevenSessie = ingeschreven.Select(e => e.Sessie);
             return View(sessies);
         }
 
@@ -47,11 +48,12 @@ namespace ITLabNET.Controllers
         }
 
         [HttpPost]
-        public IActionResult SchrijfIn(int id, Gebruiker gebruiker) {
+        public IActionResult SchrijfIn(int id)
+        {
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
-
+                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 sessie.AddInschrijving(gebruiker);
 
                 _sessieRepository.SaveChanges();
@@ -62,8 +64,7 @@ namespace ITLabNET.Controllers
                 TempData["error"] = $"Er is iets misgelopen, u bent niet ingeschreven.";
                 return RedirectToAction(nameof(Index));
             }
-
-
+            Console.WriteLine("ingeschreven");
             return RedirectToAction(nameof(Index));
         }
 
@@ -90,7 +91,8 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Verantwoordelijke")]
-        public IActionResult OpenSessie(Gebruiker gebruiker) {
+        public IActionResult OpenSessie(Gebruiker gebruiker)
+        {
             try
             {
                 return View(_sessieRepository.GetByVerantwoordelijke(gebruiker));

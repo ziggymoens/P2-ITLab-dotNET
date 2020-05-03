@@ -26,9 +26,11 @@
         }
         else
         {
-            if()
-            <button class="btn btn-secondary btn-lg" type="submit" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId"><i class="far fa-calendar-plus"></i> Inschrijven</button>
-            <button class="btn btn-secondary btn-lg" type="submit" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId"><i class="far fa-calendar-minus"></i> Uitschrijven</button>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus"> Inschrijven</i></a>
+                @*<button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus"></i></button>*@
+            }
         }
     </div>
 
