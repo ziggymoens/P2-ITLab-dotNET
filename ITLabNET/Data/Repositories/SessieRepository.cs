@@ -46,7 +46,7 @@ namespace ITLabNET.Data.Repositories
 
         public IEnumerable<Sessie> GetByOpenStatus(bool IsOpen)
         {
-            return _sessies.Where(s => s.CurrentState == new OpenState());
+            return _sessies.Where(s => s.CurrentState == SessieStates.Open);
         }
 
         public IEnumerable<Sessie> GetByVerantwoordelijke(Gebruiker g)
@@ -56,7 +56,7 @@ namespace ITLabNET.Data.Repositories
 
         public IEnumerable<Sessie> GetByZichtbaarStatus()
         {
-            return _sessies.Where(s => s.CurrentState == new ZichtbaarState());
+            return _sessies.Where(s => s.CurrentState == SessieStates.Zichtbaar);
         }
 
         public void SaveChanges()
