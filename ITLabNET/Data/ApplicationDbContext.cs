@@ -23,8 +23,6 @@ namespace ITLabNET.Data
         public DbSet<Lokaal> Lokalen { get; set; }
         public DbSet<Media> Media { get; set; }
         public DbSet<Sessie> Sessies { get; set; }
-        public DbSet<SessieState> SessieStates { get; set; }
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
@@ -43,7 +41,6 @@ namespace ITLabNET.Data
             modelBuilder.ApplyConfiguration(new LokaalConfiguration());
             modelBuilder.ApplyConfiguration(new MediaConfiguration());
             modelBuilder.ApplyConfiguration(new SessieConfiguration());
-            modelBuilder.ApplyConfiguration(new SessieStatusConfiguration());
         }
     }
 }

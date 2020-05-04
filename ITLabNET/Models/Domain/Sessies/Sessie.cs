@@ -26,7 +26,7 @@ namespace ITLabNET.Models.Domain.Sessies
         private ICollection<Feedback> _feedback;
         private Lokaal _lokaal;
         private Gebruiker _verantwoordelijke;
-        private SessieState _currentState;
+        private SessieStates _currentState;
         #endregion
 
         #region Properties
@@ -215,7 +215,7 @@ namespace ITLabNET.Models.Domain.Sessies
                 _verantwoordelijke = value;
             }
         }
-        public SessieState CurrentState { get => _currentState;}
+        public SessieStates CurrentState { get => _currentState;}
 
         public void setSessieState(string status)
         {
@@ -226,17 +226,16 @@ namespace ITLabNET.Models.Domain.Sessies
             switch (status)
             {
                 case "open":
-                    toState(new OpenState(this));
+                    toState(SessieStates.Open);
                     break;
                 case "gesloten":
-                    toState(new GeslotenState(this));
+                    toState(SessieStates.Gesloten);
                     break;
                 case "zichtbaar":
-                    toState(new ZichtbaarState(this));
+                    toState(SessieStates.Zichtbaar);
                     break;
-                default:
                 case "niet zichtbaar":
-                    toState(new NietZichtbaarState(this));
+                    toState(SessieStates.NietZichtbaar);
                     break;
             }
         }
@@ -263,7 +262,7 @@ namespace ITLabNET.Models.Domain.Sessies
         }
 
         #region Methods
-        public void toState(SessieState sessieState) { _currentState = sessieState; }
+        public void toState(SessieStates sessieState) { _currentState = sessieState; }
 
         public void AddInschrijving(Gebruiker gebruiker)
         {

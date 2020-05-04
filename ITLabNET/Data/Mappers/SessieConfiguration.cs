@@ -14,6 +14,7 @@ namespace ITLabNET.Data.Mappers
         {
             builder.ToTable("sessie");
             builder.HasKey(t => t.SessieId);
+            builder.Property(s => s.CurrentState).HasConversion<string>();
             //builder.Property(t => t.SessieId).ValueGeneratedOnAdd();
         }
     }
