@@ -6,25 +6,16 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.Domain
 {
-    
+    [NotMapped]
     public class Gebouw
     {
         #region Fields
-        public int _gebouwId;
-        //private Campus _campus;
+        private Campus _campus;
         private string _naam;
         #endregion
 
         #region Properties
-        public int GebouwId
-        {
-            get => _gebouwId; 
-            set
-            {
-                _gebouwId = value;
-            }
-        }
-       /* public Campus Campus
+        public Campus Campus
         {
             get { return _campus; }
             set
@@ -33,8 +24,8 @@ namespace ITLabNET.Models.Domain
                     throw new ArgumentException("Campus mag niet null zijn");
                 _campus = value;
             }
-        }*/
-        public string Naam {
+        }
+        public string naam {
             get { return _naam; }
             set {
                 if (string.IsNullOrWhiteSpace(value)) {
@@ -42,18 +33,6 @@ namespace ITLabNET.Models.Domain
                 }
                 _naam = value;
             }
-        }
-        #endregion
-
-        #region constructors
-        public Gebouw()
-        {
-
-        }
-        public Gebouw(/*Campus campus, */string naam)
-        {
-           /* Campus = campus;*/
-            Naam = naam;
         }
         #endregion
     }

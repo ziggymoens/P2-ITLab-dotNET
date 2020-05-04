@@ -26,20 +26,12 @@ namespace ITLabNET.Data.Repositories
 
         public IEnumerable<Sessie> GetAll()
         {
-            return _sessies
-                .Include(s => s.Academiejaar)
-                .Include(s => s.Verantwoordelijke)
-                .Include(s => s.Lokaal).ThenInclude(l => l.Stad)               
-                .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
+            return _sessies.Include(s => s.Academiejaar).AsNoTracking().ToList();
         }
 
         public Sessie GetById(int id)
         {
-            return _sessies
-                .Include(e => e.Lokaal)
-                .Include(s => s.Verantwoordelijke)
-                .Include(a => a.Academiejaar)
-                .SingleOrDefault(s => s.SessieId.Equals(id));
+            return _sessies.Include(e => e.Lokaal).SingleOrDefault(s => s.SessieId.Equals(id));
         }
 
         public IEnumerable<Sessie> GetByOpenStatus(bool IsOpen)

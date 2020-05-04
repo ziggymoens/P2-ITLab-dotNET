@@ -5,13 +5,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <h2 style="text-align: center">@ViewData["Title"]</h2>
-<!--filter sessies op tijd: alle, maand, week, vandaag; op ingeschreven; -->
-<div class="form group">
-    <label>filter:</label>
-    <select asp-items="@(ViewData["filter"] as SelectList)" class="form-control">
-        <option value="">-- filter tijdstip --</option>
-    </select>
-</div>
+
 <div class="row">
     @foreach (var sessie in Model)
     {
@@ -28,14 +22,11 @@
                 </div>
                 <div class="card-footer d-flex justify-content-center">
                     <div class="" role="group">
-                        <a class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Details"><i class="fas fa-info-circle"> Details</i></a>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus"> Inschrijven</i></a>
-                            @*<button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus"></i></button>*@
-                        }
+                        <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus"></i> Inschrijven</a>
+                        <a class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Details"><i class="fas fa-info-circle"></i> Details</a>
+                        @*<button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus"></i></button>*@
                     </div>
-                </div>
+                    </div>
             </div>
         </div>
     }

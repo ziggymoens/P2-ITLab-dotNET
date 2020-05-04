@@ -10,7 +10,7 @@ namespace ITLabNET.Models.Domain
     public class Inschrijving
     {
         #region Fields
-        private string _inschrijvingsId;
+        private int _inschrijvingsId;
         private Gebruiker _gebruiker;
         private Sessie _sessie;
         private DateTime? _inschrijvingsdatum;
@@ -19,13 +19,13 @@ namespace ITLabNET.Models.Domain
         #endregion
 
         #region Properties
-        public string InschrijvingsId
+        public int InschrijvingsId
         {
             get { return _inschrijvingsId; }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("InschrijvingsId mag niet null of leeg zijn");
+                if (value <= 0)
+                    throw new ArgumentException("InschrijvingsId mag niet kleiner of gelijk aan 0 zijn");
                 _inschrijvingsId = value;
             }
         }
