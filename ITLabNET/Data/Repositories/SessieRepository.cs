@@ -29,6 +29,7 @@ namespace ITLabNET.Data.Repositories
             return _sessies
                 .Include(s => s.Academiejaar)
                 .Include(s => s.Verantwoordelijke)
+                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
                 .Include(s => s.Lokaal).ThenInclude(l => l.Stad)               
                 .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
         }
@@ -38,6 +39,7 @@ namespace ITLabNET.Data.Repositories
             return _sessies
                 .Include(e => e.Lokaal)
                 .Include(s => s.Verantwoordelijke)
+                .Include(s => s.Inschrijvingen)
                 .Include(a => a.Academiejaar)
                 .SingleOrDefault(s => s.SessieId.Equals(id));
         }

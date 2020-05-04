@@ -23,7 +23,7 @@ namespace ITLabNET.Data
 
         public async Task InitializeData()
         {
-            //_dbContext.Database.EnsureDeleted();
+            _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
                 #region Gebruikers
@@ -221,10 +221,9 @@ namespace ITLabNET.Data
                 Sessie sessie4 = new Sessie("Infosessie internationlisering IT", "Infosessie over de mogelijkheden tot buitenlandse studie of stage", date.AddDays(7), date.AddDays(7).AddHours(3), lokaal8, lokaal8.AantalPlaatsen, Jonathan, academiejaar2021, "gesloten");
                 Sessie sessie5 = new Sessie("The power of unix", "Korte sessie over de kracht van de command prompt in unix besturingssystemen", date.AddDays(6), date.AddDays(6).AddHours(1).AddMinutes(15), lokaal62, lokaal62.AantalPlaatsen, Jonathan, academiejaar2021, "zichtbaar");
                 Sessie sessie6 = new Sessie("What the future holds for AI", "Korte keynote van Elon Musk over zijn visie van wat er met AI te gebeuren staat", date.AddDays(2), date.AddDays(2).AddHours(2).AddMinutes(15), lokaal62, lokaal62.AantalPlaatsen, Ziggy, academiejaar2021, "zichtbaar");
-                
-
-                
-                var sessies = new List<Sessie> { sessie1, sessie2, sessie3, sessie4, sessie5, sessie6 };
+                Sessie sessie7 = new Sessie("Wat als je anus in vuur en vlam staat","Brandweer komt uitleg geven", date.AddDays(7), date.AddDays(7).AddHours(2).AddMinutes(0), lokaal62, lokaal62.AantalPlaatsen, Seba, academiejaar2021, "zichtbaar");
+                sessie7.setSessieState("zichtbaar");
+                var sessies = new List<Sessie> { sessie1, sessie2, sessie3, sessie4, sessie5, sessie6, sessie7 };
                 _dbContext.Sessies.AddRange(sessies);
                 #endregion
 

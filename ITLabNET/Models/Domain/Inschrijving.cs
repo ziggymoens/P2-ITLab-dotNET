@@ -10,7 +10,7 @@ namespace ITLabNET.Models.Domain
     public class Inschrijving
     {
         #region Fields
-        private string _inschrijvingsId;
+        private int _inschrijvingsId;
         private Gebruiker _gebruiker;
         private Sessie _sessie;
         private DateTime? _inschrijvingsdatum;
@@ -19,13 +19,13 @@ namespace ITLabNET.Models.Domain
         #endregion
 
         #region Properties
-        public string InschrijvingsId
+        public int InschrijvingsId
         {
             get { return _inschrijvingsId; }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("InschrijvingsId mag niet null of leeg zijn");
+                if (value <= 0)
+                    throw new ArgumentException("InschrijvingsId mag niet kleiner of  gelijk aan 0 zijn");
                 _inschrijvingsId = value;
             }
         }
@@ -37,7 +37,6 @@ namespace ITLabNET.Models.Domain
             {
                 if (value == null)
                     throw new ArgumentException("Gebruiker mag niet null zijn");
-                Console.WriteLine("testG");
                 _gebruiker = value;
             }
         }
@@ -49,7 +48,6 @@ namespace ITLabNET.Models.Domain
             {
                 if (value == null)
                     throw new ArgumentException("Sessie mag niet null zijn");
-                Console.WriteLine("testS");
                 _sessie = value;
             }
         }
@@ -61,7 +59,7 @@ namespace ITLabNET.Models.Domain
             {
                 if (value == null)
                     throw new ArgumentException("InschrijvingsDatum mag niet null zijn");
-                _inschrijvingsdatum = DateTime.Now;
+                _inschrijvingsdatum = value;
             }
         }
 
@@ -85,9 +83,9 @@ namespace ITLabNET.Models.Domain
         }
         public Inschrijving(Gebruiker gebruiker, Sessie sessie)
         {
-            Console.WriteLine("test");
             Gebruiker = gebruiker;
-            Sessie = sessie;            
+            Sessie = sessie;
+            InschrijvingsDatum = DateTime.Now;
         }
         #endregion
     }

@@ -270,6 +270,7 @@ namespace ITLabNET.Models.Domain.Sessies
             Inschrijving inschr = new Inschrijving(gebruiker, this);
             Inschrijvingen.Add(inschr);
         }
+
         public void RemoveInschrijving(Gebruiker gebruiker)
         {
             Inschrijving i = Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker);
@@ -281,6 +282,7 @@ namespace ITLabNET.Models.Domain.Sessies
             Feedback feedback = new Feedback(this, gebruiker, date);
             Feedback.Add(feedback);
         }
+
         public void RemoveFeedback(Gebruiker gebruiker)
         {
             Inschrijving i = Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker);
@@ -292,6 +294,7 @@ namespace ITLabNET.Models.Domain.Sessies
             Aankondiging aank = new Aankondiging(this, gebruiker, publicatieDatum, inhoud, automatischeHerinnering, dagenVooraf);
             Aankondigingen.Add(aank);
         }
+
         public void RemoveAankondiging(Gebruiker gebruiker)
         {
             Inschrijving i = Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker);

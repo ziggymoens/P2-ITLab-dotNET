@@ -31,8 +31,14 @@
                         <a class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Details"><i class="fas fa-info-circle"> Details</i></a>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus"> Inschrijven</i></a>
-                            @*<button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus"></i></button>*@
+                            if (sessie.Inschrijvingen.Any(e => e.Gebruiker.Naam == ((Gebruiker)ViewData["aangemelde"]).Naam))
+                            {
+                                <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus">Uitschrijven</i></a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus">Inschrijven</i></a>
+                            }
                         }
                     </div>
                 </div>

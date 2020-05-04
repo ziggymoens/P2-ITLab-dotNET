@@ -31,11 +31,14 @@ namespace ITLabNET.Controllers
             IEnumerable<Sessie> sessies = _sessieRepository.GetAll();
 
             Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+            ViewData["aangemelde"] = aangemeld;
+
             var filteropties = new List<string> { "Alle", "Maand", "Week", "Vandaag"};
             ViewData["filter"] = new SelectList(filteropties);
 
             IEnumerable<Inschrijving> ingeschreven = sessies.Select(e => e.Inschrijvingen.FirstOrDefault(a => a.Gebruiker == aangemeld));
             IEnumerable<Sessie> ingeschrevenSessie = ingeschreven.Select(e => e.Sessie);
+
             return View(sessies);
         }
 
@@ -47,7 +50,8 @@ namespace ITLabNET.Controllers
             return View(s);
         }
 
-        [HttpPost]
+        [Authorize(Policy = "Gebruiker")]
+        //[HttpPost]
         public IActionResult SchrijfIn(int id)
         {
             try
@@ -55,7 +59,6 @@ namespace ITLabNET.Controllers
                 Sessie sessie = _sessieRepository.GetById(id);
                 Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 sessie.AddInschrijving(gebruiker);
-
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"U bent succesvol ingeschreven voor {sessie.Titel}, op {sessie.Datum}.";
             }
@@ -64,19 +67,18 @@ namespace ITLabNET.Controllers
                 TempData["error"] = $"Er is iets misgelopen, u bent niet ingeschreven.";
                 return RedirectToAction(nameof(Index));
             }
-            Console.WriteLine("ingeschreven");
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        public IActionResult SchrijfUit(Gebruiker gebruiker, int id)
+        [Authorize(Policy = "Gebruiker")]
+        //[HttpPost]
+        public IActionResult SchrijfUit(int id)
         {
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
-
+                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 sessie.RemoveInschrijving(gebruiker);
-
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"U bent succesvol uitgeschreven voor {sessie.Titel}.";
             }
@@ -85,16 +87,15 @@ namespace ITLabNET.Controllers
                 TempData["error"] = $"Er is iets misgelopen, u bent niet uitgeschreven.";
                 return RedirectToAction(nameof(Index));
             }
-
-
             return RedirectToAction(nameof(Index));
         }
 
         [Authorize(Policy = "Verantwoordelijke")]
-        public IActionResult OpenSessie(Gebruiker gebruiker)
+        public IActionResult OpenSessie()
         {
             try
             {
+                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 return View(_sessieRepository.GetByVerantwoordelijke(gebruiker));
             }
             catch (Exception)
@@ -114,7 +115,6 @@ namespace ITLabNET.Controllers
                 sessie.setSessieState("open");
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
-
             }
             catch (Exception)
             {
