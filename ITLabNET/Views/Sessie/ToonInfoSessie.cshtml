@@ -1,38 +1,31 @@
 ﻿@model Sessie
 @{
-    ViewData["Title"] = Model.Titel;
+    ViewData["Title"] = "Details Sessie";
 }
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<a class="btn btn-secondary" asp-controller="Sessie" asp-action="Index" data-toggle="tooltip" data-placement="bottom" title="Terug" style="margin-top: 5px; margin-right: 5px; margin-bottom: 5px;">
-    <i class="fas fa-arrow-alt-circle-left"></i>
-</a>
+
 @*<h2>@ViewData["Title"]</h2>*@
 
 <div class="">
-    
-
     <div class="jumbotron">
         <h class="display-4">@Model.Titel</h>
         <p class="lead">@Model.Beschrijving</p>
         <p class="my-4">@Model.NaamGastSpreker</p>
         <p class="lead"><strong>@Model.StartUur.ToShortDateString()</strong> | <i>@Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</i></p>
         <p class="lead">Lokaal: @Model.Lokaal.LokaalCode</p>
-        <p class="lead">Organisator: @Model.Verantwoordelijke.Naam</p>
+        <p class="lead">Organisator: @Model.Verantwoordelijke</p>
         <p class="lead">Aantal plaatsen: @Model.MaximumAantalPlaatsen</p>
-
-        @if ((bool)ViewData["Datum"] == true)
-        {
-            <a class="btn btn-secondary btn-lg" href="/Sessie/ToonFeedback/@Model.SessieId">Toon Feedback</a>
-        }
+        
+        @if (Model.Datum < DateTime.Now)
+            {
+                <a class="btn btn-secondary btn-lg" href="/Sessie/ToonFeedback/@Model.SessieId">Toon Feedback</a>
+            }
         else
         {
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus"> Inschrijven</i></a>
-                @*<button type="submit" class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus"></i></button>*@
-            }
+            <button class="btn btn-secondary btn-lg" type="submit" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId"><i class="far fa-calendar-plus"></i> Inschrijven</button>
+            <button class="btn btn-secondary btn-lg" type="submit" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId"><i class="far fa-calendar-minus"></i> Uitschrijven</button>
         }
     </div>
 
-
+    
 </div>

@@ -12,8 +12,6 @@ namespace ITLabNET.Models.Domain
         private int _aantalPlaatsen;
         private bool _verwijderd = false;
         private Gebouw _gebouw;
-        private Stad _stad;
-        private Campus _campus;
         private string _type;
         #endregion
 
@@ -67,24 +65,14 @@ namespace ITLabNET.Models.Domain
                 _type = value;
             }
         }
-
-        public Campus Campus { get => _campus; set { _campus = value; } }
-        public Stad Stad { get => _stad; set { _stad = value; } }
         #endregion
 
         #region Constructor
-        public Lokaal()
-        {
-
-        }
-        public Lokaal(string lokaalCode, string type, int aantalPlaatsen, Gebouw gebouw, Campus campus, Stad stad)
+        public Lokaal(string lokaalCode, string type, int aantalPlaatsen)
         {
             LokaalCode = lokaalCode;
             Type = type;
             AantalPlaatsen = aantalPlaatsen;
-            Gebouw = gebouw;
-            Campus = campus;
-            Stad = stad;
         }
         #endregion
     }
