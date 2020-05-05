@@ -1,0 +1,32 @@
+﻿
+@model ITLabNET.Models.SessieViewModels.FeedbackViewModel
+
+@{
+    ViewData["Title"] = "Geef feedback";
+}
+    <main>
+        <h3 class="text-center">Geef feedback op @ViewData["Sessie"]</h3>
+        <a class="btn btn-secondary" asp-controller="Sessie" asp-action="GeefFeedbackOpties" data-toggle="tooltip" data-placement="bottom" title="Terug" style="margin-top: 5px; margin-right: 5px; margin-bottom: 5px;">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </a>
+        <div class="center">
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="Tekst" class="control-label"></label>
+                    <textarea asp-for="Tekst" class="form-control" rows="10" cols="100"></textarea>
+                    <span asp-validation-for="Tekst" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Voeg toe</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

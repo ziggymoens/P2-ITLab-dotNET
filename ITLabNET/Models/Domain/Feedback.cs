@@ -83,10 +83,11 @@ namespace ITLabNET.Models.Domain
 
         #region constructors
         public Feedback() { }
-        public Feedback(Sessie sessie, Gebruiker gebruiker, DateTime date)
+        public Feedback(Sessie sessie, Gebruiker gebruiker, string tekst, DateTime date)
         {
             Sessie = sessie;
             Gebruiker = gebruiker;
+            Tekst = tekst;
             Date = date;
         }
         #endregion

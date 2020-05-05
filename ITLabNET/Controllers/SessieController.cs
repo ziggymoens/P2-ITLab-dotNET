@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ITLabNET.Models.Domain;
+﻿using ITLabNET.Models.Domain;
 using ITLabNET.Models.Domain.Gebruikers;
 using ITLabNET.Models.Domain.Sessies;
+using ITLabNET.Models.SessieViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,7 +11,7 @@ using System.Linq;
 
 namespace ITLabNET.Controllers
 {
-    
+
     public class SessieController : Controller
     {
         private readonly ISessieRepository _sessieRepository;
@@ -37,7 +34,7 @@ namespace ITLabNET.Controllers
             Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
             ViewData["aangemelde"] = aangemeld;
 
-            var filteropties = new List<string> { "Alle", "Maand", "Week", "Vandaag"};
+            var filteropties = new List<string> { "Alle", "Maand", "Week", "Vandaag" };
             ViewData["filter"] = new SelectList(filteropties);
 
             IEnumerable<Inschrijving> ingeschreven = sessies.Select(e => e.Inschrijvingen.FirstOrDefault(a => a.Gebruiker == aangemeld));
@@ -126,6 +123,72 @@ namespace ITLabNET.Controllers
                 TempData["error"] = $"Er is iets misgelopen, de sessie werd niet geopend.";
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Policy = "Verantwoordelijke")]
+        public IActionResult ToonFeedback()
+        {
+            try
+            {
+                Gebruiker g = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+                return View(_sessieRepository.GetByVerantwoordelijke(g));
+            }
+            catch
+            {
+                TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [Authorize(Policy = "Gebruiker")]
+        public IActionResult GeefFeedbackOpties()
+        {
+            try
+            {
+                Gebruiker g = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+                return View(_sessieRepository.GeefAanwezigeSessiesGebruiker(g));
+            }
+            catch
+            {
+                TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [Authorize(Policy = "Gebruiker")]
+        public IActionResult GeefFeedback(int id)
+        {
+            Sessie sessie = _sessieRepository.GetById(id);
+            if (sessie == null)
+            {
+                return NotFound();
+            }
+            ViewData["Sessie"] = sessie.Titel;
+
+            return View(new FeedbackViewModel(sessie));
+        }
+
+        [Authorize(Policy = "Gebruiker")]
+        [HttpPost]
+        public IActionResult GeefFeedback(int id, FeedbackViewModel viewmodel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+                    Sessie sessie = _sessieRepository.GetById(id);
+                    sessie.AddFeedback(gebruiker, viewmodel.Tekst, DateTime.Now);
+                    _sessieRepository.SaveChanges();
+                    TempData["message"] = $"Uw feedback werd toegevoegd aan de sessie";
+                }
+                catch
+                {
+                    TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.";
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(viewmodel);
         }
 
     }

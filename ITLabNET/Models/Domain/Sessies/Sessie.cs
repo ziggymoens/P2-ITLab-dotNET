@@ -276,9 +276,9 @@ namespace ITLabNET.Models.Domain.Sessies
             Inschrijvingen.Remove(i);
         }
 
-        public void AddFeedback(Gebruiker gebruiker, DateTime date)
+        public void AddFeedback(Gebruiker gebruiker, string tekst, DateTime date)
         {
-            Feedback feedback = new Feedback(this, gebruiker, date);
+            Feedback feedback = new Feedback(this, gebruiker, tekst, date);
             Feedback.Add(feedback);
         }
 

@@ -27,7 +27,7 @@
                         @{if (ViewContext.HttpContext.User.IsInRole("Gebruiker"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="">Feedback</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="GeefFeedbackOpties">Feedback</a>
                                 </li>
                             }}
                         @{if (ViewContext.HttpContext.User.IsInRole("Verantwoordelijke"))

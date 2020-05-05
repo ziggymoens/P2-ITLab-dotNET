@@ -21,7 +21,9 @@ namespace ITLabNET.Data.Repositories
 
         public IEnumerable<Sessie> GeefAanwezigeSessiesGebruiker(Gebruiker g)
         {
-            return _sessies.Where(s => s.Inschrijvingen.Any(i => i.Gebruiker == g));
+            return _sessies
+                .Include(s => s.Verantwoordelijke)
+                .Where(s => s.Inschrijvingen.Any(i => i.Gebruiker == g));
         }
 
         public IEnumerable<Sessie> GetAll()
@@ -51,7 +53,9 @@ namespace ITLabNET.Data.Repositories
 
         public IEnumerable<Sessie> GetByVerantwoordelijke(Gebruiker g)
         {
-            return _sessies.Where(s => s.Verantwoordelijke == g);
+            return _sessies
+                .Include(s => s.Verantwoordelijke)
+                .Where(s => s.Verantwoordelijke == g);
         }
 
         public IEnumerable<Sessie> GetByZichtbaarStatus()
