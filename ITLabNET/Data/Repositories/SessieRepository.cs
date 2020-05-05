@@ -30,7 +30,7 @@ namespace ITLabNET.Data.Repositories
                 .Include(s => s.Academiejaar)
                 .Include(s => s.Verantwoordelijke)
                 .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
-                .Include(s => s.Lokaal).ThenInclude(l => l.Stad)               
+                .Include(s => s.Lokaal)               
                 .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
         }
 
@@ -46,7 +46,7 @@ namespace ITLabNET.Data.Repositories
 
         public IEnumerable<Sessie> GetByOpenStatus(bool IsOpen)
         {
-            return _sessies.Where(s => s.CurrentState == new OpenState());
+            return _sessies.Where(s => s.CurrentState == SessieStates.Open);
         }
 
         public IEnumerable<Sessie> GetByVerantwoordelijke(Gebruiker g)
@@ -56,7 +56,7 @@ namespace ITLabNET.Data.Repositories
 
         public IEnumerable<Sessie> GetByZichtbaarStatus()
         {
-            return _sessies.Where(s => s.CurrentState == new ZichtbaarState());
+            return _sessies.Where(s => s.CurrentState == SessieStates.Zichtbaar);
         }
 
         public void SaveChanges()
