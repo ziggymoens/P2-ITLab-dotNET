@@ -11,7 +11,6 @@ namespace ITLabNET.Models.Domain
     {
         #region Fields
         public int _gebouwId;
-        //private Campus _campus;
         private string _naam;
         #endregion
 
@@ -24,16 +23,7 @@ namespace ITLabNET.Models.Domain
                 _gebouwId = value;
             }
         }
-       /* public Campus Campus
-        {
-            get { return _campus; }
-            set
-            {
-                if (value == null)
-                    throw new ArgumentException("Campus mag niet null zijn");
-                _campus = value;
-            }
-        }*/
+  
         public string Naam {
             get { return _naam; }
             set {
@@ -50,9 +40,8 @@ namespace ITLabNET.Models.Domain
         {
 
         }
-        public Gebouw(/*Campus campus, */string naam)
+        public Gebouw(string naam)
         {
-           /* Campus = campus;*/
             Naam = naam;
         }
         #endregion
