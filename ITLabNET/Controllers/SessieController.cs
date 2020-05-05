@@ -112,7 +112,7 @@ namespace ITLabNET.Controllers
 
         [Authorize(Policy = "Verantwoordelijke")]
         [HttpPost]
-        public IActionResult OpenSessie(int id)
+        public IActionResult OpenenSessie(int id)
         {
             try
             {
