@@ -193,6 +193,15 @@ namespace ITLabNET.Controllers
             }
             return View(viewmodel);
         }
+/*
+        [Authorize(Policy = "Verantwoordelijke")]
+        [HttpPost]
+        public IActionResult RegistreerAanwezigheid(int id)
+        {
+            Sessie s = _sessieRepository.GetById(id);
+            
+            return View(s);
+        }*/
 
     }
 }
