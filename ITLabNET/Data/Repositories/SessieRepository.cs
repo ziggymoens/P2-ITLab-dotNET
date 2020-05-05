@@ -31,15 +31,19 @@ namespace ITLabNET.Data.Repositories
             return _sessies
                 .Include(s => s.Academiejaar)
                 .Include(s => s.Verantwoordelijke)
-                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
-                .Include(s => s.Lokaal)               
+                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)     
+                .Include(s => s.Lokaal).ThenInclude(l => l.Campus)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Stad)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
                 .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
         }
 
         public Sessie GetById(int id)
         {
             return _sessies
-                .Include(e => e.Lokaal)
+                .Include(e => e.Lokaal).ThenInclude(l => l.Gebouw)
+                .Include(e => e.Lokaal).ThenInclude(l => l.Campus)
+                .Include(e => e.Lokaal).ThenInclude(l => l.Stad)
                 .Include(s => s.Verantwoordelijke)
                 .Include(s => s.Inschrijvingen)
                 .Include(a => a.Academiejaar)
