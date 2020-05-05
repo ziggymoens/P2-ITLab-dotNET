@@ -178,13 +178,16 @@ namespace ITLabNET.Controllers
                 {
                     Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                     Sessie sessie = _sessieRepository.GetById(id);
-                    sessie.AddFeedback(gebruiker, viewmodel.Tekst, DateTime.Now);
+                    Feedback feedback = new Feedback(sessie, gebruiker, viewmodel.Tekst, DateTime.Now);
+                    sessie.AddFeedback(feedback);
+                    _feedbackRepository.Add(feedback);
+                    _feedbackRepository.SaveChanges();
                     _sessieRepository.SaveChanges();
-                    TempData["message"] = $"Uw feedback werd toegevoegd aan de sessie";
+                TempData["message"] = $"Uw feedback werd toegevoegd aan de sessie";
                 }
-                catch
+                catch (Exception e)
                 {
-                    TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.";
+                    TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.;
                 }
                 return RedirectToAction(nameof(Index));
             }

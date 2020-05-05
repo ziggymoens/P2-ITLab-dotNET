@@ -14,6 +14,8 @@ namespace ITLabNET.Data.Mappers
         {
             builder.ToTable("feedback");
             builder.HasKey(t => t.FeedbackId);
+
+            builder.Property(e => e.FeedbackId).ValueGeneratedOnAdd();
         }
     }
 }

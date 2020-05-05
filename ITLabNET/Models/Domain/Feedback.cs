@@ -10,7 +10,7 @@ namespace ITLabNET.Models.Domain
     public class Feedback
     {
         #region Fields
-        private string _feedbackId;
+        private int _feedbackId;
         private Sessie _sessie;
         private Gebruiker _gebruiker;
         private string _tekst;
@@ -19,13 +19,13 @@ namespace ITLabNET.Models.Domain
         #endregion
 
         #region Properties
-        public string FeedbackId
+        public int FeedbackId
         {
             get{ return _feedbackId; }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("FeedbackId mag niet null of leeg zijn");
+                if (value <= 0)
+                    throw new ArgumentException("FeedbackId mag niet kleiner of gelijk aan 0 zijn");
                 _feedbackId = value;
             }
         }
