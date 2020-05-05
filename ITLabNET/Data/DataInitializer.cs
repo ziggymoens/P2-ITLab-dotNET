@@ -34,11 +34,11 @@ namespace ITLabNET.Data
                 Gebruiker Sven = new Gebruiker("Sven Wyseur", "123456sw", 1133340050431L, "gebruiker", "actief", "P@ssword1");
 
                 var gebruikers = new List<Gebruiker> { Jonathan, Ziggy, Kilian, Sven, Seba };
-                var profielen = new List<GebruikerProfielState> { Jonathan.CurrentProfiel, Ziggy.CurrentProfiel, Kilian.CurrentProfiel, Sven.CurrentProfiel, Seba.CurrentProfiel };
-                var statussen = new List<GebruikerStatusState> { Jonathan.CurrentStatus, Ziggy.CurrentStatus, Kilian.CurrentStatus, Sven.CurrentStatus, Seba.CurrentStatus };
+                var profielen = new List<GebruikerProfielStates> { Jonathan.CurrentProfiel, Ziggy.CurrentProfiel, Kilian.CurrentProfiel, Sven.CurrentProfiel, Seba.CurrentProfiel };
+                var statussen = new List<GebruikerStatusStates> { Jonathan.CurrentStatus, Ziggy.CurrentStatus, Kilian.CurrentStatus, Sven.CurrentStatus, Seba.CurrentStatus };
                 _dbContext.Gebruikers.AddRange(gebruikers);
-                _dbContext.GebruikersProfielen.AddRange(profielen);
-                _dbContext.GebruikersStatussen.AddRange(statussen);
+               /* _dbContext.GebruikersProfielen.AddRange(profielen);
+                _dbContext.GebruikersStatussen.AddRange(statussen);*/
                 await CreateUser(Jonathan.Gebruikersnaam, "jonathan.vandeneyndenvanlysebeth@student.hogent.be", Jonathan.Wachtwoord, "Hoofdverantwoordelijke");
                 await CreateUser(Ziggy.Gebruikersnaam, "ziggy.moens@student.hogent.be", Ziggy.Wachtwoord, "Verantwoordelijke");
                 await CreateUser(Kilian.Gebruikersnaam, "kilian.hoefman@student.hogent.be", Kilian.Wachtwoord, "Gebruiker");

@@ -14,8 +14,8 @@ namespace ITLabNET.Models.Domain.Gebruikers
         private string _wachtwoord;
         private bool _verwijderd = false;
         private Media _profielfoto;
-        private GebruikerProfielState _currentProfiel;
-        private GebruikerStatusState _currentStatus;
+        private GebruikerStatusStates _currentStatus;
+        private GebruikerProfielStates _currentProfiel;
         private int _inlogPogingen;
         private DateTime? _laatstIngelogd;
         #endregion
@@ -81,7 +81,7 @@ namespace ITLabNET.Models.Domain.Gebruikers
             }
         }
 
-        public GebruikerProfielState CurrentProfiel { get => _currentProfiel; }
+        public GebruikerProfielStates CurrentProfiel { get => _currentProfiel; }
 
         public void setCurrentProfiel (string gebruikersprofiel)
         {
@@ -92,20 +92,20 @@ namespace ITLabNET.Models.Domain.Gebruikers
             switch (gebruikersprofiel)
             {
                 case "hoofdverantwoordelijke":
-                    toProfielState(new HoofdVerantwoordelijkeState(this));
+                    toProfielState(GebruikerProfielStates.Hoofdverantwoordelijke);
                     break;
                 case "verantwoordelijke":
-                    toProfielState(new VerantwoordelijkeState(this));
+                    toProfielState(GebruikerProfielStates.Verantwoordelijke);
                     break;
                 case "gebruiker":
-                    toProfielState(new GebruikerState(this));
+                    toProfielState(GebruikerProfielStates.Gebruiker);
                     break;
                 default:
                     throw new ArgumentException("Gebruikersprofiel onbekend " + gebruikersprofiel);
             }
         }
 
-        public GebruikerStatusState CurrentStatus { get => _currentStatus; }
+        public GebruikerStatusStates CurrentStatus { get => _currentStatus; }
 
         public void setCurrentStatus(string status)
         {
@@ -116,13 +116,13 @@ namespace ITLabNET.Models.Domain.Gebruikers
             switch (status)
             {
                 case "actief":
-                    toStatusState(new ActiefStatusState(this));
+                    toStatusState(GebruikerStatusStates.Actief);
                     break;
                 case "geblokkeerd":
-                    toStatusState(new GeblokkeerdStatusState(this));
+                    toStatusState(GebruikerStatusStates.Geblokkeerd);
                     break;
                 case "niet actief":
-                    toStatusState(new NietActiefStatusState(this));
+                    toStatusState(GebruikerStatusStates.NietActief);
                     break;
                 default:
                     throw new ArgumentException("Gebruikerstatus onbekend " + status);
@@ -166,9 +166,9 @@ namespace ITLabNET.Models.Domain.Gebruikers
         #endregion
 
         #region Methods
-        public void toProfielState(GebruikerProfielState profielState) { _currentProfiel = profielState; }
+        public void toProfielState(GebruikerProfielStates profielState) { _currentProfiel = profielState; }
 
-        public void toStatusState(GebruikerStatusState statusState) { _currentStatus = statusState; }
+        public void toStatusState(GebruikerStatusStates statusState) { _currentStatus = statusState; }
         #endregion
     }
 
