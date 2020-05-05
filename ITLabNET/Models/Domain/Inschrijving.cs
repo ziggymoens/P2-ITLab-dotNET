@@ -25,7 +25,7 @@ namespace ITLabNET.Models.Domain
             set
             {
                 if (value <= 0)
-                    throw new ArgumentException("InschrijvingsId mag niet kleiner of  gelijk aan 0 zijn");
+                    throw new ArgumentException("InschrijvingsId mag niet kleiner of gelijk aan 0 zijn");
                 _inschrijvingsId = value;
             }
         }
@@ -59,7 +59,7 @@ namespace ITLabNET.Models.Domain
             {
                 if (value == null)
                     throw new ArgumentException("InschrijvingsDatum mag niet null zijn");
-                _inschrijvingsdatum = value;
+                _inschrijvingsdatum = DateTime.Now;
             }
         }
 

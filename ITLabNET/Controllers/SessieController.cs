@@ -1,4 +1,8 @@
-﻿using ITLabNET.Models.Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ITLabNET.Models.Domain;
 using ITLabNET.Models.Domain.Gebruikers;
 using ITLabNET.Models.Domain.Sessies;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +14,7 @@ using System.Linq;
 
 namespace ITLabNET.Controllers
 {
-
+    
     public class SessieController : Controller
     {
         private readonly ISessieRepository _sessieRepository;
@@ -79,6 +83,7 @@ namespace ITLabNET.Controllers
                 Sessie sessie = _sessieRepository.GetById(id);
                 Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 sessie.RemoveInschrijving(gebruiker);
+
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"U bent succesvol uitgeschreven voor {sessie.Titel}.";
             }
