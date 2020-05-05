@@ -15,9 +15,7 @@ namespace ITLabNET.Data
         public DbSet<Aankondiging> Aankondigingen { get; set; }
         public DbSet<Academiejaar> Academiejaren { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Gebruiker> Gebruikers { get; set; }
-        public DbSet<GebruikerProfielState> GebruikersProfielen { get; set; }
-        public DbSet<GebruikerStatusState> GebruikersStatussen { get; set; }
+        public DbSet<Gebruiker> Gebruikers { get; set; }       
         public DbSet<Herinnering> Herinneringen { get; set; }
         public DbSet<Inschrijving> Inschrijvingen { get; set; }
         public DbSet<Lokaal> Lokalen { get; set; }
@@ -33,9 +31,7 @@ namespace ITLabNET.Data
             modelBuilder.ApplyConfiguration(new AankondigingConfiguration());
             modelBuilder.ApplyConfiguration(new AcademiejaarConfiguration());
             modelBuilder.ApplyConfiguration(new FeedbackConfiguration());
-            modelBuilder.ApplyConfiguration(new GebruikerConfiguration());
-            modelBuilder.ApplyConfiguration(new GebruikersprofielConfiguration());
-            modelBuilder.ApplyConfiguration(new GebruikersStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new GebruikerConfiguration());            
             modelBuilder.ApplyConfiguration(new HerinneringConfiguration());
             modelBuilder.ApplyConfiguration(new InschrijvingConfiguration());
             modelBuilder.ApplyConfiguration(new LokaalConfiguration());
