@@ -187,7 +187,7 @@ namespace ITLabNET.Controllers
                 }
                 catch (Exception e)
                 {
-                    TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.;
+                    TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.";
                 }
                 return RedirectToAction(nameof(Index));
             }
