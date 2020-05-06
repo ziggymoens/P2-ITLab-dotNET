@@ -88,5 +88,11 @@ namespace ITLabNET.Models.Domain
             InschrijvingsDatum = DateTime.Now;
         }
         #endregion
+
+        #region Methods
+        public void ZetAanwezigheid(bool b) {
+            StatusAanwezigheid = b;
+        }
+        #endregion
     }
 }

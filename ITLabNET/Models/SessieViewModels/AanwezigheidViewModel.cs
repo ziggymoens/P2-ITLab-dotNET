@@ -12,7 +12,7 @@ namespace ITLabNET.Models.SessieViewModels
     {
         [Required]
         [Display(Name = "Scan barcode studentenkaart of vul handmatig in")]
-        public Gebruiker gebruiker { get; set; }
+        public long Barcode { get; set; }
         public AanwezigheidViewModel() { }
         public AanwezigheidViewModel(Sessie sessie) : this() { }
     }

@@ -93,7 +93,7 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Verantwoordelijke")]
-        public IActionResult OpenSessie()
+        public IActionResult GeefOpenbareSessies()
         {
             try
             {
@@ -109,14 +109,16 @@ namespace ITLabNET.Controllers
 
         [Authorize(Policy = "Verantwoordelijke")]
         [HttpPost]
-        public IActionResult OpenenSessie(int id)
+        public IActionResult ZetSessieOpen(int id)
         {
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
+                Console.WriteLine(id);
                 sessie.setSessieState("open");
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
+                return RedirectToAction(nameof(AanwezighedenRegistreren);
             }
             catch (Exception)
             {
@@ -124,6 +126,32 @@ namespace ITLabNET.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+        [Authorize(Policy = "Verantwoordelijke")]
+        public IActionResult AanwezighedenRegistreren(int id)
+        {
+            Sessie sessie = _sessieRepository.GetById(id);
+            Console.WriteLine(id);
+            return View(new AanwezigheidViewModel(sessie));
+        }
+
+        
+        [Authorize(Policy = "Verantwoordelijke")]
+        [HttpPost, ActionName("AanwezighedenRegistreren")]
+        public IActionResult AanwezighedenRegistrerenBarcode(int id, AanwezigheidViewModel aanwezigheidViewModel)
+        {
+            Sessie s = _sessieRepository.GetById(id);
+            Gebruiker g = _gebruikerRepository.GetByBarCode(aanwezigheidViewModel.Barcode);
+            IEnumerable <Gebruiker> ingeschreven = s.Inschrijvingen.Select(e => e.Gebruiker);
+            if (ingeschreven.Contains(g))
+            {
+                Inschrijving ins = s.Inschrijvingen.FirstOrDefault(e => e.Gebruiker == g);                
+                ins.ZetAanwezigheid(true);
+                _sessieRepository.SaveChanges();
+            }
+           return RedirectToAction(nameof(AanwezighedenRegistreren));
+        }
+
 
         [Authorize(Policy = "Verantwoordelijke")]
         public IActionResult ToonFeedback()
@@ -187,7 +215,7 @@ namespace ITLabNET.Controllers
                 }
                 catch (Exception e)
                 {
-                    TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.;
+                    TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.";
                 }
                 return RedirectToAction(nameof(Index));
             }

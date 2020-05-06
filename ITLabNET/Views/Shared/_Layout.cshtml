@@ -24,7 +24,8 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="Index"><i class="far fa-calendar-alt"> Kalender</i></a>
                         </li>
-                        @{if (ViewContext.HttpContext.User.IsInRole("Gebruiker"))
+
+                        @{if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="GeefFeedbackOpties">Feedback</a>
@@ -34,10 +35,7 @@
                             {
 
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="OpenSessie">Sessies openen</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="">Aanwezigheden</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Sessie" asp-action="GeefOpenbareSessies">Sessies openen</a>
                                 </li>
                             } }
                     </ul>
