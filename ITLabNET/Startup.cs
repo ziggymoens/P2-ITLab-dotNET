@@ -78,6 +78,16 @@ namespace ITLabNET
 
             app.UseSession();
 
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.Value.ToLower().StartsWith("/identity/account/register"))
+                {
+                    context.Response.StatusCode = 404; //Not found
+                    return;
+                }
+                await next();
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
