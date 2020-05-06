@@ -185,7 +185,7 @@ namespace ITLabNET.Controllers
                     _sessieRepository.SaveChanges();
                 TempData["message"] = $"Uw feedback werd toegevoegd aan de sessie";
                 }
-                catch (Exception e)
+                catch 
                 {
                     TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.";
                 }
