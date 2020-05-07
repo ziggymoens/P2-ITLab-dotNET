@@ -118,7 +118,7 @@ namespace ITLabNET.Controllers
                 sessie.setSessieState("open");
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
-                return RedirectToAction(nameof(AanwezighedenRegistreren);
+                return RedirectToAction(nameof(AanwezighedenRegistreren));
             }
             catch (Exception)
             {

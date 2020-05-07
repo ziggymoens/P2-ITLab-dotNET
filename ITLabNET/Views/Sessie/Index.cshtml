@@ -4,19 +4,19 @@
 }
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<h2 style="text-align: center">@ViewData["Title"]</h2>
-<!--filter sessies op tijd: alle, maand, week, vandaag; op ingeschreven; -->
-<div class="form group">
-    <label>filter:</label>
-    <select asp-items="@(ViewData["filter"] as SelectList)" class="form-control">
-        <option value="">-- filter tijdstip --</option>
-    </select>
+<div class="jumbotron">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+      <p class="lead">Bekijk hier de aankomende sessies voor het ITLab</p>
+      <hr class="my-4">
+      <p>Gelieve u in te loggen indien u wenst in te schrijven, feedback geven of andere</p>
 </div>
-<div class="row">
+
+<!--filter sessies op tijd: alle, maand, week, vandaag; op ingeschreven; -->
+<div class="row wrap">
     @foreach (var sessie in Model)
     {
         <div class="col-md-6 col-lg-4 cpm-xs-12 pb-3">
-            <div class="card" style="height: 17em;">
+            <div class="card" style="height: 19em;">
                 <div class="card-header">
                     <div class="card-title" style="height: 3em; text-align: center;">
                         <h4>@sessie.Titel</h4>
@@ -24,7 +24,14 @@
                 </div>
                 <div class="card-body" style="text-align: center;">
                     <p><strong>@sessie.StartUur.ToShortDateString()</strong> | <i>@sessie.StartUur.ToShortTimeString() - @sessie.EindeUur.ToShortTimeString()</i></p>
-                    <p>Aantal plaatsen: @sessie.MaximumAantalPlaatsen</p>
+                    @if (@sessie.Inschrijvingen.Count == 0)
+                                              {
+                                                  <p>Nog geen inschrijvingen<br/>max. aantal plaatsen: @sessie.MaximumAantalPlaatsen</p>
+                                              }
+                    else
+                    {
+                        <p>aantal inschrijvingen: @sessie.Inschrijvingen.Count<br/>max. aantal plaatsen: @sessie.MaximumAantalPlaatsen </p>
+                    }
                 </div>
                 <div class="card-footer d-flex justify-content-center">
                     <div class="" role="group">
