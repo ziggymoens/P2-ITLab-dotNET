@@ -167,7 +167,7 @@ namespace ITLabNET.Controllers
             }
         }*/
 
-        [Authorize(Policy = "Gebruiker")]
+        [Authorize(Policy = "Verantwoordelijke&Gebruiker")]
         public IActionResult GeefFeedbackOpties()
         {
             try
