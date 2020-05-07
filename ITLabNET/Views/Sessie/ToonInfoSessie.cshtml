@@ -12,7 +12,10 @@
 
 
     <div class="jumbotron">
-        <h1 class="display-4">@Model.Titel @if(@Model.EindeUur < DateTime.Now){<span class="badge badge-danger">Afgelopen</span>}else{<span class="badge badge-success">Gepland</span>}</h1>
+        <h1 class="display-4">@Model.Titel @if (@Model.EindeUur < DateTime.Now)
+        {<span class="badge badge-danger">Afgelopen</span>}
+        else
+        {<span class="badge badge-success">Gepland</span>}</h1>
         <hr class="my-4">
         <p class="lead"><u>Beschrijving:</u> @Model.Beschrijving</p>
         <p class="lead"><u>Gastspreker:</u> @Model.NaamGastSpreker</p>
@@ -20,7 +23,7 @@
         <p class="lead"><strong>@Model.Lokaal.Stad.Naam</strong><i> @Model.Lokaal.Stad.Postcode</i> | <strong>@Model.Lokaal.Campus.Naam</strong> </p>
         <p class="lead"><u>Lokaal:</u> @Model.Lokaal.Gebouw.Naam - @Model.Lokaal.LokaalCode</p>
         <p class="lead"><u>Organisator:</u> @Model.Verantwoordelijke.Naam</p>
-        <p class="lead"><u>Aantal ingeschreven::</u> @Model.Inschrijvingen.Count</p>
+        <p class="lead"><u>Aantal ingeschreven:</u> @Model.Inschrijvingen.Count</p>
         <p class="lead"><u>Max. aantal plaatsen:</u> @Model.MaximumAantalPlaatsen</p>
 
         @if ((bool)ViewData["Datum"] == true)
@@ -29,13 +32,16 @@
         }
         else
         {
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Gebruiker"))
             {
-                <a class="btn btn-info" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven" style="width: 20%"><i class="far fa-calendar-plus">Inschrijven</i></a>
-            }
-            else
-            {
-                <a class="btn btn-warning" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven" style="width: 20%"><i class="far fa-calendar-minus">Uitschrijven</i></a>
+                if (Model.Inschrijvingen.Any(e => e.Gebruiker.Naam == ((Gebruiker)ViewData["aangemelde"]).Naam))
+                {
+                    <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus">Uitschrijven</i></a>
+                }
+                else
+                {
+                    <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus">Inschrijven</i></a>
+                }
             }
         }
     </div>

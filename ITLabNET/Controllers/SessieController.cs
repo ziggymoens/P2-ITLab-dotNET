@@ -29,16 +29,16 @@ namespace ITLabNET.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Sessie> sessies = _sessieRepository.GetAll();
-
             Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+            IEnumerable<Sessie> sessies;
+            if (User.IsInRole("Verantwoordelijken") || User.IsInRole("Verantwoordelijke") || User.IsInRole("Hoofdverantwoordelijke"))
+            {
+                sessies = _sessieRepository.GetByVerantwoordelijke(aangemeld);
+            }
+            else {
+                sessies = _sessieRepository.GetByZichtbaarStatus();
+            }
             ViewData["aangemelde"] = aangemeld;
-
-            var filteropties = new List<string> { "Alle", "Maand", "Week", "Vandaag" };
-            ViewData["filter"] = new SelectList(filteropties);
-
-            IEnumerable<Inschrijving> ingeschreven = sessies.Select(e => e.Inschrijvingen.FirstOrDefault(a => a.Gebruiker == aangemeld));
-            IEnumerable<Sessie> ingeschrevenSessie = ingeschreven.Select(e => e.Sessie);
 
             return View(sessies);
         }
@@ -48,6 +48,8 @@ namespace ITLabNET.Controllers
             Sessie s = _sessieRepository.GetById(id);
             ViewData["Datum"] = s.Datum < DateTime.Now;
             ViewData["Ingeschreven"] = User.Identity.Name;
+            Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+            ViewData["aangemelde"] = aangemeld;
             return View(s);
         }
 
@@ -61,7 +63,7 @@ namespace ITLabNET.Controllers
                 Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 sessie.AddInschrijving(gebruiker);
                 _sessieRepository.SaveChanges();
-                TempData["message"] = $"U bent succesvol ingeschreven voor {sessie.Titel}, op {sessie.Datum}.";
+                TempData["message"] = $"U bent succesvol ingeschreven voor {sessie.Titel}, op {sessie.Datum.ToShortDateString()}.";
             }
             catch
             {
@@ -167,7 +169,7 @@ namespace ITLabNET.Controllers
             }
         }*/
 
-        [Authorize(Policy = "Verantwoordelijke&Gebruiker")]
+        [Authorize(Policy = "Iedereen")]
         public IActionResult GeefFeedbackOpties()
         {
             try

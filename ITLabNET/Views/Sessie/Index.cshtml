@@ -36,7 +36,7 @@
                 <div class="card-footer d-flex justify-content-center">
                     <div class="" role="group">
                         <a class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Details"><i class="fas fa-info-circle"> Details</i></a>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Gebruiker"))
                         {
                             if (sessie.Inschrijvingen.Any(e => e.Gebruiker.Naam == ((Gebruiker)ViewData["aangemelde"]).Naam))
                             {

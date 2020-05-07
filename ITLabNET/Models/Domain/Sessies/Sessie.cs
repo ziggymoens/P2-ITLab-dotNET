@@ -60,7 +60,12 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _naamGastspreker;
             set
             {
-                _naamGastspreker = value;
+                if (value == null || string.IsNullOrEmpty(value))
+                {
+                    _naamGastspreker = "/";
+                }
+                else { _naamGastspreker = value;  }
+                
             }
         }
 
@@ -229,7 +234,13 @@ namespace ITLabNET.Models.Domain.Sessies
                     toState(SessieStates.Open);
                     break;
                 case "gesloten":
-                    toState(SessieStates.Gesloten);
+                    if (Datum < DateTime.Now)
+                    {
+                        toState(SessieStates.Gesloten);
+                    }
+                    else {
+                        throw new Exception("Een sessie kan niet gesloten worden voor de start datum.");
+                    }
                     break;
                 case "zichtbaar":
                     toState(SessieStates.Zichtbaar);
