@@ -37,6 +37,8 @@ namespace ITLabNET
                 options.AddPolicy("Hoofdverantwoordelijke", policy => policy.RequireClaim(ClaimTypes.Role, "Hoofdverantwoordelijke"));
                 options.AddPolicy("Verantwoordelijke", policy => policy.RequireClaim(ClaimTypes.Role, "Verantwoordelijke"));
                 options.AddPolicy("Gebruiker", policy => policy.RequireClaim(ClaimTypes.Role, "Gebruiker"));
+                options.AddPolicy("Iedereen", policy => policy.RequireClaim(ClaimTypes.Role, "Hoodverantwoordelijke", ClaimTypes.Role, "Verantwoordelijke", ClaimTypes.Role, "Gebruiker"));
+                options.AddPolicy("Verantwoordelijken" , policy => policy.RequireClaim(ClaimTypes.Role, "Hoodverantwoordelijke", ClaimTypes.Role, "Verantwoordelijke"));
             });   
 
 
