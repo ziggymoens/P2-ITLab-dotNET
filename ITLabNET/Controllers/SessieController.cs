@@ -118,7 +118,7 @@ namespace ITLabNET.Controllers
                 sessie.setSessieState("open");
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
-                return RedirectToAction(nameof(AanwezighedenRegistreren));
+                return RedirectToAction(nameof(AanwezighedenRegistreren), new { id });
             }
             catch (Exception)
             {
@@ -131,7 +131,6 @@ namespace ITLabNET.Controllers
         public IActionResult AanwezighedenRegistreren(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
-            Console.WriteLine(id);
             return View(new AanwezigheidViewModel(sessie));
         }
 
@@ -153,7 +152,7 @@ namespace ITLabNET.Controllers
         }
 
 
-        [Authorize(Policy = "Verantwoordelijke")]
+/*        [Authorize(Policy = "Verantwoordelijke")]
         public IActionResult ToonFeedback()
         {
             try
@@ -166,7 +165,7 @@ namespace ITLabNET.Controllers
                 TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";
                 return RedirectToAction(nameof(Index));
             }
-        }
+        }*/
 
         [Authorize(Policy = "Gebruiker")]
         public IActionResult GeefFeedbackOpties()
@@ -184,6 +183,17 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Gebruiker")]
+        public IActionResult ToonFeedback(int id)
+        {
+            Sessie sessie = _sessieRepository.GetById(id);
+            if (sessie == null)
+            {
+                return NotFound();
+            }
+            ViewData["Sessie"] = sessie.Titel;
+            return View(_feedbackRepository.GetBySessie(sessie));
+        }
+
         public IActionResult GeefFeedback(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);

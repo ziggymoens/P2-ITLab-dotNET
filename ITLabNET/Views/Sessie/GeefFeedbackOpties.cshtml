@@ -23,7 +23,8 @@
                             <p class="card-text">Spreker: @item.NaamGastSpreker</p>
                             <p class="card-text">Datum: @item.Datum.Date.ToString()</p>
 
-                            <a class="btn btn-primary" type="submit" asp-controller="Sessie" asp-action="GeefFeedback" asp-route-id="@item.SessieId">Voeg feedback toe</a>
+                            <a class="btn btn-primary" asp-controller="Sessie" asp-action="ToonFeedback" asp-route-id="@item.SessieId">Toon feedback</a>
+                            <a class="btn btn-primary" asp-controller="Sessie" asp-action="GeefFeedback" asp-route-id="@item.SessieId">Voeg feedback toe</a>
 
                         </div>
                     </div>

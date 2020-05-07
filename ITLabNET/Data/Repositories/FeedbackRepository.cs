@@ -1,4 +1,7 @@
 ﻿using ITLabNET.Models.Domain;
+using ITLabNET.Models.Domain.Gebruikers;
+using ITLabNET.Models.Domain.Sessies;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +13,23 @@ namespace ITLabNET.Data.Repositories
     {
         private readonly ApplicationDbContext _context;
 
+        private readonly DbSet<Feedback> _feedbacks;
+
         public FeedbackRepository(ApplicationDbContext context)
         {
             _context = context;
+            _feedbacks = context.Feedbacks;
         }
 
         public IEnumerable<Feedback> GetAll()
         {
             return _context.Feedbacks.ToList();
+        }
+
+        public IEnumerable<Feedback> GetBySessie(Sessie sessie) {
+            return _feedbacks
+                .Include(e => e.Gebruiker)
+                .Where(e => e.Sessie == sessie);
         }
 
         public IEnumerable<Feedback> GetByGebruiker(string naam)
