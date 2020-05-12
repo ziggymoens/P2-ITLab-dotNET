@@ -1,4 +1,4 @@
-﻿@model  ITLabNET.Models.SessieViewModels.AanwezigheidViewModel
+﻿@model  ITLabNET.Models.SessieViewModels.AanwezigheidViewModelBarcode
 @{
     ViewData["Title"] = "AanwezighedenRegistreren";
 }
@@ -13,6 +13,11 @@
     </div>
     <div>
         <button class="btn btn-primary" type="submit">Aanmelden</button>
+    </div>
+    <div>
+        <p>
+            <a asp-controller="Sessie" asp-action="AanwezighedenRegistrerenGebruikersnaam" asp-route-id="@ViewData["sessieId"]">Studentenkaart vergeten?</a>
+        </p>
     </div>
 
 </form>
