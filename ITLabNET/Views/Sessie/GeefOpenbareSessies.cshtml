@@ -27,14 +27,7 @@
                             <p class="card-text">Start en eind uur: @item.StartUur.ToString() - @item.EindeUur.ToString()</p>
                             <p class="card-text">Aantal ingeschrevenen: @item.Inschrijvingen.Count</p>
 
-                            @if (Model.Any(e => e.CurrentState == SessieStates.Open))
-                            {
-                                <button class="btn btn-primary" type="submit" asp-controller="Sessie" asp-action="ToonOpenSessie" asp-route-id="@item.SessieId">Toon</button>
-                            }
-                            else
-                            {
-                                <button class="btn btn-primary" type="submit" asp-controller="Sessie" asp-action="ZetSessieOpen" asp-route-id="@item.SessieId">Openen</button>
-                            }
+                            <button class="btn btn-primary" type="submit" asp-controller="Sessie" asp-action="ZetSessieOpen" asp-route-id="@item.SessieId">Openen</button>
 
                         </div>
                     </div>
