@@ -226,6 +226,24 @@ namespace ITLabNET.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Policy = "Verantwoordelijken")]
+        [HttpPost]
+        public IActionResult SessieSluiten(int id)
+        {
+            try
+            {
+                Sessie s = _sessieRepository.GetById(id);
+                s.setSessieState("gesloten");
+                TempData["message"] = $"De sessie {s.Titel} is correct gesloten";
+            }
+            catch
+            {
+                TempData["error"] = $"Er is iets misgelopen, de sessie is niet gesloten geweest";
+                return View(nameof(Index));
+            }
+            return View(nameof(Index));
+        }
+
         [Authorize(Policy = "Iedereen")]
         public IActionResult GeefFeedbackOpties()
         {
