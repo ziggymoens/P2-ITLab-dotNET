@@ -26,7 +26,7 @@
                                     <p class="card-text"><strong>Maximaal</strong> @item.MaximumAantalPlaatsen personen</p>
                                     <p class="card-text">Aangemaakt door: @item.Verantwoordelijke.Naam</p>
                                     <p class="card-text">Spreker: @item.NaamGastSpreker</p>
-                                    <p class="card-text">Begint op: @item.Datum.ToString()</p>
+                                    <p class="card-text">Begint op: @item.Datum.ToShortDateString()</p>
                                     <p class="card-text">Start en eind uur: @item.StartUur.ToString() - @item.EindeUur.ToString()</p>
                                     <p class="card-text">@if (item.Inschrijvingen.Count == 0)
                                                         {

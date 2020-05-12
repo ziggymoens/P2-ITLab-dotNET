@@ -12,19 +12,19 @@
 
 
     <div class="jumbotron">
-        <h1 class="display-4">@Model.Titel @if (@Model.EindeUur < DateTime.Now)
+        <h1 class="display-4">@Model.Titel @if (@Model.EindeUur < DateTime.Now.AddDays(1))
         {<span class="badge badge-danger">Afgelopen</span>}
         else
         {<span class="badge badge-success">Gepland</span>}</h1>
         <hr class="my-4">
-        <p class="lead"><u>Beschrijving:</u> @Model.Beschrijving</p>
-        <p class="lead"><u>Gastspreker:</u> @Model.NaamGastSpreker</p>
+        <p class="lead"><strong>Beschrijving:</strong> @Model.Beschrijving</p>
+        <p class="lead"><strong>Gastspreker:</strong> @Model.NaamGastSpreker</p>
         <p class="lead"><strong>@Model.StartUur.ToShortDateString()</strong> | <i>@Model.StartUur.ToShortTimeString() - @Model.EindeUur.ToShortTimeString()</i></p>
         <p class="lead"><strong>@Model.Lokaal.Stad.Naam</strong><i> @Model.Lokaal.Stad.Postcode</i> | <strong>@Model.Lokaal.Campus.Naam</strong> </p>
-        <p class="lead"><u>Lokaal:</u> @Model.Lokaal.Gebouw.Naam - @Model.Lokaal.LokaalCode</p>
-        <p class="lead"><u>Organisator:</u> @Model.Verantwoordelijke.Naam</p>
-        <p class="lead"><u>Aantal ingeschreven:</u> @Model.Inschrijvingen.Count</p>
-        <p class="lead"><u>Max. aantal plaatsen:</u> @Model.MaximumAantalPlaatsen</p>
+        <p class="lead"><strong>Lokaal:</strong> @Model.Lokaal.Gebouw.Naam - @Model.Lokaal.LokaalCode</p>
+        <p class="lead"><strong>Organisator:</strong> @Model.Verantwoordelijke.Naam</p>
+        <p class="lead"><strong>Aantal ingeschreven:</strong> @Model.Inschrijvingen.Count</p>
+        <p class="lead"><strong>Max. aantal plaatsen:</strong> @Model.MaximumAantalPlaatsen</p>
 
         @if ((bool)ViewData["Datum"] == true)
         {

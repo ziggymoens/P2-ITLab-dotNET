@@ -20,12 +20,12 @@
 
                         <div class="card-body">
                             <h5 class="card-title">@item.Titel</h5>
-                            <p class="card-text"><strong>Maximaal</strong> @item.MaximumAantalPlaatsen personen</p>
-                            <p class="card-text">Aangemaakt door: @item.Verantwoordelijke.Naam</p>
-                            <p class="card-text">Spreker: @item.NaamGastSpreker</p>
-                            <p class="card-text">Begint op: @item.Datum.ToString()</p>
-                            <p class="card-text">Start en eind uur: @item.StartUur.ToString() - @item.EindeUur.ToString()</p>
-                            <p class="card-text">Aantal ingeschrevenen: @item.Inschrijvingen.Count</p>
+                            <p class="card-text"><strong>Beschrijving:</strong> @item.Beschrijving</p>
+                            <p class="card-text"><strong>Gastspreker:</strong> @item.NaamGastSpreker</p>
+                            <p class="card-text"><strong>Datum:</strong> @item.StartUur.ToShortDateString() </p>
+                            <p class="card-text"><strong>Uur:</strong> @item.StartUur.ToShortTimeString() -  @item.EindeUur.ToShortTimeString()</p>
+                            <p class="card-text"><strong>Lokaal:</strong> @item.Lokaal.LokaalCode</p>
+                            <p class="card-text"><strong>Aantal ingeschrevenen:</strong> @item.Inschrijvingen.Count</p>
 
                             @if (Model.Any(e => e.CurrentState == SessieStates.Open))
                             {

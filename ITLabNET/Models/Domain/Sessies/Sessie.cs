@@ -283,8 +283,14 @@ namespace ITLabNET.Models.Domain.Sessies
 
         public void AddInschrijving(Gebruiker gebruiker)
         {
-            Inschrijving inschr = new Inschrijving(gebruiker, this);
-            Inschrijvingen.Add(inschr);
+            if (Inschrijvingen.Count > MaximumAantalPlaatsen)
+            {
+                Inschrijving inschr = new Inschrijving(gebruiker, this);
+                Inschrijvingen.Add(inschr);
+            }
+            else {
+                throw new Exception("Sessie is volzet");
+            }
         }
 
         public void RemoveInschrijving(Gebruiker gebruiker)
