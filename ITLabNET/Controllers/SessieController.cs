@@ -139,7 +139,7 @@ namespace ITLabNET.Controllers
         }
 
         
-        [Authorize(Policy = "Verantwoordelijke")]
+        [Authorize(Policy = "Verantwoordelijken")]
         [HttpPost]
         public IActionResult AanwezighedenRegistrerenBarcode(int id, AanwezigheidViewModelBarcode aanwezigheidViewModel)
         {
@@ -171,14 +171,14 @@ namespace ITLabNET.Controllers
             return RedirectToAction(nameof(Index));           
         }
 
-        [Authorize(Policy = "Verantwoordelijke")]
+        [Authorize(Policy = "Verantwoordelijken")]
         public IActionResult AanwezighedenRegistrerenGebruikersnaam(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
             return View(new AanwezigheidViewModelGebruikersnaam(sessie));
         }
 
-        [Authorize(Policy = "Verantwoordelijke")]
+        [Authorize(Policy = "Verantwoordelijken")]
         [HttpPost]
         public IActionResult AanwezighedenRegistrerenGebruikersnaam(int id, AanwezigheidViewModelGebruikersnaam aanwezigheidViewModel)
         {

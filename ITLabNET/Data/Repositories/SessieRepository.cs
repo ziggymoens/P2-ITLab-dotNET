@@ -87,7 +87,15 @@ namespace ITLabNET.Data.Repositories
 
         public IEnumerable<Sessie> GetOpenbareSessies(Gebruiker g)
         {
-            throw new NotImplementedException();
+            return _sessies
+                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Campus)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Stad)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
+                .Where(s => s.Verantwoordelijke == g)
+                .Where(s => s.CurrentState == SessieStates.Zichtbaar)
+                .Where(s => s.Datum.Date == DateTime.Now.Date)
+                .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
         }
 
         public void SaveChanges()
