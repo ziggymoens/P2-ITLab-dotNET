@@ -38,7 +38,7 @@ namespace ITLabNET.Data.Repositories
                 .Include(e => e.Lokaal).ThenInclude(l => l.Campus)
                 .Include(e => e.Lokaal).ThenInclude(l => l.Stad)
                 .Include(s => s.Verantwoordelijke)
-                .Include(s => s.Inschrijvingen)
+                .Include(s => s.Inschrijvingen).ThenInclude(i => i.Gebruiker)
                 .Include(a => a.Academiejaar)
                 .SingleOrDefault(s => s.SessieId.Equals(id));
         }
