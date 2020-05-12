@@ -29,9 +29,10 @@ namespace ITLabNET.Controllers
 
         public IActionResult Index()
         {
+            Console.WriteLine("Hi");
             Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
             IEnumerable<Sessie> sessies;
-            if (User.IsInRole("Verantwoordelijke"))
+            if (User.IsInRole("Verantwoordelijken"))
             {
                 sessies = _sessieRepository.GetByZichtbaarStatus(aangemeld);
             }
@@ -40,7 +41,7 @@ namespace ITLabNET.Controllers
                 sessies = _sessieRepository.GetByZichtbaarStatus(null);
             }
             ViewData["aangemelde"] = aangemeld;
-
+            Console.WriteLine(sessies.Count());
             return View(sessies);
         }
 
@@ -227,21 +228,21 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
-        [HttpPost]
+        //[HttpPost]
         public IActionResult SessieSluiten(int id)
         {
             try
             {
                 Sessie s = _sessieRepository.GetById(id);
                 s.setSessieState("gesloten");
-                TempData["message"] = $"De sessie {s.Titel} is correct gesloten";
+                _sessieRepository.SaveChanges();
+                TempData["message"] = $"De sessie {s.Titel} is correct gesloten";                
             }
             catch
             {
                 TempData["error"] = $"Er is iets misgelopen, de sessie is niet gesloten geweest";
-                return View(nameof(Index));
             }
-            return View(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
         [Authorize(Policy = "Iedereen")]
