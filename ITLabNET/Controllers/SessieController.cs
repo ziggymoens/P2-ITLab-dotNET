@@ -31,11 +31,12 @@ namespace ITLabNET.Controllers
         {
             Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
             IEnumerable<Sessie> sessies;
-            if (User.IsInRole("Verantwoordelijken") || User.IsInRole("Verantwoordelijke") || User.IsInRole("Hoofdverantwoordelijke"))
+            if (User.IsInRole("Verantwoordelijke"))
             {
                 sessies = _sessieRepository.GetByVerantwoordelijke(aangemeld);
             }
-            else {
+            else
+            {
                 sessies = _sessieRepository.GetByZichtbaarStatus();
             }
             ViewData["aangemelde"] = aangemeld;
@@ -47,7 +48,6 @@ namespace ITLabNET.Controllers
         {
             Sessie s = _sessieRepository.GetById(id);
             ViewData["Datum"] = s.Datum < DateTime.Now;
-            ViewData["Ingeschreven"] = User.Identity.Name;
             Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
             ViewData["aangemelde"] = aangemeld;
             return View(s);
@@ -94,13 +94,13 @@ namespace ITLabNET.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Policy = "Verantwoordelijke")]
+        [Authorize(Policy = "Verantwoordelijken")]
         public IActionResult GeefOpenbareSessies()
         {
             try
             {
                 Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
-                return View(_sessieRepository.GetByVerantwoordelijke(gebruiker));
+                return View(_sessieRepository.GetOpenbareSessies(gebruiker));
             }
             catch (Exception)
             {
@@ -109,14 +109,13 @@ namespace ITLabNET.Controllers
             }
         }
 
-        [Authorize(Policy = "Verantwoordelijke")]
+        [Authorize(Policy = "Verantwoordelijken")]
         [HttpPost]
         public IActionResult ZetSessieOpen(int id)
         {
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
-                Console.WriteLine(id);
                 sessie.setSessieState("open");
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
@@ -129,7 +128,7 @@ namespace ITLabNET.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Policy = "Verantwoordelijke")]
+        [Authorize(Policy = "Verantwoordelijken")]
         public IActionResult AanwezighedenRegistreren(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
@@ -137,7 +136,7 @@ namespace ITLabNET.Controllers
         }
 
         
-        [Authorize(Policy = "Verantwoordelijke")]
+        [Authorize(Policy = "Verantwoordelijken")]
         [HttpPost, ActionName("AanwezighedenRegistreren")]
         public IActionResult AanwezighedenRegistrerenBarcode(int id, AanwezigheidViewModel aanwezigheidViewModel)
         {
@@ -153,29 +152,13 @@ namespace ITLabNET.Controllers
            return RedirectToAction(nameof(AanwezighedenRegistreren));
         }
 
-
-/*        [Authorize(Policy = "Verantwoordelijke")]
-        public IActionResult ToonFeedback()
-        {
-            try
-            {
-                Gebruiker g = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
-                return View(_sessieRepository.GetByVerantwoordelijke(g));
-            }
-            catch
-            {
-                TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";
-                return RedirectToAction(nameof(Index));
-            }
-        }*/
-
         [Authorize(Policy = "Iedereen")]
         public IActionResult GeefFeedbackOpties()
         {
             try
             {
                 Gebruiker g = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
-                return View(_sessieRepository.GeefAanwezigeSessiesGebruiker(g));
+                return View(_sessieRepository.GetByGeslotenStatusEnAanwezigheid(g));
             }
             catch
             {
@@ -184,7 +167,7 @@ namespace ITLabNET.Controllers
             }
         }
 
-        [Authorize(Policy = "Gebruiker")]
+        [Authorize(Policy = "Iedereen")]
         public IActionResult ToonFeedback(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
@@ -208,7 +191,7 @@ namespace ITLabNET.Controllers
             return View(new FeedbackViewModel(sessie));
         }
 
-        [Authorize(Policy = "Gebruiker")]
+        [Authorize(Policy = "Iedereen")]
         [HttpPost]
         public IActionResult GeefFeedback(int id, FeedbackViewModel viewmodel)
         {

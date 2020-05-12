@@ -19,14 +19,6 @@ namespace ITLabNET.Data.Repositories
             _sessies = context.Sessies;
         }
 
-        public IEnumerable<Sessie> GeefAanwezigeSessiesGebruiker(Gebruiker g)
-        {
-            return _sessies
-                .Include(s => s.Verantwoordelijke)
-                .Where(e => e.CurrentState == SessieStates.Gesloten)
-                .Where(s => s.Inschrijvingen.Any(i => i.Gebruiker == g));
-        }
-
         public IEnumerable<Sessie> GetAll()
         {
             return _sessies
@@ -66,6 +58,7 @@ namespace ITLabNET.Data.Repositories
                 .Include(s => s.Inschrijvingen)
                 .Include(a => a.Academiejaar)
                 .Where(s => s.Verantwoordelijke == g)
+                .Where(s => s.CurrentState == SessieStates.Zichtbaar)
                 .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
         }
 
@@ -80,6 +73,32 @@ namespace ITLabNET.Data.Repositories
                 .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
                 .Where(s => s.CurrentState == SessieStates.Zichtbaar)
                 .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
+        }
+
+        public IEnumerable<Sessie> GetByZichtbaarStatus(Gebruiker g)
+        {
+            return _sessies
+                .Include(s => s.Academiejaar)
+                .Include(s => s.Verantwoordelijke)
+                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Campus)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Stad)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
+                .Where(s => s.CurrentState == SessieStates.Zichtbaar)
+                .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
+        }
+
+        public IEnumerable<Sessie> GetFeedbackOpties(Gebruiker g)
+        {
+            return _sessies
+                .Include(s => s.Verantwoordelijke)
+                .Where(e => e.CurrentState == SessieStates.Gesloten)
+                .Where(s => s.Inschrijvingen.Any(i => i.Gebruiker == g));
+        }
+
+        public IEnumerable<Sessie> GetOpenbareSessies(Gebruiker g)
+        {
+            throw new NotImplementedException();
         }
 
         public void SaveChanges()

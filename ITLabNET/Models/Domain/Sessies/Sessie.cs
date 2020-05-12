@@ -109,10 +109,10 @@ namespace ITLabNET.Models.Domain.Sessies
                 {
                     throw new ArgumentException("Begin en eind datum moeten gelijk zijn");
                 }
-                /*if (StartUur.AddMinutes(29).AddSeconds(59).AddMilliseconds(99) < value)
+                if (StartUur.AddMinutes(29).AddSeconds(59).AddMilliseconds(99) < value)
                 {
                     throw new ArgumentException("Een sessie moet minimaal 30 minuten duren");
-                }*/
+                }
                 _eindeUur = value;
             }
         }

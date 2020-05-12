@@ -10,9 +10,10 @@ namespace ITLabNET.Models.Domain.Sessies
     {
         IEnumerable<Sessie> GetAll();
         IEnumerable<Sessie> GetByOpenStatus(bool IsOpen);
-        IEnumerable<Sessie> GetByZichtbaarStatus();
-        IEnumerable<Sessie> GeefAanwezigeSessiesGebruiker(Gebruiker g);
-        IEnumerable<Sessie> GetByVerantwoordelijke(Gebruiker g);
+        IEnumerable<Sessie> GetByZichtbaarStatus(Gebruiker g);
+        IEnumerable<Sessie> GetOpenbareSessies(Gebruiker g);
+        IEnumerable<Sessie> GetFeedbackOpties(Gebruiker g);
+
         Sessie GetById(int id);
         void SaveChanges();
     }
