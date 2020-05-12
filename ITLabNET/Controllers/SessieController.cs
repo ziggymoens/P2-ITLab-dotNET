@@ -33,11 +33,11 @@ namespace ITLabNET.Controllers
             IEnumerable<Sessie> sessies;
             if (User.IsInRole("Verantwoordelijke"))
             {
-                sessies = _sessieRepository.GetByVerantwoordelijke(aangemeld);
+                sessies = _sessieRepository.GetByZichtbaarStatus(aangemeld);
             }
             else
             {
-                sessies = _sessieRepository.GetByZichtbaarStatus();
+                sessies = _sessieRepository.GetByZichtbaarStatus(null);
             }
             ViewData["aangemelde"] = aangemeld;
 
@@ -130,8 +130,7 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
-        public IActionResult AanwezighedenRegistreren(int id)
-        [Authorize(Policy = "Verantwoordelijke")]
+
         public IActionResult AanwezighedenRegistrerenBarcode(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
@@ -217,7 +216,7 @@ namespace ITLabNET.Controllers
             try
             {
                 Gebruiker g = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
-                return View(_sessieRepository.GetByGeslotenStatusEnAanwezigheid(g));
+                return View(_sessieRepository.GetFeedbackOpties(g));
             }
             catch
             {

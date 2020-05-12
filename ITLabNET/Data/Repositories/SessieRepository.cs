@@ -48,44 +48,33 @@ namespace ITLabNET.Data.Repositories
             return _sessies.Where(s => s.CurrentState == SessieStates.Open);
         }
 
-        public IEnumerable<Sessie> GetByVerantwoordelijke(Gebruiker g)
+        public IEnumerable<Sessie> GetByZichtbaarStatus(Gebruiker? g)
         {
-            return _sessies
-                 .Include(e => e.Lokaal).ThenInclude(l => l.Gebouw)
-                .Include(e => e.Lokaal).ThenInclude(l => l.Campus)
-                .Include(e => e.Lokaal).ThenInclude(l => l.Stad)
+            IEnumerable<Sessie> sessies;
+            if (g == null) {
+                sessies =  _sessies
+                    .Include(s => s.Academiejaar)
+                    .Include(s => s.Verantwoordelijke)
+                    .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
+                    .Include(s => s.Lokaal).ThenInclude(l => l.Campus)
+                    .Include(s => s.Lokaal).ThenInclude(l => l.Stad)
+                    .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
+                    .Where(s => s.CurrentState == SessieStates.Zichtbaar)
+                    .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
+            }
+            else {
+                sessies = _sessies
+                .Include(s => s.Academiejaar)
                 .Include(s => s.Verantwoordelijke)
-                .Include(s => s.Inschrijvingen)
-                .Include(a => a.Academiejaar)
+                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Campus)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Stad)
+                .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
                 .Where(s => s.Verantwoordelijke == g)
                 .Where(s => s.CurrentState == SessieStates.Zichtbaar)
                 .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
-        }
-
-        public IEnumerable<Sessie> GetByZichtbaarStatus()
-        {
-            return _sessies
-                .Include(s => s.Academiejaar)
-                .Include(s => s.Verantwoordelijke)
-                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
-                .Include(s => s.Lokaal).ThenInclude(l => l.Campus)
-                .Include(s => s.Lokaal).ThenInclude(l => l.Stad)
-                .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
-                .Where(s => s.CurrentState == SessieStates.Zichtbaar)
-                .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
-        }
-
-        public IEnumerable<Sessie> GetByZichtbaarStatus(Gebruiker g)
-        {
-            return _sessies
-                .Include(s => s.Academiejaar)
-                .Include(s => s.Verantwoordelijke)
-                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
-                .Include(s => s.Lokaal).ThenInclude(l => l.Campus)
-                .Include(s => s.Lokaal).ThenInclude(l => l.Stad)
-                .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
-                .Where(s => s.CurrentState == SessieStates.Zichtbaar)
-                .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
+            }
+            return sessies;
         }
 
         public IEnumerable<Sessie> GetFeedbackOpties(Gebruiker g)
