@@ -1,6 +1,7 @@
 ﻿@model  ITLabNET.Models.SessieViewModels.AanwezigheidViewModelBarcode
 @{
     ViewData["Title"] = "AanwezighedenRegistreren";
+    var inschrijvingen = (IEnumerable<Inschrijving>)ViewData["ingeschrevenen"];
 }
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -19,7 +20,20 @@
         <p>
             <a asp-controller="Sessie" asp-action="AanwezighedenRegistrerenGebruikersnaam" asp-route-id="@ViewData["sessieId"]">Studentenkaart vergeten?</a>
         </p>
-    </div>
+    </div>        
+        <table class="table">
+            <tr>
+                <th>Naam</th>                
+            </tr>
+            @foreach (var inschrijving in inschrijvingen)
+            {
+                <tr>
+                    <td>@inschrijving.Gebruiker.Naam</td>                
+                </tr>
+
+            }
+        </table>
+    
 
 </form>
 

@@ -152,6 +152,7 @@ namespace ITLabNET.Controllers
         {
             Sessie sessie = _sessieRepository.GetById(id);
             ViewData["sessieId"] = id;
+            ViewData["ingeschrevenen"] = sessie.Inschrijvingen;            
             return View(new AanwezigheidViewModelBarcode(sessie));
         }
 
