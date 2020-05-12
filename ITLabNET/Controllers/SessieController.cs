@@ -116,8 +116,9 @@ namespace ITLabNET.Controllers
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
-                Console.WriteLine(id);
+                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 sessie.setSessieState("open");
+                sessie.Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker).StatusAanwezigheid = true;
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
                 return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode), new { id });
@@ -130,7 +131,22 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
+        public IActionResult ToonOpenSessie(int id)
+        {
+            try
+            {
+                Sessie sessie = _sessieRepository.GetById(id);
+                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode), new { id });
+            }
+            catch (Exception)
+            {
+                TempData["error"] = $"Er is iets misgelopen, de sessie kan niet getoond worden.";
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
+        [Authorize(Policy = "Verantwoordelijken")]
         public IActionResult AanwezighedenRegistrerenBarcode(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);

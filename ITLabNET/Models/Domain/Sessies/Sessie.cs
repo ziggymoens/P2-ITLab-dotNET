@@ -74,10 +74,10 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _datum;
             set
             {
-                if (value < DateTime.Now.AddDays(1))
+/*                if (value < DateTime.Now.AddDays(1))
                 {
                     throw new ArgumentException("Datum moet minstens één dag in de toekomst liggen");
-                }
+                }*/
                 _datum = value.Date;
             }
         }
@@ -87,10 +87,10 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _startUur;
             set
             {
-                if (value == DateTime.MinValue)
+/*                if (value == DateTime.MinValue)
                 {
                     throw new ArgumentException("Datum en uur mogen niet leeg zijn");
-                }
+                }*/
                 _startUur = value;
                 Datum = value;
             }
@@ -101,7 +101,7 @@ namespace ITLabNET.Models.Domain.Sessies
             get => _eindeUur;
             set
             {
-                if (value == DateTime.MinValue)
+/*                if (value == DateTime.MinValue)
                 {
                     throw new ArgumentException("Eind datum mag niet leeg zijn");
                 }
@@ -112,7 +112,7 @@ namespace ITLabNET.Models.Domain.Sessies
                 if (StartUur.AddMinutes(29).AddSeconds(59).AddMilliseconds(99) < value)
                 {
                     throw new ArgumentException("Een sessie moet minimaal 30 minuten duren");
-                }
+                }*/
                 _eindeUur = value;
             }
         }
@@ -259,7 +259,7 @@ namespace ITLabNET.Models.Domain.Sessies
             Feedback = new List<Feedback>();
         }
 
-        public Sessie(string titel, string beschrijving, DateTime startSessie, DateTime eindeSessie, Lokaal lokaal, int maximumAantalPlaatsen,Gebruiker verantwoordelijke, Academiejaar academiejaar, string state) 
+        public Sessie(string titel, string beschrijving, DateTime startSessie, DateTime eindeSessie, Lokaal lokaal, int maximumAantalPlaatsen,Gebruiker verantwoordelijke, Academiejaar academiejaar, string state) : this()
         {
             Titel = titel;
             Beschrijving = beschrijving;
@@ -270,10 +270,16 @@ namespace ITLabNET.Models.Domain.Sessies
             Verantwoordelijke = verantwoordelijke;
             Academiejaar = academiejaar;
             setSessieState(state);
+            init();
         }
 
         #region Methods
-        public void toState(SessieStates sessieState) { _currentState = sessieState; }
+        private void init() { 
+            Inschrijvingen.Add(new Inschrijving(Verantwoordelijke, this));
+        }
+        public void toState(SessieStates sessieState) {
+            _currentState = sessieState; 
+        }
 
         public void AddInschrijving(Gebruiker gebruiker)
         {
