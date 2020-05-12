@@ -116,8 +116,9 @@ namespace ITLabNET.Controllers
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
-                Console.WriteLine(id);
+                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 sessie.setSessieState("open");
+                sessie.Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker).StatusAanwezigheid = true;
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
                 return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode), new { id });
@@ -130,7 +131,22 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
+        public IActionResult ToonOpenSessie(int id)
+        {
+            try
+            {
+                Sessie sessie = _sessieRepository.GetById(id);
+                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode), new { id });
+            }
+            catch (Exception)
+            {
+                TempData["error"] = $"Er is iets misgelopen, de sessie kan niet getoond worden.";
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
+        [Authorize(Policy = "Verantwoordelijken")]
         public IActionResult AanwezighedenRegistrerenBarcode(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
@@ -138,7 +154,7 @@ namespace ITLabNET.Controllers
             return View(new AanwezigheidViewModelBarcode(sessie));
         }
 
-        
+
         [Authorize(Policy = "Verantwoordelijken")]
         [HttpPost]
         public IActionResult AanwezighedenRegistrerenBarcode(int id, AanwezigheidViewModelBarcode aanwezigheidViewModel)
@@ -146,7 +162,7 @@ namespace ITLabNET.Controllers
             try
             {
                 Sessie s = _sessieRepository.GetById(id);
-                Gebruiker g = _gebruikerRepository.GetByBarCode(aanwezigheidViewModel.Barcode);                
+                Gebruiker g = _gebruikerRepository.GetByBarCode(aanwezigheidViewModel.Barcode);
                 IEnumerable<Gebruiker> ingeschreven = s.Inschrijvingen.Select(e => e.Gebruiker);
                 if (ingeschreven.Contains(g))
                 {
@@ -168,7 +184,7 @@ namespace ITLabNET.Controllers
             {
                 TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
             }
-            return RedirectToAction(nameof(Index));           
+            return RedirectToAction(nameof(Index));
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
@@ -208,26 +224,6 @@ namespace ITLabNET.Controllers
                 TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
             }
             return RedirectToAction(nameof(Index));
-        }
-
-        [Authorize(Policy ="Verantwoordelijken")]
-        [HttpPost]
-        public IActionResult SessieSluiten(int id)
-        {
-            try
-            {
-                Sessie s = _sessieRepository.GetById(id);
-                s.setSessieState("gesloten");
-                TempData["message"] = $"De sessie {s.Titel} is correct gesloten";
-            }
-            catch
-            {
-                TempData["error"] = $"Er is iets misgelopen, de sessie is niet gesloten geweest";
-                return View(nameof(Index));
-            }
-            
-
-            return View(nameof(Index));
         }
 
         [Authorize(Policy = "Iedereen")]
@@ -284,9 +280,9 @@ namespace ITLabNET.Controllers
                     _feedbackRepository.Add(feedback);
                     _feedbackRepository.SaveChanges();
                     _sessieRepository.SaveChanges();
-                TempData["message"] = $"Uw feedback werd toegevoegd aan de sessie";
+                    TempData["message"] = $"Uw feedback werd toegevoegd aan de sessie";
                 }
-                catch 
+                catch
                 {
                     TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.";
                 }
@@ -294,15 +290,15 @@ namespace ITLabNET.Controllers
             }
             return View(viewmodel);
         }
-/*
-        [Authorize(Policy = "Verantwoordelijke")]
-        [HttpPost]
-        public IActionResult RegistreerAanwezigheid(int id)
-        {
-            Sessie s = _sessieRepository.GetById(id);
-            
-            return View(s);
-        }*/
+        /*
+                [Authorize(Policy = "Verantwoordelijke")]
+                [HttpPost]
+                public IActionResult RegistreerAanwezigheid(int id)
+                {
+                    Sessie s = _sessieRepository.GetById(id);
+
+                    return View(s);
+                }*/
 
     }
 }
