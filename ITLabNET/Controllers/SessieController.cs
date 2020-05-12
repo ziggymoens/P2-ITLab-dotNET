@@ -115,8 +115,7 @@ namespace ITLabNET.Controllers
         {
             try
             {
-                Sessie sessie = _sessieRepository.GetById(id);
-                Console.WriteLine(id);
+                Sessie sessie = _sessieRepository.GetById(id);                
                 sessie.setSessieState("open");
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
@@ -141,16 +140,33 @@ namespace ITLabNET.Controllers
         [HttpPost, ActionName("AanwezighedenRegistreren")]
         public IActionResult AanwezighedenRegistrerenBarcode(int id, AanwezigheidViewModel aanwezigheidViewModel)
         {
-            Sessie s = _sessieRepository.GetById(id);
-            Gebruiker g = _gebruikerRepository.GetByBarCode(aanwezigheidViewModel.Barcode);
-            IEnumerable <Gebruiker> ingeschreven = s.Inschrijvingen.Select(e => e.Gebruiker);
-            if (ingeschreven.Contains(g))
+            try
             {
-                Inschrijving ins = s.Inschrijvingen.FirstOrDefault(e => e.Gebruiker == g);                
-                ins.ZetAanwezigheid(true);
-                _sessieRepository.SaveChanges();
+                Sessie s = _sessieRepository.GetById(id);
+                Gebruiker g = _gebruikerRepository.GetByBarCode(aanwezigheidViewModel.Barcode);                
+                IEnumerable<Gebruiker> ingeschreven = s.Inschrijvingen.Select(e => e.Gebruiker);
+                if (ingeschreven.Contains(g))
+                {
+                    Inschrijving ins = s.Inschrijvingen.FirstOrDefault(e => e.Gebruiker == g);
+                    ins.ZetAanwezigheid(true);
+                    _sessieRepository.SaveChanges();
+                }
+                else
+                {
+                    Inschrijving ins = new Inschrijving(g, s);
+                    s.Inschrijvingen.Add(ins);
+                    ins.ZetAanwezigheid(true);
+                    _sessieRepository.SaveChanges();
+                }
+                TempData["message"] = $"De gebruiker is aangemeld bij deze sessie";
+                return RedirectToAction(nameof(AanwezighedenRegistreren));
             }
-           return RedirectToAction(nameof(AanwezighedenRegistreren));
+            catch
+            {
+                TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
+            }
+            return RedirectToAction(nameof(Index));
+           
         }
 
 
