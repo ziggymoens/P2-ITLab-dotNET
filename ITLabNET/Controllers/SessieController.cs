@@ -119,7 +119,7 @@ namespace ITLabNET.Controllers
                 sessie.setSessieState("open");
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
-                return RedirectToAction(nameof(AanwezighedenRegistreren), new { id });
+                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode), new { id });
             }
             catch (Exception)
             {
@@ -129,16 +129,17 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Verantwoordelijke")]
-        public IActionResult AanwezighedenRegistreren(int id)
+        public IActionResult AanwezighedenRegistrerenBarcode(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
-            return View(new AanwezigheidViewModel(sessie));
+            ViewData["sessieId"] = id;
+            return View(new AanwezigheidViewModelBarcode(sessie));
         }
 
         
         [Authorize(Policy = "Verantwoordelijke")]
-        [HttpPost, ActionName("AanwezighedenRegistreren")]
-        public IActionResult AanwezighedenRegistrerenBarcode(int id, AanwezigheidViewModel aanwezigheidViewModel)
+        [HttpPost]
+        public IActionResult AanwezighedenRegistrerenBarcode(int id, AanwezigheidViewModelBarcode aanwezigheidViewModel)
         {
             try
             {
@@ -159,31 +160,69 @@ namespace ITLabNET.Controllers
                     _sessieRepository.SaveChanges();
                 }
                 TempData["message"] = $"De gebruiker is aangemeld bij deze sessie";
-                return RedirectToAction(nameof(AanwezighedenRegistreren));
+                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode));
+            }
+            catch
+            {
+                TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
+            }
+            return RedirectToAction(nameof(Index));           
+        }
+
+        [Authorize(Policy = "Verantwoordelijke")]
+        public IActionResult AanwezighedenRegistrerenGebruikersnaam(int id)
+        {
+            Sessie sessie = _sessieRepository.GetById(id);
+            return View(new AanwezigheidViewModelGebruikersnaam(sessie));
+        }
+
+        [Authorize(Policy = "Verantwoordelijke")]
+        [HttpPost]
+        public IActionResult AanwezighedenRegistrerenGebruikersnaam(int id, AanwezigheidViewModelGebruikersnaam aanwezigheidViewModel)
+        {
+            try
+            {
+                Sessie s = _sessieRepository.GetById(id);
+                Gebruiker g = _gebruikerRepository.GetByGebruikersnaam(aanwezigheidViewModel.Gebruikersnaam);
+                IEnumerable<Gebruiker> ingeschreven = s.Inschrijvingen.Select(e => e.Gebruiker);
+                if (ingeschreven.Contains(g))
+                {
+                    Inschrijving ins = s.Inschrijvingen.FirstOrDefault(e => e.Gebruiker == g);
+                    ins.ZetAanwezigheid(true);
+                    _sessieRepository.SaveChanges();
+                }
+                else
+                {
+                    Inschrijving ins = new Inschrijving(g, s);
+                    s.Inschrijvingen.Add(ins);
+                    ins.ZetAanwezigheid(true);
+                    _sessieRepository.SaveChanges();
+                }
+                TempData["message"] = $"De gebruiker is aangemeld bij deze sessie";
+                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode));
             }
             catch
             {
                 TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
             }
             return RedirectToAction(nameof(Index));
-           
         }
 
 
-/*        [Authorize(Policy = "Verantwoordelijke")]
-        public IActionResult ToonFeedback()
-        {
-            try
-            {
-                Gebruiker g = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
-                return View(_sessieRepository.GetByVerantwoordelijke(g));
-            }
-            catch
-            {
-                TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";
-                return RedirectToAction(nameof(Index));
-            }
-        }*/
+        /*        [Authorize(Policy = "Verantwoordelijke")]
+                public IActionResult ToonFeedback()
+                {
+                    try
+                    {
+                        Gebruiker g = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+                        return View(_sessieRepository.GetByVerantwoordelijke(g));
+                    }
+                    catch
+                    {
+                        TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";
+                        return RedirectToAction(nameof(Index));
+                    }
+                }*/
 
         [Authorize(Policy = "Iedereen")]
         public IActionResult GeefFeedbackOpties()

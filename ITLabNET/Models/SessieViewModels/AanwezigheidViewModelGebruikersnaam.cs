@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ITLabNET.Models.SessieViewModels
 {
-    public class AanwezigheidViewModel
+    public class AanwezigheidViewModelGebruikersnaam
     {
         [Required]
-        [Display(Name = "Scan barcode studentenkaart of vul handmatig in")]
-        public long Barcode { get; set; }
-        public AanwezigheidViewModel() { }
-        public AanwezigheidViewModel(Sessie sessie) : this() { }
+        [Display(Name = "Voer gebruikersnaam in")]
+        public string Gebruikersnaam { get; set; }
+        public AanwezigheidViewModelGebruikersnaam() { }
+        public AanwezigheidViewModelGebruikersnaam(Sessie sessie) : this() { }
     }
 }
