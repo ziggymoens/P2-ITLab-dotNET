@@ -138,7 +138,7 @@ namespace ITLabNET.Controllers
             return View(new AanwezigheidViewModelBarcode(sessie));
         }
 
-        
+
         [Authorize(Policy = "Verantwoordelijken")]
         [HttpPost]
         public IActionResult AanwezighedenRegistrerenBarcode(int id, AanwezigheidViewModelBarcode aanwezigheidViewModel)
@@ -146,7 +146,7 @@ namespace ITLabNET.Controllers
             try
             {
                 Sessie s = _sessieRepository.GetById(id);
-                Gebruiker g = _gebruikerRepository.GetByBarCode(aanwezigheidViewModel.Barcode);                
+                Gebruiker g = _gebruikerRepository.GetByBarCode(aanwezigheidViewModel.Barcode);
                 IEnumerable<Gebruiker> ingeschreven = s.Inschrijvingen.Select(e => e.Gebruiker);
                 if (ingeschreven.Contains(g))
                 {
@@ -168,7 +168,7 @@ namespace ITLabNET.Controllers
             {
                 TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
             }
-            return RedirectToAction(nameof(Index));           
+            return RedirectToAction(nameof(Index));
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
@@ -264,9 +264,9 @@ namespace ITLabNET.Controllers
                     _feedbackRepository.Add(feedback);
                     _feedbackRepository.SaveChanges();
                     _sessieRepository.SaveChanges();
-                TempData["message"] = $"Uw feedback werd toegevoegd aan de sessie";
+                    TempData["message"] = $"Uw feedback werd toegevoegd aan de sessie";
                 }
-                catch 
+                catch
                 {
                     TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.";
                 }
@@ -274,15 +274,15 @@ namespace ITLabNET.Controllers
             }
             return View(viewmodel);
         }
-/*
-        [Authorize(Policy = "Verantwoordelijke")]
-        [HttpPost]
-        public IActionResult RegistreerAanwezigheid(int id)
-        {
-            Sessie s = _sessieRepository.GetById(id);
-            
-            return View(s);
-        }*/
+        /*
+                [Authorize(Policy = "Verantwoordelijke")]
+                [HttpPost]
+                public IActionResult RegistreerAanwezigheid(int id)
+                {
+                    Sessie s = _sessieRepository.GetById(id);
+
+                    return View(s);
+                }*/
 
     }
 }
