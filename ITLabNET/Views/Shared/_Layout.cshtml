@@ -31,15 +31,12 @@
                                     <a style="font-size: 20px;" class="nav-link" asp-area="" asp-controller="Sessie" asp-action="GeefFeedbackOpties">Feedback</a>
                                 </li>
                             }}
-                        @{if (ViewContext.HttpContext.User.IsInRole("Verantwoordelijke"))
+                        @{if (ViewContext.HttpContext.User.IsInRole("Verantwoordelijke") || ViewContext.HttpContext.User.IsInRole("Hoofdverantwoordelijke"))
                             {
 
                                 <li class="nav-item">
                                     <a style="font-size: 20px;" class="nav-link" asp-area="" asp-controller="Sessie" asp-action="GeefOpenbareSessies">Sessies openen</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a style="font-size: 20px;" class="nav-link" asp-area="" asp-controller="Sessie" asp-action="">Aanwezigheden</a>
-                                </li>
+                                </li>                                
                             } }
                     </ul>
                 </div>
