@@ -23,7 +23,7 @@ namespace ITLabNET.Data
 
         public async Task InitializeData()
         {
-            //_dbContext.Database.EnsureDeleted();
+            _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
                 #region Gebruikers
@@ -216,7 +216,7 @@ namespace ITLabNET.Data
                 #region Sessies
                 DateTime verleden = new DateTime(2020, 01, 01, 8, 30, 0);
                 DateTime date = new DateTime(2020, 05, 12, 8, 30, 0);
-                DateTime toekomst = new DateTime(2020, 06, 01, 8, 30, 0);
+                DateTime toekomst = DateTime.Now;//new DateTime(2020, 06, 01, 8, 30, 0);
                 //Niet Zichtbaar
                 Sessie sessie1 = new Sessie("Inleiding tot Trello", "beschrijving", toekomst.AddDays(2), toekomst.AddDays(2).AddHours(1), lokaal1, lokaal1.AantalPlaatsen, Jonathan, academiejaar2021, "niet zichtbaar");
                 Sessie sessie2 = new Sessie("Uitleg stage, academiejaar 2020-2021", "beschrijving", toekomst.AddDays(5), toekomst.AddDays(5).AddHours(2).AddMinutes(30), lokaal2, lokaal2.AantalPlaatsen, Jonathan, academiejaar2021, "niet zichtbaar");
@@ -228,7 +228,7 @@ namespace ITLabNET.Data
                 Sessie sessie7 = new Sessie("Infosessie over de bachelor proef", "Een korte en krachtige inleiding tot github. Alles wat men hoef te weten over de werking en de structuur", toekomst.AddDays(5), toekomst.AddDays(5).AddHours(2).AddMinutes(30), lokaal4, lokaal4.AantalPlaatsen, Ziggy, academiejaar2021, "zichtbaar");
                 Sessie sessie8 = new Sessie("The power of unix", "Korte sessie over de kracht van de command prompt in unix besturingssystemen", toekomst.AddDays(10), toekomst.AddDays(10).AddHours(3), lokaal62, lokaal62.AantalPlaatsen, Jonathan, academiejaar2021, "zichtbaar");
                 Sessie sessie9 = new Sessie("What the future holds for AI", "Korte keynote van Elon Musk over zijn visie van wat er met AI te gebeuren staat", toekomst.AddDays(7), toekomst.AddDays(7).AddHours(1), lokaal62, lokaal62.AantalPlaatsen, Ziggy, academiejaar2021, "zichtbaar");
-                Sessie sessie10 = new Sessie("The dangers of fake news", "Korte uitleg over het woord fake news en de gevolgen ervan.", toekomst.AddDays(1), toekomst.AddDays(1).AddHours(1).AddMinutes(30), lokaal62, lokaal62.AantalPlaatsen, Seba, academiejaar2021, "zichtbaar");
+                Sessie sessie10 = new Sessie("The dangers of fake news", "Korte uitleg over het woord fake news en de gevolgen ervan.", toekomst/*.AddDays(1)*/, toekomst/*.AddDays(1).AddHours(1).AddMinutes(30)*/, lokaal62, lokaal62.AantalPlaatsen, Seba, academiejaar2021, "zichtbaar");
                 //Open
                 Sessie sessie11 = new Sessie("Inleiding tot Github", "beschrijving", date.AddDays(2), date.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Jonathan, academiejaar2021, "open");
                 Sessie sessie12 = new Sessie("De toekomst van een IT'er.", "beschrijving", date.AddDays(2), date.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Ziggy, academiejaar2021, "open");
