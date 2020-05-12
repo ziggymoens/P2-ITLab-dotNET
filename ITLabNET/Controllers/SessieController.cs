@@ -116,9 +116,8 @@ namespace ITLabNET.Controllers
             try
             {
                 Sessie sessie = _sessieRepository.GetById(id);
-                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
+                Console.WriteLine(id);
                 sessie.setSessieState("open");
-                sessie.Inschrijvingen.FirstOrDefault(e => e.Gebruiker == gebruiker).StatusAanwezigheid = true;
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"De sessie {sessie.Titel} is geopend, er kunnen nu aanwezigheden worden geregistreerd";
                 return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode), new { id });
@@ -131,22 +130,7 @@ namespace ITLabNET.Controllers
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
-        public IActionResult ToonOpenSessie(int id)
-        {
-            try
-            {
-                Sessie sessie = _sessieRepository.GetById(id);
-                Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
-                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode), new { id });
-            }
-            catch (Exception)
-            {
-                TempData["error"] = $"Er is iets misgelopen, de sessie kan niet getoond worden.";
-            }
-            return RedirectToAction(nameof(Index));
-        }
 
-        [Authorize(Policy = "Verantwoordelijken")]
         public IActionResult AanwezighedenRegistrerenBarcode(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
@@ -224,6 +208,26 @@ namespace ITLabNET.Controllers
                 TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Policy ="Verantwoordelijken")]
+        [HttpPost]
+        public IActionResult SessieSluiten(int id)
+        {
+            try
+            {
+                Sessie s = _sessieRepository.GetById(id);
+                s.setSessieState("gesloten");
+                TempData["message"] = $"De sessie {s.Titel} is correct gesloten";
+            }
+            catch
+            {
+                TempData["error"] = $"Er is iets misgelopen, de sessie is niet gesloten geweest";
+                return View(nameof(Index));
+            }
+            
+
+            return View(nameof(Index));
         }
 
         [Authorize(Policy = "Iedereen")]

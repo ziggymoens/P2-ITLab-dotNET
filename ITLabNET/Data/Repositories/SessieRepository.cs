@@ -81,7 +81,6 @@ namespace ITLabNET.Data.Repositories
         {
             return _sessies
                 .Include(s => s.Verantwoordelijke)
-                .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
                 .Where(e => e.CurrentState == SessieStates.Gesloten)
                 .Where(s => s.Inschrijvingen.Any(i => i.Gebruiker == g));
         }
@@ -89,14 +88,12 @@ namespace ITLabNET.Data.Repositories
         public IEnumerable<Sessie> GetOpenbareSessies(Gebruiker g)
         {
             return _sessies
-                 .Include(s => s.Academiejaar)
-                .Include(s => s.Verantwoordelijke)
                 .Include(s => s.Inschrijvingen).ThenInclude(e => e.Gebruiker)
                 .Include(s => s.Lokaal).ThenInclude(l => l.Campus)
                 .Include(s => s.Lokaal).ThenInclude(l => l.Stad)
                 .Include(s => s.Lokaal).ThenInclude(l => l.Gebouw)
                 .Where(s => s.Verantwoordelijke == g)
-                .Where(s => s.CurrentState == SessieStates.Zichtbaar || s.CurrentState == SessieStates.Open)
+                .Where(s => s.CurrentState == SessieStates.Zichtbaar)
                 .Where(s => s.Datum.Date == DateTime.Now.Date)
                 .OrderBy(s => s.Datum).ThenBy(s => s.StartUur).AsNoTracking().ToList();
         }
