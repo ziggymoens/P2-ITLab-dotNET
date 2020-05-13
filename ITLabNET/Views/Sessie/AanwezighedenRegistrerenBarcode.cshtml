@@ -1,39 +1,98 @@
 ﻿@model  ITLabNET.Models.SessieViewModels.AanwezigheidViewModelBarcode
 @{
-    ViewData["Title"] = "AanwezighedenRegistreren";
+    ViewData["Title"] = "Aanwezigheden registreren";
     var inschrijvingen = (IEnumerable<Inschrijving>)ViewData["ingeschrevenen"];
 }
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<h1>AanwezighedenRegistreren</h1>
+<div class="jumbotron"style="padding-top: 20px !important;
+                                                   padding-bottom: 20px !important;">
+    <h2 class="h1">@ViewData["Title"]</h2>
+    <hr class="my-4">
+    <h4 class="h4">@Model.Sessie.Titel</h4>
+</div>
 <form method="post">
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 3em;">
         <label asp-for="Barcode"></label>
-        <input asp-for="Barcode" class="form-control" />
+        <div class="container">
+            <div class="row">
+                <input asp-for="Barcode" class="form-control" style="width: 70%; margin-right: 1em;"/>
+                <button class="btn btn-primary" type="submit" style="width: 25%">Aanmelden</button>
+            </div>
+            <div class="row">
+                <a asp-controller="Sessie" asp-action="AanwezighedenRegistrerenGebruikersnaam" asp-route-id="@ViewData["sessieId"]">Studentenkaart vergeten?</a>
+            </div>
+        </div>
+        
     </div>
-    <div>
-        <button class="btn btn-primary" type="submit">Aanmelden</button>
-        <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SessieSluiten" asp-route-id="@ViewData["sessieId"]" >Sessie sluiten</a>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Resterende tijd tot aanmelden:</h4>
+                <h5 id="countdown"></h5>
+                <script>
+                    var countDownDate = new Date("@Model.Sessie.EindeUur").getTime();
+                    var x = setInterval(function() {
+                      var now = new Date().getTime();
+                      var distance = countDownDate - now;
+                      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                      document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+                      + minutes + "m " + seconds + "s ";
+                      if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("countdown").innerHTML = "Sessie afgelopen sinds: @Model.Sessie.EindeUur";
+                      }
+                    }, 1000);
+                </script>
+            </div>
+            <div class="col" style="justify-content: left">
+                <div>
+                    <a class="btn btn-secondary float-right" asp-controller="Sessie" asp-action="SessieSluiten" asp-route-id="@ViewData["sessieId"]" style="width: 52%; margin-right: 1.75em;">Sessiesluiten</a>
+                </div>
+            </div>   
+        </div>
     </div>
-    <div>
-        <p>
-            <a asp-controller="Sessie" asp-action="AanwezighedenRegistrerenGebruikersnaam" asp-route-id="@ViewData["sessieId"]">Studentenkaart vergeten?</a>
-        </p>
-    </div>        
-        <table class="table">
-            <tr>
-                <th>Naam</th>                
-            </tr>
-            @foreach (var inschrijving in inschrijvingen)
-            {
-                <tr>
-                    <td>@inschrijving.Gebruiker.Naam</td>                
-                </tr>
-
-            }
-        </table>
     
+    <div class="container" style="margin-top: 2em;">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tr>
+                        <th>Ingeschreven</th>                
+                    </tr>
+                    @foreach (var inschrijving in inschrijvingen)
+                    {
+                        @if (inschrijving.StatusAanwezigheid != true)
+                        {
+                            <tr>
+                                <td class="alert-danger">@inschrijving.Gebruiker.Naam</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+            <div class="col">
+                <table class="table">
+                    <tr>
+                        <th>Aanwezigen</th>                
+                    </tr>
+                    @foreach (var inschrijving in inschrijvingen)
+                    {
+                        @if (inschrijving.StatusAanwezigheid == true)
+                        {
+                            <tr>
+                                <td class="alert-success">@inschrijving.Gebruiker.Naam</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
 
 </form>
 
