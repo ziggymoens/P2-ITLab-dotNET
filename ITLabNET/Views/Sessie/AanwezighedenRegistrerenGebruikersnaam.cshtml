@@ -1,10 +1,13 @@
 ﻿@model ITLabNET.Models.SessieViewModels.AanwezigheidViewModelGebruikersnaam
 @{
-    ViewData["Title"] = "AanwezighedenRegistreren";
+    ViewData["Title"] = "Aanwezigheden registreren via gebruikersnaam";
 }
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+<a class="btn btn-secondary" asp-controller="Sessie" asp-action="AanwezighedenRegistrerenBarcode" data-toggle="tooltip" data-placement="bottom" title="Terug" style="width:10% ;margin-top: 5px; margin-right: 5px; margin-bottom: 5px;">
+    <i class="fas fa-arrow-alt-circle-left"></i>
+</a>
 <h1>AanwezighedenRegistreren</h1>
 <form method="post">
     <div class="form-group">

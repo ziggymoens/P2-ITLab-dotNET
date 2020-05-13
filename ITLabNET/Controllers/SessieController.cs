@@ -29,7 +29,6 @@ namespace ITLabNET.Controllers
 
         public IActionResult Index()
         {
-            Console.WriteLine("Hi");
             Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
             IEnumerable<Sessie> sessies;
             if (User.IsInRole("Verantwoordelijken"))
@@ -41,7 +40,6 @@ namespace ITLabNET.Controllers
                 sessies = _sessieRepository.GetByZichtbaarStatus(null);
             }
             ViewData["aangemelde"] = aangemeld;
-            Console.WriteLine(sessies.Count());
             return View(sessies);
         }
 
@@ -58,19 +56,18 @@ namespace ITLabNET.Controllers
         //[HttpPost]
         public IActionResult SchrijfIn(int id)
         {
-            try
-            {
+/*            try
+            {*/
                 Sessie sessie = _sessieRepository.GetById(id);
                 Gebruiker gebruiker = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
                 sessie.AddInschrijving(gebruiker);
                 _sessieRepository.SaveChanges();
                 TempData["message"] = $"U bent succesvol ingeschreven voor {sessie.Titel}, op {sessie.Datum.ToShortDateString()}.";
-            }
+            /*}
             catch
             {
                 TempData["error"] = $"Er is iets misgelopen, u bent niet ingeschreven.";
-                return RedirectToAction(nameof(Index));
-            }
+            }*/
             return RedirectToAction(nameof(Index));
         }
 
