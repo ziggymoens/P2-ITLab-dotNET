@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ITLabNET.Controllers
@@ -216,7 +217,7 @@ namespace ITLabNET.Controllers
                     _sessieRepository.SaveChanges();
                 }
                 TempData["message"] = $"De gebruiker is aangemeld bij deze sessie";
-                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode));
+                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode), new { id });
             }
             catch
             {
