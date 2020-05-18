@@ -3,14 +3,14 @@
     ViewData["Title"] = "Feedback toevoegen";
 }
 
-    <h3>Toon feedback of voeg feeback toe</h3>
-@if (User.IsInRole("Verantwoordelijken"))
+<h3>Toon feedback of voeg feeback toe</h3>
+@if (User.IsInRole("Verantwoordelijke") || User.IsInRole("HoofdVerantwoordelijke"))
 {
-    <p>U ziet alleen de sessies die u hebt aangemaakt.</p>
+<p>U ziet alleen de sessies die u hebt aangemaakt.</p>
 }
 else
 {
-    <p>U ziet alleen de sessies die u hebt bijgewoond.</p>
+<p>U ziet alleen de sessies die u hebt bijgewoond.</p>
 }
 
 <div class="col-md-12">

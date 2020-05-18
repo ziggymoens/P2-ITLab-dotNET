@@ -283,8 +283,6 @@ namespace ITLabNET.Models.Domain.Sessies
 
         public void AddInschrijving(Gebruiker gebruiker)
         {
-            Console.WriteLine(Inschrijvingen.Count);
-            Console.WriteLine(MaximumAantalPlaatsen);
             if (Inschrijvingen.Count() <=MaximumAantalPlaatsen)
             {
                 Inschrijving inschr = new Inschrijving(gebruiker, this);

@@ -148,8 +148,8 @@ namespace ITLabNET.Controllers
         public IActionResult AanwezighedenRegistrerenBarcode(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
-            ViewData["sessieId"] = id;
             ViewData["ingeschrevenen"] = sessie.Inschrijvingen;
+            ViewData["sessieId"] = id;
             return View(new AanwezigheidViewModelBarcode(sessie));
         }
 
@@ -176,20 +176,20 @@ namespace ITLabNET.Controllers
                     ins.ZetAanwezigheid(true);
                     _sessieRepository.SaveChanges();
                 }
-                TempData["message"] = $"De gebruiker is aangemeld bij deze sessie";
-                return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode));
+                TempData["message"] = $"De gebruiker is aangemeld bij deze sessie";                
             }
             catch
             {
                 TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(AanwezighedenRegistrerenBarcode));
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
         public IActionResult AanwezighedenRegistrerenGebruikersnaam(int id)
         {
             Sessie sessie = _sessieRepository.GetById(id);
+            ViewData["sessieId"] = id;
             return View(new AanwezigheidViewModelGebruikersnaam(sessie));
         }
 
@@ -222,7 +222,7 @@ namespace ITLabNET.Controllers
             {
                 TempData["error"] = $"Er is iets migelopen, we konden deze persoon niet aanwezig zetten";
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(AanwezighedenRegistrerenGebruikersnaam));
         }
 
         [Authorize(Policy = "Verantwoordelijken")]
@@ -253,9 +253,9 @@ namespace ITLabNET.Controllers
             }
             catch
             {
-                TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";
-                return RedirectToAction(nameof(Index));
+                TempData["error"] = "Er is iets misgelopen, er zijn geen sessies opgehaald.";                
             }
+            return RedirectToAction(nameof(Index));
         }
 
         [Authorize(Policy = "Iedereen")]
@@ -303,19 +303,9 @@ namespace ITLabNET.Controllers
                 {
                     TempData["error"] = $"Er is iets misgelopen, er is geen feedback toegevoegd.";
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ToonFeedback), new { id });
             }
             return View(viewmodel);
         }
-        /*
-                [Authorize(Policy = "Verantwoordelijke")]
-                [HttpPost]
-                public IActionResult RegistreerAanwezigheid(int id)
-                {
-                    Sessie s = _sessieRepository.GetById(id);
-
-                    return View(s);
-                }*/
-
     }
 }

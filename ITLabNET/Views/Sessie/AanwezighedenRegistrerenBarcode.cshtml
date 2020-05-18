@@ -30,22 +30,24 @@
             <div class="col">
                 <h4>Resterende tijd tot aanmelden:</h4>
                 <h5 id="countdown"></h5>
+                <h4 id="test"></h4>
                 <script>
-                    var countDownDate = new Date("@Model.Sessie.EindeUur").getTime();
-                    var x = setInterval(function() {
-                      var now = new Date().getTime();
-                      var distance = countDownDate - now;
-                      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                      document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-                      + minutes + "m " + seconds + "s ";
-                      if (distance < 0) {
-                        clearInterval(x);
-                        document.getElementById("countdown").innerHTML = "Sessie afgelopen sinds: @Model.Sessie.EindeUur";
-                      }
-                    }, 1000);
+                document.getElementById("test").innerHTML = "@Model.Sessie.EindeUur";
+                var countDownDate = new Date("@Model.Sessie.EindeUur").getTime();
+                var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+                if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Sessie afgelopen sinds: @Model.Sessie.EindeUur";
+                }
+                }, 1000);
                 </script>
             </div>
             <div class="col" style="justify-content: left">
