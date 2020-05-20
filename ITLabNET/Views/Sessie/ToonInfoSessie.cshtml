@@ -12,7 +12,12 @@
 
 
     <div class="jumbotron">
-        <h1 class="display-4">@Model.Titel @if(@Model.EindeUur < DateTime.Now){<span class="badge badge-danger">@Model.CurrentState.ToString()</span>}else{<span class="badge badge-success">@Model.CurrentState.ToString()</span>}</h1>
+        <h1 class="display-4">
+            @Model.Titel @if (@Model.EindeUur < DateTime.Now)
+        {<span class="badge badge-danger">@Model.CurrentState.ToString()</span>}
+    else
+    {<span class="badge badge-success">@Model.CurrentState.ToString()</span>}
+        </h1>
         <hr class="my-4">
         <p class="lead"><strong>Beschrijving:</strong> @Model.Beschrijving</p>
         <p class="lead"><strong>Gastspreker:</strong> @Model.NaamGastSpreker</p>
@@ -23,15 +28,17 @@
         <p class="lead"><strong>Aantal ingeschreven:</strong> @Model.Inschrijvingen.Count</p>
         <p class="lead"><strong>Max. aantal plaatsen:</strong> @Model.MaximumAantalPlaatsen</p>
 
-        @if(User.Identity.IsAuthenticated && User.IsInRole("Gebruiker"))
-            {@if (Model.Inschrijvingen.Any(e => e.Gebruiker.Gebruikersnaam == User.Identity.Name))
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Gebruiker"))
+        {
+            @if (Model.Inschrijvingen.Any(e => e.Gebruiker.Gebruikersnaam == User.Identity.Name))
             {
-                <a class="btn btn-info" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven" style="width: 20%"><i class="far fa-calendar-plus">Inschrijven</i></a>
+                <a class="btn btn-warning" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven" style="width: 20%"><i class="far fa-calendar-minus">Uitschrijven</i></a>
             }
             else
             {
-                <a class="btn btn-warning" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven" style="width: 20%"><i class="far fa-calendar-minus">Uitschrijven</i></a>
-            }}        
+                <a class="btn btn-info" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven" style="width: 20%"><i class="far fa-calendar-plus">Inschrijven</i></a>
+
+            }}
     </div>
 
 </div>

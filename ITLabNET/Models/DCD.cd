@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ITLabNET.Models.Domain.Gebruikers.Gebruiker">
-    <Position X="16" Y="13" Width="2" />
+    <Position X="11.25" Y="13" Width="2" />
     <TypeIdentifier>
       <HashCode>AIAAQQIQAgEAEABAAAAgBAGAEBAAAAIAAAhAAAAJAEI=</HashCode>
       <FileName>Models\Domain\Gebruikers\Gebruiker.cs</FileName>
@@ -37,9 +37,9 @@
       <Path>
         <Point X="1.625" Y="11.314" />
         <Point X="1.625" Y="16.902" />
-        <Point X="4.934" Y="16.902" Type="JumpStart" />
-        <Point X="5.101" Y="16.902" Type="JumpEnd" />
-        <Point X="16" Y="16.902" />
+        <Point X="5.167" Y="16.902" Type="JumpStart" />
+        <Point X="5.333" Y="16.902" Type="JumpEnd" />
+        <Point X="11.25" Y="16.902" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -63,14 +63,14 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="ITLabNET.Models.Domain.Campus">
-    <Position X="15.5" Y="0.5" Width="2" />
+    <Position X="12.75" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAABAAAAAAAAAAAAAEAAAAAAAI=</HashCode>
       <FileName>Models\Domain\Campus.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ITLabNET.Models.Domain.Feedback">
-    <Position X="12.5" Y="12.75" Width="2" />
+    <Position X="7.75" Y="12.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQAAAAAAABACIAAFAABwAAAABAAAgAAAAAAA=</HashCode>
       <FileName>Models\Domain\Feedback.cs</FileName>
@@ -81,7 +81,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ITLabNET.Models.Domain.Gebouw">
-    <Position X="15.5" Y="3.25" Width="2" />
+    <Position X="12.75" Y="3.25" Width="2" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Models\Domain\Gebouw.cs</FileName>
@@ -102,11 +102,13 @@
         <Point X="1" Y="6.937" />
         <Point X="3" Y="6.937" />
         <Point X="3" Y="16.471" />
-        <Point X="4.934" Y="16.471" Type="JumpStart" />
-        <Point X="5.101" Y="16.471" Type="JumpEnd" />
+        <Point X="5.167" Y="16.471" Type="JumpStart" />
+        <Point X="5.333" Y="16.471" Type="JumpEnd" />
         <Point X="15.625" Y="16.471" />
         <Point X="15.625" Y="14.92" />
-        <Point X="16" Y="14.92" />
+        <Point X="13.833" Y="14.92" Type="JumpStart" />
+        <Point X="13.667" Y="14.92" Type="JumpEnd" />
+        <Point X="11.25" Y="14.92" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -119,13 +121,13 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ITLabNET.Models.Domain.Lokaal">
-    <Position X="20.25" Y="4.25" Width="1.75" />
+    <Position X="17.5" Y="4.25" Width="1.75" />
     <AssociationLine Name="_campus" Type="ITLabNET.Models.Domain.Campus" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="20.438" Y="4.25" />
+        <Point X="17.688" Y="4.25" />
         <Point X="17.914" Y="4.25" />
         <Point X="17.914" Y="1.696" />
-        <Point X="17.5" Y="1.696" />
+        <Point X="14.75" Y="1.696" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -139,7 +141,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ITLabNET.Models.Domain.Media">
-    <Position X="20.25" Y="11.75" Width="1.5" />
+    <Position X="15.5" Y="11.75" Width="1.5" />
     <AssociationLine Name="_gebruiker" Type="ITLabNET.Models.Domain.Gebruikers.Gebruiker">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.11" Y="0.171" />
@@ -155,14 +157,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ITLabNET.Models.Domain.Stad">
-    <Position X="19.5" Y="0.5" Width="1.5" />
+    <Position X="16.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACAAAAhAAAQAAAAAAAAgAAAAAAAAI=</HashCode>
       <FileName>Models\Domain\Stad.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="ITLabNET.Models.Domain.Gebruikers.IGebruikerRepository">
-    <Position X="21.5" Y="16.5" Width="2" />
+    <Position X="16.75" Y="16.5" Width="2" />
     <TypeIdentifier>
       <HashCode>gAAAAgAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Domain\Gebruikers\IGebruikerRepository.cs</FileName>
@@ -176,21 +178,21 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="ITLabNET.Models.Domain.IFeedbackRepository">
-    <Position X="19" Y="16.5" Width="1.75" />
+    <Position X="14.25" Y="16.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>gAIAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAgIAAAAAAAA=</HashCode>
       <FileName>Models\Domain\IFeedbackRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="ITLabNET.Models.Domain.Gebruikers.GebruikerProfielStates">
-    <Position X="17.75" Y="10.25" Width="2" />
+    <Position X="13" Y="10.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAIAgAAAAAAA=</HashCode>
       <FileName>Models\Domain\Gebruikers\GebruikerProfielStates.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ITLabNET.Models.Domain.Gebruikers.GebruikerStatusStates">
-    <Position X="15.75" Y="10.25" Width="1.75" />
+    <Position X="11" Y="10.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAABAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>Models\Domain\Gebruikers\GebruikerStatusStates.cs</FileName>
