@@ -23,21 +23,15 @@
         <p class="lead"><strong>Aantal ingeschreven:</strong> @Model.Inschrijvingen.Count</p>
         <p class="lead"><strong>Max. aantal plaatsen:</strong> @Model.MaximumAantalPlaatsen</p>
 
-        @if ((bool)ViewData["Datum"] == true)
-        {
-            <a class="btn btn-secondary btn-lg" href="/Sessie/ToonFeedback/@Model.SessieId">Toon Feedback</a>
-        }
-        else
-        {
-            @if (User.Identity.IsAuthenticated)
+        @if(User.Identity.IsAuthenticated && User.IsInRole("Gebruiker"))
+            @if (Model.Inschrijvingen.Any(e => e.Gebruiker.Gebruikersnaam == User.Identity.Name))
             {
                 <a class="btn btn-info" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven" style="width: 20%"><i class="far fa-calendar-plus">Inschrijven</i></a>
             }
             else
             {
                 <a class="btn btn-warning" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@Model.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven" style="width: 20%"><i class="far fa-calendar-minus">Uitschrijven</i></a>
-            }
-        }
+            }        
     </div>
 
 </div>

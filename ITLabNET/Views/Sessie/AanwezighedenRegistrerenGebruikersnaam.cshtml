@@ -5,19 +5,19 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<a class="btn btn-secondary" asp-controller="Sessie" asp-action="AanwezighedenRegistrerenBarcode" data-toggle="tooltip" data-placement="bottom" title="Terug" style="width:10% ;margin-top: 5px; margin-right: 5px; margin-bottom: 5px;">
+<a class="btn btn-secondary" asp-controller="Sessie" asp-action="AanwezighedenRegistrerenBarcode" asp-route-id="@ViewData["sessieId"]" data-toggle="tooltip" data-placement="bottom" title="Terug" style="width:10% ;margin-top: 5px; margin-right: 5px; margin-bottom: 5px;">
     <i class="fas fa-arrow-alt-circle-left"></i>
 </a>
 <h1>Aanwezigheden registreren</h1>
 <form method="post">
     <div class="form-group">
         <label asp-for="Gebruikersnaam"></label>
-        <input asp-for="Gebruikersnaam" class="form-control" />
+        <input asp-for="Gebruikersnaam"  class="form-control"/>
     </div>
     <div>
-        <button class="btn btn-primary" type="submit">Aanmelden</button>
-        <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SessieSluiten" asp-route-id="@ViewData["sessieId"]">Sessie sluiten</a>
+        <button class="btn btn-primary" type="submit">Aanmelden</button>        
     </div>
 
 </form>
+
 
