@@ -259,7 +259,7 @@ namespace ITLabNET.Models.Domain.Sessies
             Feedback = new List<Feedback>();
         }
 
-        public Sessie(string titel, string beschrijving, DateTime startSessie, DateTime eindeSessie, Lokaal lokaal, int maximumAantalPlaatsen,Gebruiker verantwoordelijke, Academiejaar academiejaar, string state) : this()
+        public Sessie(string titel, string beschrijving, DateTime startSessie, DateTime eindeSessie, Lokaal lokaal, int maximumAantalPlaatsen,Gebruiker verantwoordelijke,string gastspreker, Academiejaar academiejaar, string state) : this()
         {
             Titel = titel;
             Beschrijving = beschrijving;
@@ -268,6 +268,7 @@ namespace ITLabNET.Models.Domain.Sessies
             Lokaal = lokaal;
             MaximumAantalPlaatsen = maximumAantalPlaatsen;
             Verantwoordelijke = verantwoordelijke;
+            NaamGastSpreker = gastspreker;
             Academiejaar = academiejaar;
             setSessieState(state);
             init();

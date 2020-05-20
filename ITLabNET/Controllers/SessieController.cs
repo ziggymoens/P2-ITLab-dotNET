@@ -32,7 +32,7 @@ namespace ITLabNET.Controllers
         {
             Gebruiker aangemeld = _gebruikerRepository.GetByGebruikersnaam(User.Identity.Name);
             IEnumerable<Sessie> sessies;
-            if (User.IsInRole("Verantwoordelijken"))
+            if (User.IsInRole("Verantwoordelijke") || User.IsInRole("Hoofdverantwoordelijke"))
             {
                 sessies = _sessieRepository.GetByZichtbaarStatus(aangemeld);
             }
