@@ -30,9 +30,7 @@
             <div class="col">
                 <h4>Resterende tijd tot aanmelden:</h4>
                 <h5 id="countdown"></h5>
-                <h4 id="test"></h4>
                 <script>
-                document.getElementById("test").innerHTML = "@Model.Sessie.EindeUur";
                 var countDownDate = new Date("@Model.Sessie.EindeUur").getTime();
                 var x = setInterval(function() {
                 var now = new Date().getTime();
