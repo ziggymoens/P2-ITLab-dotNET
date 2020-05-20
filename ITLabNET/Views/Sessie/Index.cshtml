@@ -16,7 +16,7 @@
 <div class="row wrap">
     @foreach (var sessie in Model)
     {
-        <div class="col-md-5 col-lg-3 cpm-xs-12 pb-3">
+        <div class="col-md-6 col-lg-4 cpm-xs-12 pb-3">
             <div class="card" style="height: 19em;">
                 <div class="card-header">
                     <div class="card-title" style="height: 3em; text-align: center;">
@@ -34,18 +34,18 @@
                         <p>aantal inschrijvingen: @sessie.Inschrijvingen.Count<br/>max. aantal plaatsen: @sessie.MaximumAantalPlaatsen </p>
                     }
                 </div>
-                <div class="card-footer d-flex justify-content-center">
+                <div class="card-footer d-flex justify-content-center" style="width: 100%">
                     <div class="" role="group">
                         <a class="btn btn-secondary" asp-controller="Sessie" asp-action="ToonInfoSessie" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Details"><i class="fas fa-info-circle"> Details</i></a>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Gebruiker"))
                         {
                             if (sessie.Inschrijvingen.Any(e => e.Gebruiker.Naam == ((Gebruiker)ViewData["aangemelde"]).Naam))
                             {
-                                <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus">Uitschrijven</i></a>
+                                <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfUit" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Uitschrijven"><i class="far fa-calendar-minus">   Uitschrijven</i></a>
                             }
                             else
                             {
-                                <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus">Inschrijven</i></a>
+                                <a class="btn btn-secondary" asp-controller="Sessie" asp-action="SchrijfIn" asp-route-id="@sessie.SessieId" data-toggle="tooltip" data-placement="bottom" title="Inschrijven"><i class="far fa-calendar-plus">   Inschrijven</i></a>
                             }
                         }
                     </div>

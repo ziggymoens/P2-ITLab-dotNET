@@ -3,46 +3,46 @@
     ViewData["Title"] = "Open sessie";
 }
 
-    <div class="jumbotron container-fluid" style="padding-top: 10px !important; padding-bottom: 10px !important;">
-        <h1 class="display-4">@ViewData["Title"]</h1>
-        <hr class="my-4">
-        <p>Indien u een sessie openzet zullen alle andere opties van de applicatie geblokkeerd worden en kunnen ingeschreven gebruikers zich registreren.</p>
-    </div>
+<div class="jumbotron container-fluid" style="padding-top: 10px !important; padding-bottom: 10px !important;">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <hr class="my-4">
+    <p>Indien u een sessie openzet zullen alle andere opties van de applicatie geblokkeerd worden en kunnen ingeschreven gebruikers zich registreren.</p>
+</div>
 <form method="post">
-        @if (Model.Count() == 0)
+    <div class="row wrap">
+        @if (!Model.Any())
         {
             <p>Er zijn geen sessies die kunnen opengezet worden.</p>
         }
         else
         {
-
-            <div class="row flex-wrap">
-                @foreach (var item in Model)
-                {
-
-                    <div class="col-md-5 col-lg-3 cpm-xs-12 pb-3">
-                        <div class="card-header">@item.Titel</div>
+            @foreach (var sessie in Model)
+            {
+                <div class="col-md-6 col-lg-3 cpm-xs-12 pb-3">
+                    <div class="card">
+                        <div class="card-header">@sessie.Titel</div>
                         <div class="card-body">
 
-                            <p class="card-text"><strong>Beschrijving:</strong> @item.Beschrijving</p>
-                            <p class="card-text"><strong>Gastspreker:</strong> @item.NaamGastSpreker</p>
-                            <p class="card-text"><strong>Datum:</strong> @item.StartUur.ToShortDateString() </p>
-                            <p class="card-text"><strong>Uur:</strong> @item.StartUur.ToShortTimeString() -  @item.EindeUur.ToShortTimeString()</p>
-                            <p class="card-text"><strong>Lokaal:</strong> @item.Lokaal.LokaalCode</p>
-                            <p class="card-text"><strong>Aantal ingeschrevenen:</strong> @item.Inschrijvingen.Count</p>
+                            <p class="card-text"><strong>Beschrijving:</strong> @sessie.Beschrijving</p>
+                            <p class="card-text"><strong>Gastspreker:</strong> @sessie.NaamGastSpreker</p>
+                            <p class="card-text"><strong>Datum:</strong> @sessie.StartUur.ToShortDateString() </p>
+                            <p class="card-text"><strong>Uur:</strong> @sessie.StartUur.ToShortTimeString() - @sessie.EindeUur.ToShortTimeString()</p>
+                            <p class="card-text"><strong>Lokaal:</strong> @sessie.Lokaal.LokaalCode</p>
+                            <p class="card-text"><strong>Aantal ingeschrevenen:</strong> @sessie.Inschrijvingen.Count</p>
                         </div>
-                            <div class="card-footer">
-                                @if (Model.Any(e => e.CurrentState == SessieStates.Open))
-                                {
-                                    <button class="btn btn-primary" type="submit" asp-controller="Sessie" asp-action="ToonOpenSessie" asp-route-id="@item.SessieId">Toon</button>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-primary" type="submit" asp-controller="Sessie" asp-action="ZetSessieOpen" asp-route-id="@item.SessieId">Openen</button>
-                                }
-                            </div>
+                        <div class="card-footer">
+                            @if (Model.Any(e => e.CurrentState == SessieStates.Open))
+                            {
+                                <button class="btn btn-primary" type="submit" asp-controller="Sessie" asp-action="ToonOpenSessie" asp-route-id="@sessie.SessieId">Toon</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-primary" type="submit" asp-controller="Sessie" asp-action="ZetSessieOpen" asp-route-id="@sessie.SessieId">Openen</button>
+                            }
+                        </div>
                     </div>
-                }
-            </div>
+                </div>
+            }
         }
+    </div>
 </form>
