@@ -20,21 +20,31 @@ else
     }
     else
     {
-        <div class="row">
+        <div class="row flex-wrap">
             @foreach (var item in Model)
             {
-                <div class="card col-md-4">
-
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Titel</h5>
-                        <p class="card-text">Aangemaakt door: @item.Verantwoordelijke.Naam</p>
-                        <p class="card-text">Spreker: @item.NaamGastSpreker</p>
-                        <p class="card-text">Datum: @item.Datum.Date.ToShortDateString()</p>
-                        <a class="btn btn-primary" asp-controller="Sessie" asp-action="ToonFeedback" asp-route-id="@item.SessieId">Toon feedback</a>
-                        <a class="btn btn-primary" asp-controller="Sessie" asp-action="GeefFeedback" asp-route-id="@item.SessieId">Voeg feedback toe</a>
+               
+                <div class="col-md-5 col-lg-4 cpm-xs-12 pb-3">
+                    <div class="card" style="height: 19em;">
+                        <div class="card-header">
+                            <div class="card-title" style="height: 3em; text-align: center;">
+                                <h4>@item.Titel</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Aangemaakt door: @item.Verantwoordelijke.Naam</p>
+                            <p class="card-text">Spreker: @item.NaamGastSpreker</p>
+                            <p class="card-text">Datum: @item.Datum.Date.ToShortDateString()</p>
+                        </div>
+                        <div class="card-footer ">
+                                <a class="btn btn-primary" asp-controller="Sessie" asp-action="ToonFeedback" asp-route-id="@item.SessieId">Toon feedback</a>
+                                <a class="btn btn-primary" asp-controller="Sessie" asp-action="GeefFeedback" asp-route-id="@item.SessieId">Voeg feedback toe</a>
+                        </div>
                     </div>
+                    
                 </div>
             }
+
         </div>
     }
 </div>
