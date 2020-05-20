@@ -23,7 +23,7 @@ namespace ITLabNET.Data
 
         public async Task InitializeData()
         {
-            //_dbContext.Database.EnsureDeleted();
+            _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
                 #region Gebruikers
@@ -219,18 +219,18 @@ namespace ITLabNET.Data
                 DateTime toekomst = DateTime.Now;//new DateTime(2020, 06, 01, 8, 30, 0);
                 //Zichtbaar
                 Sessie sessie1 = new Sessie("Inleiding tot Trello", "Een korte inleiding over hoe wij trello zullen gebruiken binnen de opleiding toegepaste informatica.", toekomst.AddDays(2), toekomst.AddDays(2).AddHours(1), lokaal1, lokaal1.AantalPlaatsen, Jonathan, "Jan Janssens", academiejaar2021, "zichtbaar");
-                Sessie sessie2 = new Sessie("Uitleg stage, academiejaar 2020-2021", "Uitleg over de hoe's en wat's van stage lopen.", toekomst.AddDays(5), toekomst.AddDays(5).AddHours(2).AddMinutes(30), lokaal2, lokaal2.AantalPlaatsen, Jonathan, "Patrick Hoefman", academiejaar2021, "zichtbaar");
-                Sessie sessie3 = new Sessie("Infosessie over het nieuwe curriculum, academiejaar 2020-2021", "beschrijving", toekomst.AddDays(10), toekomst.AddDays(10).AddHours(3), lokaal3, lokaal3.AantalPlaatsen, Jonathan, "", academiejaar2021, "zichtbaar");
-                Sessie sessie4 = new Sessie("Hoe maak je een website veilig tegen sql-injecties", "beschrijving", toekomst.AddDays(7), toekomst.AddDays(7).AddHours(1), lokaal4, lokaal4.AantalPlaatsen, Seba, "Bart van Bartelghem", academiejaar2021, "zichtbaar");
+                Sessie sessie2 = new Sessie("Uitleg stage, academiejaar 20-21", "Uitleg over de hoe's en wat's van stage lopen.", toekomst.AddDays(5), toekomst.AddDays(5).AddHours(2).AddMinutes(30), lokaal2, lokaal2.AantalPlaatsen, Jonathan, "Patrick Hoefman", academiejaar2021, "zichtbaar");
+                Sessie sessie3 = new Sessie("Infosessie over het nieuwe curriculum", "beschrijving", toekomst.AddDays(10), toekomst.AddDays(10).AddHours(3), lokaal3, lokaal3.AantalPlaatsen, Jonathan, "", academiejaar2021, "zichtbaar");
+                Sessie sessie4 = new Sessie("Een veilige website bouwen", "beschrijving", toekomst.AddDays(7), toekomst.AddDays(7).AddHours(1), lokaal4, lokaal4.AantalPlaatsen, Seba, "Bart van Bartelghem", academiejaar2021, "zichtbaar");
                 Sessie sessie5 = new Sessie("De wereld van VR", "beschrijving", toekomst.AddDays(1), toekomst.AddDays(1).AddHours(1).AddMinutes(30), lokaal5, lokaal5.AantalPlaatsen, Seba, "Linda V.R. Pommodore", academiejaar2021, "zichtbaar");
                 Sessie sessie6 = new Sessie("Inleiding tot UNIX", "beschrijving", toekomst.AddDays(2), toekomst.AddDays(2).AddHours(1), lokaal6, lokaal6.AantalPlaatsen, Seba, "Tim Van Tommelghem", academiejaar2021, "zichtbaar");
-                Sessie sessie7 = new Sessie("Infosessie over de bachelor proef", "Een korte en krachtige inleiding tot github. Alles wat men hoef te weten over de werking en de structuur", toekomst.AddDays(5), toekomst.AddDays(5).AddHours(2).AddMinutes(30), lokaal7, lokaal7.AantalPlaatsen, Seba, "Sabine Decock", academiejaar2021, "zichtbaar");
+                Sessie sessie7 = new Sessie("Infosessie over de bachelorproef", "Een korte en krachtige inleiding tot github. Alles wat men hoef te weten over de werking en de structuur", toekomst.AddDays(5), toekomst.AddDays(5).AddHours(2).AddMinutes(30), lokaal7, lokaal7.AantalPlaatsen, Seba, "Sabine Decock", academiejaar2021, "zichtbaar");
                 Sessie sessie8 = new Sessie("The power of UNIX", "Korte sessie over de kracht van de command prompt in unix besturingssystemen", toekomst.AddDays(10), toekomst.AddDays(10).AddHours(1), lokaal62, lokaal62.AantalPlaatsen, Seba, "Micheal Hoefman", academiejaar2021, "zichtbaar");
                 Sessie sessie9 = new Sessie("What the future holds for AI", "Korte keynote van Elon Musk over zijn visie van wat er met AI te gebeuren staat", toekomst.AddDays(6), toekomst.AddDays(6).AddHours(1).AddMinutes(45), lokaal63, lokaal63.AantalPlaatsen, Seba, "Elon Musk", academiejaar2021, "zichtbaar");
                 Sessie sessie10 = new Sessie("The dangers of fake news", "Korte uitleg over het woord fake news en de gevolgen ervan.", toekomst, toekomst.AddHours(1).AddMinutes(30), lokaal64, lokaal64.AantalPlaatsen, Seba, "Donald Trump",academiejaar2021, "zichtbaar");
                 Sessie sessie11 = new Sessie("Inleiding tot Github", "Een inleiding over hoe wij github zullen gebruiken in de opleiding Toegepaste Informatica.", toekomst, toekomst.AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Seba, "Joy Hoefman",academiejaar2021, "zichtbaar");
                 Sessie sessie12 = new Sessie("De toekomst van een IT'er.", "beschrijving", toekomst.AddDays(2), toekomst.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Seba, "Gina De Clerq",academiejaar2021, "zichtbaar");
-                Sessie sessie13 = new Sessie("How 1 hour of work can be better than 3 ", "beschrijving", toekomst.AddDays(2), toekomst.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Seba, "Matt D'Avella", academiejaar2021, "zichtbaar");
+                Sessie sessie13 = new Sessie("Het probleem met Zoom", "beschrijving", toekomst.AddDays(2), toekomst.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Seba, "Matt D'Avella", academiejaar2021, "zichtbaar");
 
                 //Gesloten
                 Sessie sessie14 = new Sessie("Inleiding tot Ruby", "beschrijving", verleden.AddDays(2), verleden.AddDays(2).AddHours(2), lokaal1, lokaal1.AantalPlaatsen, Jonathan, "", academiejaar2021, "gesloten");
