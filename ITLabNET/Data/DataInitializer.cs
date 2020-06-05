@@ -27,11 +27,12 @@ namespace ITLabNET.Data
             if (_dbContext.Database.EnsureCreated())
             {
                 #region Gebruikers
-                Gebruiker Jonathan = new Gebruiker("Jonathan Vanden Eynden", "862361jv", 1133294124035L, "hoofdverantwoordelijke", "actief", "P@ssword1");
-                Gebruiker Ziggy = new Gebruiker("Ziggy Moens", "123456zm", 1117212595596L, "verantwoordelijke", "actief", "P@ssword1");
-                Gebruiker Kilian = new Gebruiker("Kilian Hoefman", "123456kh", 1141420613636L, "gebruiker", "actief", "P@ssword1");
+
+                Gebruiker Jonathan = new Gebruiker("Jonathan Vanden Eynden", "862361jv", 1133294124035L, "verantwoordelijke", "actief", "P@ssword1");
+                Gebruiker Ziggy = new Gebruiker("Ziggy Moens", "758095zm", 1117212595596L, "hoofdverantwoordelijke", "actief", "P@ssword1");
+                Gebruiker Kilian = new Gebruiker("Kilian Hoefman", "757932kh", 1141420613636L, "gebruiker", "actief", "P@ssword1");
                 Gebruiker Seba = new Gebruiker("Sébastien De Pauw", "755223sd", 1136053896198L, "verantwoordelijke", "actief", "P@ssword1");
-                Gebruiker Sven = new Gebruiker("Sven Wyseur", "123456sw", 1133340050431L, "gebruiker", "actief", "P@ssword1");
+                Gebruiker Sven = new Gebruiker("Sven Wyseur", "751158sw", 1133340050431L, "gebruiker", "actief", "P@ssword1");
 
                 var gebruikers = new List<Gebruiker> { Jonathan, Ziggy, Kilian, Sven, Seba };
                 var profielen = new List<GebruikerProfielStates> { Jonathan.CurrentProfiel, Ziggy.CurrentProfiel, Kilian.CurrentProfiel, Sven.CurrentProfiel, Seba.CurrentProfiel };
@@ -39,8 +40,8 @@ namespace ITLabNET.Data
                 _dbContext.Gebruikers.AddRange(gebruikers);
                /* _dbContext.GebruikersProfielen.AddRange(profielen);
                 _dbContext.GebruikersStatussen.AddRange(statussen);*/
-                await CreateUser(Jonathan.Gebruikersnaam, "jonathan.vandeneyndenvanlysebeth@student.hogent.be", Jonathan.Wachtwoord, "Hoofdverantwoordelijke");
-                await CreateUser(Ziggy.Gebruikersnaam, "ziggy.moens@student.hogent.be", Ziggy.Wachtwoord, "Verantwoordelijke");
+                await CreateUser(Jonathan.Gebruikersnaam, "jonathan.vandeneyndenvanlysebeth@student.hogent.be", Jonathan.Wachtwoord, "Verantwoordelijke");
+                await CreateUser(Ziggy.Gebruikersnaam, "ziggy.moens@student.hogent.be", Ziggy.Wachtwoord, "Hoofdverantwoordelijke");
                 await CreateUser(Kilian.Gebruikersnaam, "kilian.hoefman@student.hogent.be", Kilian.Wachtwoord, "Gebruiker");
                 await CreateUser(Sven.Gebruikersnaam, "sven.wyseur@student.hogent.be", Sven.Wachtwoord, "Gebruiker");
                 await CreateUser(Seba.Gebruikersnaam, "sebastien.depauw@student.hogent.be", Seba.Wachtwoord, "Verantwoordelijke");
@@ -250,8 +251,6 @@ namespace ITLabNET.Data
                 
                 _dbContext.Sessies.AddRange(sessies);
                 #endregion
-                
-                
 
                 _dbContext.SaveChanges();
             }
